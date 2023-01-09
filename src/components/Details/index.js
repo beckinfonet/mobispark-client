@@ -29,7 +29,7 @@ export const Details = (props) => {
     promoContentBottom,
     fullAddress,
     serviceTypes,
-  } = data.state.state;
+  } = data.state;
   return (
     <div
       style={{
