@@ -1,32 +1,28 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
-import LandingContainer from "./components/LandingContainer";
-import { Details } from "./components/Details";
-import "./App.css";
-
 import { Amplify } from "aws-amplify";
-
-import { Authenticator } from "@aws-amplify/ui-react";
-import "@aws-amplify/ui-react/styles.css";
-
+import { useAuthenticator, Authenticator } from "@aws-amplify/ui-react";
+import { AppAuthenticator } from "./components/AppAuthenticator";
+import { AppRoutes } from "./AppRoutes";
 import awsExports from "./aws-exports";
+
 Amplify.configure(awsExports);
 
 function App() {
+  const { authStatus } = useAuthenticator((context) => [context.authStatus]);
+
   return (
-    <Authenticator>
-      {({ signOut, user }) => (
-        <React.Fragment>
-          <Routes>
-            <Route
-              path="/"
-              element={<LandingContainer signOut={() => signOut()} />}
-            />
-            <Route path="/details" element={<Details />} />
-          </Routes>
-        </React.Fragment>
+    <>
+      {authStatus === "configuring" ? (
+        <>
+          <div>Loading ....</div>
+          <Authenticator />
+        </>
+      ) : authStatus === "authenticated" ? (
+        <AppRoutes />
+      ) : (
+        <AppAuthenticator />
       )}
-    </Authenticator>
+    </>
   );
 }
 

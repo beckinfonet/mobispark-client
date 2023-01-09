@@ -1,0 +1,59 @@
+.authenticator-root {
+  display: flex;
+  justify-content: center;
+  background-color: #172b4d !important;
+}
+
+.authenticator-root .authenticator-section {
+  margin: 10px;
+}
+
+.authenticator-root .authenticator-section .logo-section {
+  margin: 20px;
+}
+
+.authenticator-root .authenticator-section .logo-text {
+  color: #fff;
+  font-size: 3em;
+  font-weight: 600;
+  text-align: center;
+}
+
+.authenticator-root .authenticator-card {
+  background-color: #fff;
+  padding: 50px 25px;
+  border-radius: 10px;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 0px) and (max-width: 575.98px) {
+  .authenticator-root .authenticator-card {
+    padding: 30px 10px;
+  }
+
+  .authenticator-card [data-amplify-authenticator] [data-amplify-form] {
+    padding: 20px 15px;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+}
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+}
+
+/*  XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) {
+}
+
+.authenticator-card [data-amplify-authenticator] [data-amplify-router] {
+  background-color: #fff;
+  border: none;
+  box-shadow: none;
+}
