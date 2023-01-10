@@ -22,7 +22,7 @@ const settings = [
 
 export function AppHeader(props) {
   const navigate = useNavigate();
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   // const handleOpenNavMenu = (event) => {
@@ -58,14 +58,14 @@ export function AppHeader(props) {
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
               fontWeight: 700,
-              letterSpacing: ".3rem",
+              fontFamily: "inherit",
+              letterSpacing: "none",
               color: "inherit",
               textDecoration: "none",
             }}
           >
-            Formula312
+            FORMULA312
           </Typography>
 
           {/* <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -113,14 +113,14 @@ export function AppHeader(props) {
               mr: 2,
               display: { xs: "flex", md: "none" },
               flexGrow: 1,
-              fontFamily: "monospace",
+              fontFamily: "inherit",
               fontWeight: 700,
-              letterSpacing: ".3rem",
+              letterSpacing: "none",
               color: "inherit",
               textDecoration: "none",
             }}
           >
-            Formula312
+            FORMULA312
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (

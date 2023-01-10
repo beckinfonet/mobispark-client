@@ -1,11 +1,11 @@
 import React from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { useAuthenticator } from "@aws-amplify/ui-react";
-
-import { Details } from "./components/Details";
 import { AppLayout } from "./components/AppLayout";
 import { BasicWash } from "./Pages/BasicWash";
 import { ProWash } from "./Pages/ProWash";
+import { ServiceDetails } from "./Pages/ServiceDetails";
+import { PaymentContainer } from "./Pages/Payments";
 
 export const AppRoutes = () => {
   const { signOut } = useAuthenticator((context) => [context.user]);
@@ -19,9 +19,14 @@ export const AppRoutes = () => {
         />
         <Route path="/basic-wash" element={<BasicWash />} />
         <Route path="/pro-wash" element={<ProWash />} />
-        <Route path="/basic-wash/:serviceId/details" element={<Details />} />
-        <Route path="/pro-wash/:serviceId/details" element={<Details />} />
-        <Route path="/details" element={<Details />} />
+        <Route
+          path="/:category/:serviceId/details"
+          element={<ServiceDetails />}
+        />
+        <Route
+          path="/:category/:serviceId/payment"
+          element={<PaymentContainer />}
+        />
       </Routes>
     </AppLayout>
   );

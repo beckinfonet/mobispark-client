@@ -119,13 +119,14 @@ export const AppAuthenticator = () => {
     <div className="authenticator-root">
       <div className="authenticator-section">
         <div className="logo-section">
-          <h1 className="logo-text">Formula312</h1>
+          <h1 className="logo-text">FORMULA312</h1>
         </div>
         <div className="authenticator-card">
           <ThemeProvider theme={theme}>
             <Authenticator />
           </ThemeProvider>
         </div>
+        <br />
         <br />
         <AppFooter />
       </div>

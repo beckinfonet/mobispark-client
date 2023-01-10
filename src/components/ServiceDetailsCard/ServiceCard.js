@@ -13,9 +13,24 @@ import Chip from "@mui/material/Chip";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import Divider from "@mui/material/Divider";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import CarsImage from "../../assets/images/wax.jpeg";
+
+const allImages = [
+  "car-detailing-left",
+  "car-detailing",
+  "cleaning",
+  "dark-mode",
+  "maintain",
+  "mechanic",
+  "polish",
+  "repairs",
+  "wax",
+];
 
 const servicesPills = ["Car wash", "Tint", "Tire pressure"];
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
 
 const calculateOffer = (basePrice, offerPrice = 0) =>
   Math.round(((basePrice - offerPrice) / basePrice) * 10000) / 100;
@@ -36,7 +51,9 @@ export function ServiceCard(props) {
         <CardMedia
           component="img"
           height="180"
-          image={CarsImage}
+          image={`/assets/images/${
+            allImages[getRandomInt(allImages.length - 1)]
+          }.jpeg`}
           alt="green iguana"
         />
         <CardContent>

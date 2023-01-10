@@ -1,0 +1,184 @@
+{
+  "data": [
+    {
+      "id": "1",
+      "title": "Miguel's car detailing",
+      "location": "New York",
+      "fullAddress": "1542 N Broadway, Baltimore, MD 21213",
+      "image": "./assets/wax.jpeg",
+      "rate": 5.0,
+      "promoRate": 195,
+      "basePrice": 195,
+      "promoContentTop": "top company",
+      "promoContentBottom": "Located near you",
+      "serviceTypes": {
+        "interior": [
+          "Thorough vacuum",
+          "Deep carpet shampooing",
+          "Hot water extraction",
+          "Stain removal",
+          "Leather seats cleaned and conditioned",
+          "Door jambs cleaned"
+        ],
+        "exterior": [
+          "Carnauba wash application",
+          "Bug, road tar and tree sap removed",
+          "Tire shine",
+          "Wheel cleaning",
+          "Wheel fender cleaning",
+          "Paint sealer application"
+        ]
+      }
+    },
+    {
+      "id": "2",
+      "title": "Jose's car shop",
+      "location": "Virginia, 2.5 miles away",
+      "fullAddress": "1542 N Broadway, Baltimore, MD 21213",
+      "image": "./assets/wax.jpeg",
+      "rate": 4.5,
+      "promoRate": 155,
+      "basePrice": 180,
+      "promoContentTop": "pricebreaker",
+      "promoContentBottom": "Soonest service",
+      "serviceTypes": {
+        "interior": [
+          "Thorough vacuum",
+          "Deep carpet shampooing",
+          "Hot water extraction",
+          "Stain removal",
+          "Leather seats cleaned and conditioned",
+          "Door jambs cleaned"
+        ],
+        "exterior": [
+          "Carnauba wash application",
+          "Bug, road tar and tree sap removed",
+          "Tire shine",
+          "Wheel cleaning",
+          "Wheel fender cleaning",
+          "Paint sealer application"
+        ]
+      }
+    },
+    {
+      "id": "3",
+      "title": "Daniel's car shop",
+      "fullAddress": "1542 N Broadway, Baltimore, MD 21213",
+      "location": "San Francisco",
+      "image": "./assets/wax.jpeg",
+      "rate": 4.0,
+      "promoRate": 180,
+      "basePrice": 205,
+      "promoContentTop": "best price available",
+      "promoContentBottom": "Available now",
+      "serviceTypes": {
+        "interior": [
+          "Thorough vacuum",
+          "Deep carpet shampooing",
+          "Hot water extraction",
+          "Stain removal",
+          "Leather seats cleaned and conditioned",
+          "Door jambs cleaned"
+        ],
+        "exterior": [
+          "Carnauba wash application",
+          "Bug, road tar and tree sap removed",
+          "Tire shine",
+          "Wheel cleaning",
+          "Wheel fender cleaning",
+          "Paint sealer application"
+        ]
+      }
+    },
+    {
+      "id": "4",
+      "title": "Xavier's car detailing",
+      "fullAddress": "1542 N Broadway, Baltimore, MD 21213",
+      "location": "San Jose",
+      "image": "./assets/wax.jpeg",
+      "rate": 5.0,
+      "promoRate": 175,
+      "basePrice": 195,
+      "promoContentTop": "best rated",
+      "promoContentBottom": "Located near you",
+      "serviceTypes": {
+        "interior": [
+          "Thorough vacuum",
+          "Deep carpet shampooing",
+          "Hot water extraction",
+          "Stain removal",
+          "Leather seats cleaned and conditioned",
+          "Door jambs cleaned"
+        ],
+        "exterior": [
+          "Carnauba wash application",
+          "Bug, road tar and tree sap removed",
+          "Tire shine",
+          "Wheel cleaning",
+          "Wheel fender cleaning",
+          "Paint sealer application"
+        ]
+      }
+    },
+    {
+      "id": "5",
+      "title": "Miguel's car shop",
+      "fullAddress": "1542 N Broadway, Baltimore, MD 21213",
+      "location": "Washington D.C.",
+      "image": "./assets/wax.jpeg",
+      "rate": 3.9,
+      "promoRate": 115,
+      "basePrice": 145,
+      "promoContentTop": "good service",
+      "promoContentBottom": "Located near you",
+      "serviceTypes": {
+        "interior": [
+          "Thorough vacuum",
+          "Deep carpet shampooing",
+          "Hot water extraction",
+          "Stain removal",
+          "Leather seats cleaned and conditioned",
+          "Door jambs cleaned"
+        ],
+        "exterior": [
+          "Carnauba wash application",
+          "Bug, road tar and tree sap removed",
+          "Tire shine",
+          "Wheel cleaning",
+          "Wheel fender cleaning",
+          "Paint sealer application"
+        ]
+      }
+    },
+    {
+      "id": "6",
+      "title": "Miguel's car shop",
+      "fullAddress": "1542 N Broadway, Baltimore, MD 21213",
+      "location": "Seattle",
+      "image": "./assets/wax.jpeg",
+      "rate": 3.8,
+      "promoRate": 105,
+      "basePrice": 165,
+      "promoContentTop": "great price",
+      "promoContentBottom": "Located near you",
+      "serviceTypes": {
+        "interior": [
+          "Thorough vacuum",
+          "Deep carpet shampooing",
+          "Hot water extraction",
+          "Stain removal",
+          "Leather seats cleaned and conditioned",
+          "Door jambs cleaned"
+        ],
+        "exterior": [
+          "Carnauba wash application",
+          "Bug, road tar and tree sap removed",
+          "Tire shine",
+          "Wheel cleaning",
+          "Wheel fender cleaning",
+          "Paint sealer application"
+        ]
+      }
+    }
+  ]
+}
