@@ -1,7 +1,9 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import axios from "axios";
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Divider from "@mui/material/Divider";
@@ -28,6 +30,7 @@ const cardElementOptions = {
 };
 
 export default function PaymentForm() {
+  const data = useLocation();
   const [success, setSuccess] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
@@ -62,6 +65,13 @@ export default function PaymentForm() {
     }
   };
 
+  const Summary = ({ tax }) => (
+    <Box sx={{ maxWidth: "100%", align: "center" }}>
+      <Typography align="center">Car wash: {data.state.promoRate}</Typography>
+      <Typography align="center">Sales tax: {tax}</Typography>
+    </Box>
+  );
+
   return (
     <div className="payment-container">
       {!success ? (
@@ -78,6 +88,9 @@ export default function PaymentForm() {
           >
             Complete Your Payment
           </Typography>
+          <div>
+            <Summary basePrice={349} tax={34} />
+          </div>
           <Divider />
           <Card
             sx={{
@@ -117,9 +130,9 @@ export default function PaymentForm() {
                 <path
                   d="M7 25L27.3077 44L58.5 7"
                   stroke="white"
-                  stroke-width="13"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="13"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </svg>
             </div>

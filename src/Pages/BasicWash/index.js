@@ -50,8 +50,8 @@ export const BasicWash = () => {
         onClick={handleCategoryClick}
       />
       <Grid container spacing={3}>
-        {data.data.map((record) => (
-          <Grid item xs={12} md={4}>
+        {data.data.map((record, key) => (
+          <Grid item xs={12} md={4} key={key}>
             <ServiceCard
               data={record}
               onClick={handleServiceCardClick(record)}
