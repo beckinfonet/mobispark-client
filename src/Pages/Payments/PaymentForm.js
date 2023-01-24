@@ -67,7 +67,9 @@ export default function PaymentForm() {
 
   const Summary = ({ tax }) => (
     <Box sx={{ maxWidth: "100%", align: "center" }}>
-      <Typography align="center">Car wash: {data.state.promoRate}</Typography>
+      <Typography align="center">
+        Car wash: {data.state.totalBaseRate}
+      </Typography>
       <Typography align="center">Sales tax: {tax}</Typography>
     </Box>
   );

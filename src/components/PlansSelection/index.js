@@ -95,7 +95,7 @@ export const PlansSelection = (props) => {
         price={`$${promoRate}`}
         optionsCount={2}
         serviceTypes={serviceTypes}
-        handleBookCarWash={handleBookCarWash}
+        handleBookCarWash={() => handleBookCarWash(promoRate)}
       />
       <PlanCard
         type="POPULAR"
@@ -103,14 +103,14 @@ export const PlansSelection = (props) => {
         price={`$${promoRate * 1.5}`}
         optionsCount={1}
         serviceTypes={serviceTypes}
-        handleBookCarWash={handleBookCarWash}
+        handleBookCarWash={() => handleBookCarWash(promoRate * 1.5)}
       />
       <PlanCard
         type="SPECIAL"
         name="CLASSIC"
         price={`$${promoRate * 2}`}
         serviceTypes={serviceTypes}
-        handleBookCarWash={handleBookCarWash}
+        handleBookCarWash={() => handleBookCarWash(promoRate * 2)}
       />
     </div>
   );
