@@ -2,6 +2,7 @@ import * as React from "react";
 import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
 import { SocialIcon } from "react-social-icons";
+import { Typography } from "@mui/material";
 
 const Item = styled("div")(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -14,6 +15,7 @@ const Item = styled("div")(({ theme }) => ({
 export default function BasicTable() {
   return (
     <div>
+      <Typography align="center">Vendor details:</Typography>
       <Stack
         direction={{ xs: "column", sm: "row" }}
         spacing={{ xs: 1, sm: 2, md: 4 }}
@@ -39,6 +41,10 @@ export default function BasicTable() {
             network="wechat"
             style={{ height: 25, width: 25, margin: 10 }}
           />
+        </Item>
+        <Item>
+          <Typography>Service Date</Typography>
+          <Typography>2/15/2023</Typography>
         </Item>
       </Stack>
     </div>
