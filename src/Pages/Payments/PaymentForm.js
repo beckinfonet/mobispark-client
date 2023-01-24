@@ -67,13 +67,14 @@ export default function PaymentForm() {
 
   const BookingDetails = () => (
     <div className="summary-container">
-      <p className="bold-font">Order Details</p>
+      <p className="bold-font">ORDER SUMMARY</p>
       <BasicTable />
     </div>
   );
 
   const Summary = ({ tax }) => (
     <div className="summary-container">
+      <p>Price breakdown</p>
       <div className="row-item">
         <div>Base price</div>
         <p className="price-indicator">${data.state.totalBaseRate}</p>
