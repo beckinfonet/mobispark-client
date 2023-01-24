@@ -7,9 +7,9 @@ const Option = (props) => (
       <svg
         fill="none"
         stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2.5"
         viewBox="0 0 24 24"
       >
         <path d="M20 6L9 17l-5-5"></path>
@@ -53,14 +53,14 @@ const PlanCard = (props) => {
         <h1>{price}</h1>
         <h2>Interior</h2>
         <div className="plan-options-section">
-          {interiorOptions.map((option) => (
-            <Option label={option.label} />
+          {interiorOptions.map((option, index) => (
+            <Option key={index} label={option.label} />
           ))}
         </div>
         <h2>Exterior</h2>
         <div className="plan-options-section">
-          {exteriorOptions.map((option) => (
-            <Option label={option.label} />
+          {exteriorOptions.map((option, index) => (
+            <Option key={index} label={option.label} />
           ))}
         </div>
         <button className="plan-button" onClick={handleBookCarWash}>
@@ -68,9 +68,9 @@ const PlanCard = (props) => {
           <svg
             fill="none"
             stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
             viewBox="0 0 24 24"
           >
             <path d="M5 12h14M12 5l7 7-7 7"></path>
@@ -95,7 +95,7 @@ export const PlansSelection = (props) => {
         price={`$${promoRate}`}
         optionsCount={2}
         serviceTypes={serviceTypes}
-        handleBookCarWash={handleBookCarWash}
+        handleBookCarWash={() => handleBookCarWash(promoRate)}
       />
       <PlanCard
         type="POPULAR"
@@ -103,14 +103,14 @@ export const PlansSelection = (props) => {
         price={`$${promoRate * 1.5}`}
         optionsCount={1}
         serviceTypes={serviceTypes}
-        handleBookCarWash={handleBookCarWash}
+        handleBookCarWash={() => handleBookCarWash(promoRate * 1.5)}
       />
       <PlanCard
         type="SPECIAL"
         name="CLASSIC"
         price={`$${promoRate * 2}`}
         serviceTypes={serviceTypes}
-        handleBookCarWash={handleBookCarWash}
+        handleBookCarWash={() => handleBookCarWash(promoRate * 2)}
       />
     </div>
   );

@@ -97,8 +97,13 @@ export function ServiceCard(props) {
           </Box>
 
           <Stack direction={"row"} spacing={1} sx={{ mt: 2, mb: 2 }}>
-            {servicesPills.map((serviceType) => (
-              <Chip label={serviceType} color="primary" size="small" />
+            {servicesPills.map((serviceType, key) => (
+              <Chip
+                key={key}
+                label={serviceType}
+                color="primary"
+                size="small"
+              />
             ))}
           </Stack>
           <Box
