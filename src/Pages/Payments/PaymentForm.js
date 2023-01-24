@@ -7,6 +7,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Divider from "@mui/material/Divider";
 import { Typography } from "@mui/material";
+import BasicTable from "./OrderDetails";
 
 import "./styles.css";
 
@@ -66,32 +67,8 @@ export default function PaymentForm() {
 
   const BookingDetails = () => (
     <div className="summary-container">
-      <p>Order Details</p>
-      <div className="row-item">
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignContent: "center",
-            width: "100%",
-          }}
-        >
-          <img
-            src="https://pixlr.com/studio/template/8352fdc3-0e0e-4465-a3d3-af93beb070c4/thumbnail.webp"
-            width={50}
-            height={50}
-          />
-          <div>
-            <div>Brandon Frank</div>
-            <div>(212)755-3455</div>
-          </div>
-          <div>
-            Email
-            <p style={{ margin: 0, padding: 0 }}>brandonfrank@gmail.com</p>
-          </div>
-        </div>
-      </div>
+      <p className="bold-font">Order Details</p>
+      <BasicTable />
     </div>
   );
 

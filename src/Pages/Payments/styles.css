@@ -100,9 +100,13 @@
 }
 
 .summary-container .row-item .price-indicator {
-  font-weight: bold;
+  font-weight: 600;
   margin: 0;
   padding: 0;
+}
+
+.bold-font {
+  font-weight: 600;
 }
 
 @keyframes animateContainer {
