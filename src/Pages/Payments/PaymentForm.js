@@ -3,7 +3,6 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import Button from "@mui/material/Button";
-import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Divider from "@mui/material/Divider";
@@ -66,12 +65,20 @@ export default function PaymentForm() {
   };
 
   const Summary = ({ tax }) => (
-    <Box sx={{ maxWidth: "100%", align: "center" }}>
-      <Typography align="center">
-        Car wash: {data.state.totalBaseRate}
-      </Typography>
-      <Typography align="center">Sales tax: {tax}</Typography>
-    </Box>
+    <div className="summary-container">
+      <div className="row-item">
+        <div>Base price</div>
+        <p className="price-indicator">${data.state.totalBaseRate}</p>
+      </div>
+      <div className="row-item">
+        <div>Tax</div>
+        <p className="price-indicator">${tax}</p>
+      </div>
+      <div className="row-item">
+        <div>Total</div>
+        <p className="price-indicator">${tax + data.state.totalBaseRate}</p>
+      </div>
+    </div>
   );
 
   return (

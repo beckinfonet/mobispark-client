@@ -84,6 +84,27 @@
   animation: animateShadow 0.75s ease-out forwards 0.75s;
 }
 
+.summary-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  margin: auto;
+}
+
+.summary-container .row-item {
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+}
+
+.summary-container .row-item .price-indicator {
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+}
+
 @keyframes animateContainer {
   0% {
     opacity: 0;
