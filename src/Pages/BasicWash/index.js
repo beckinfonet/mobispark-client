@@ -36,14 +36,6 @@ export const BasicWash = () => {
 
   return (
     <Box>
-      <WashTabs />
-      <Typography
-        variant="h6"
-        color="text.secondary"
-        sx={{ textAlign: "center", my: 2 }}
-      >
-        Basic Wash Details Total: ${selectedCategoriesTotalPrice}
-      </Typography>
       <ServiceCategories
         selected={selectedCategories}
         options={testOptions}

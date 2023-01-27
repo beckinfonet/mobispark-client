@@ -1,0 +1,28 @@
+.selection-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.selection-container .title-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  padding: 15px;
+  width: 35%;
+  height: 150px;
+  border: 1px solid black;
+  background-color: aquamarine;
+}
+
+.selection-container .tile-section {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.selection-container .selection-btn {
+  height: 40px;
+  width: 100px;
+}

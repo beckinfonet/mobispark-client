@@ -43,7 +43,7 @@ export const ServiceCategories = (props) => {
           sx={{ borderRadius: "15px" }}
           onClick={handleCategoryClick(service)}
         >
-          {service.title} ${service.cost}
+          {service.title}
         </Button>
       ))}
     </Box>

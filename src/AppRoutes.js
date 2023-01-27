@@ -3,7 +3,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import { AppLayout } from "./components/AppLayout";
 import { BasicWash } from "./Pages/BasicWash";
-import { ProWash } from "./Pages/ProWash";
+import { MainSelection } from "./Pages/MainSelection";
 import { ServiceDetails } from "./Pages/ServiceDetails";
 import { PaymentContainer } from "./Pages/Payments";
 
@@ -15,10 +15,10 @@ export const AppRoutes = () => {
       <Routes>
         <Route
           path="/"
-          element={<Navigate to="/basic-wash" replace={true} />}
+          element={<Navigate to="/main-selection" replace={true} />}
         />
+        <Route path="/main-selection" element={<MainSelection />} />
         <Route path="/basic-wash" element={<BasicWash />} />
-        <Route path="/pro-wash" element={<ProWash />} />
         <Route
           path="/:category/:serviceId/details"
           element={<ServiceDetails />}
