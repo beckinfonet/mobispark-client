@@ -4,8 +4,14 @@
 
 .basic-details-section .user-details-section {
   width: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(120px, 100%), 1fr));
-  gap: 1rem;
-  text-align: center;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.basic-details-section .user-details-section .item {
+  display: flex;
+  flex-flow: row wrap;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
 }

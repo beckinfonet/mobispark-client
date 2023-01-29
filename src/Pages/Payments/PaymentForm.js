@@ -74,7 +74,9 @@ export default function PaymentForm() {
 
   const Summary = ({ tax }) => (
     <div className="summary-container">
-      <p>Price breakdown</p>
+      <p>
+        <b>Price breakdown</b>
+      </p>
       <div className="row-item">
         <div>Base price</div>
         <p className="price-indicator">${data?.state?.totalBaseRate}</p>

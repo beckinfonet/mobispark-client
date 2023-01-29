@@ -73,7 +73,7 @@ export function AppHeader(props) {
               textDecoration: "none",
             }}
           >
-            FORMULA312
+            <img src="/logo.png" alt="logo" height="60" width="120" />
           </Typography>
 
           {/* <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -128,7 +128,7 @@ export function AppHeader(props) {
               textDecoration: "none",
             }}
           >
-            FORMULA312
+            <img src="/logo.png" alt="logo" height="60" width="120" />
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
@@ -153,7 +153,7 @@ export function AppHeader(props) {
                   onClick={handleOpenUserMenu}
                   color="inherit"
                 >
-                  <AccountCircle />
+                  <AccountCircle fontSize="large" />
                 </IconButton>
               </Tooltip>
               <Menu

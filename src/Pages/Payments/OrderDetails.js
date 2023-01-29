@@ -7,35 +7,41 @@ export default function BasicTable() {
   const today = new Date();
   return (
     <div className="basic-details-section">
-      <Typography align="center">Vendor details:</Typography>
+      <Typography align="center" gutterBottom sx={{ fontWeight: "bold" }}>
+        Vendor details:
+      </Typography>
       <div className="user-details-section">
-        <div>
+        <div className="item">
           <img
+            alt="vendor icon"
             src="https://pixlr.com/studio/template/8352fdc3-0e0e-4465-a3d3-af93beb070c4/thumbnail.webp"
             width={50}
             height={50}
             style={{ borderRadius: "10px" }}
           />
+          <div style={{ marginLeft: "5px" }}>
+            <div>Brandon Frank</div>
+            <div>(212)755-3455</div>
+          </div>
         </div>
-        <div>
-          <div>Brandon Frank</div>
-          <div>(212)755-3455</div>
-        </div>
-        <div>
-          <SocialIcon
-            network="email"
-            style={{ height: 25, width: 25, margin: 10 }}
-          />
-          <SocialIcon
-            network="wechat"
-            style={{ height: 25, width: 25, margin: 10 }}
-          />
-        </div>
-        <div>
-          <Typography>Service Date</Typography>
-          <Typography>{`${
-            today.getMonth() + 1
-          }/${today.getDate()}/${today.getFullYear()}`}</Typography>
+
+        <div className="item">
+          <div>
+            <SocialIcon
+              network="email"
+              style={{ height: 25, width: 25, margin: 10 }}
+            />
+            <SocialIcon
+              network="wechat"
+              style={{ height: 25, width: 25, margin: 10 }}
+            />
+          </div>
+          <div>
+            <Typography>Service Date</Typography>
+            <Typography>{`${
+              today.getMonth() + 1
+            }/${today.getDate()}/${today.getFullYear()}`}</Typography>
+          </div>
         </div>
       </div>
     </div>
