@@ -119,7 +119,9 @@ export const AppAuthenticator = () => {
     <div className="authenticator-root">
       <div className="authenticator-section">
         <div className="logo-section">
-          <h1 className="logo-text">FORMULA312</h1>
+          <h1 className="logo-text">
+            <img src="/logo2.png" alt="logo" height="100" width="200" />
+          </h1>
         </div>
         <div className="authenticator-card">
           <ThemeProvider theme={theme}>
