@@ -89,14 +89,14 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 60%;
   margin: auto;
+  max-width: 500px;
 }
 
 .summary-container .row-item {
   display: flex;
   justify-content: space-between;
-  width: 70%;
+  width: 100%;
 }
 
 .summary-container .row-item .price-indicator {

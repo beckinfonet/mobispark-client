@@ -74,10 +74,12 @@ export default function PaymentForm() {
 
   const Summary = ({ tax }) => (
     <div className="summary-container">
-      <p>Price breakdown</p>
+      <p>
+        <b>Price breakdown</b>
+      </p>
       <div className="row-item">
         <div>Base price</div>
-        <p className="price-indicator">${data.state.totalBaseRate}</p>
+        <p className="price-indicator">${data?.state?.totalBaseRate}</p>
       </div>
       <div className="row-item">
         <div>Tax</div>
@@ -85,7 +87,7 @@ export default function PaymentForm() {
       </div>
       <div className="row-item">
         <div>Total</div>
-        <p className="price-indicator">${tax + data.state.totalBaseRate}</p>
+        <p className="price-indicator">${tax + data?.state?.totalBaseRate}</p>
       </div>
     </div>
   );
@@ -108,7 +110,7 @@ export default function PaymentForm() {
           </Typography>
           <div>
             <BookingDetails />
-            <Summary basePrice={349} tax={34} />
+            <Summary tax={34} />
           </div>
           <Divider />
           <Card

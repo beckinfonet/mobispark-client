@@ -10,7 +10,7 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const pages = [
   // "Products", "Pricing", "Blog"
@@ -21,6 +21,8 @@ const settings = [
 ];
 
 export function AppHeader(props) {
+  const { authStatus } = props;
+  const location = useLocation();
   const navigate = useNavigate();
   const [, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -46,6 +48,12 @@ export function AppHeader(props) {
     props.signOut();
   };
 
+  const handleLoginOnClick = () => {
+    navigate("/login", { state: { from: location } });
+  };
+
+  console.log("AppHeader ....", authStatus);
+
   return (
     <AppBar component="nav">
       <Container maxWidth="lg">
@@ -65,7 +73,7 @@ export function AppHeader(props) {
               textDecoration: "none",
             }}
           >
-            FORMULA312
+            <img src="/logo.png" alt="logo" height="60" width="120" />
           </Typography>
 
           {/* <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -120,7 +128,7 @@ export function AppHeader(props) {
               textDecoration: "none",
             }}
           >
-            FORMULA312
+            <img src="/logo.png" alt="logo" height="60" width="120" />
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
@@ -134,42 +142,48 @@ export function AppHeader(props) {
             ))}
           </Box>
 
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton
-                size="large"
-                edge="end"
-                aria-label="account of current user"
-                aria-haspopup="true"
-                onClick={handleOpenUserMenu}
-                color="inherit"
+          {authStatus === "authenticated" ? (
+            <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title="Open settings">
+                <IconButton
+                  size="large"
+                  edge="end"
+                  aria-label="account of current user"
+                  aria-haspopup="true"
+                  onClick={handleOpenUserMenu}
+                  color="inherit"
+                >
+                  <AccountCircle fontSize="large" />
+                </IconButton>
+              </Tooltip>
+              <Menu
+                sx={{ mt: "45px" }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
               >
-                <AccountCircle />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handlemenuItemClick}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
+                {settings.map((setting) => (
+                  <MenuItem key={setting} onClick={handlemenuItemClick}>
+                    <Typography textAlign="center">{setting}</Typography>
+                  </MenuItem>
+                ))}
+              </Menu>
+            </Box>
+          ) : (
+            <Button color="inherit" onClick={handleLoginOnClick}>
+              Login
+            </Button>
+          )}
         </Toolbar>
       </Container>
     </AppBar>

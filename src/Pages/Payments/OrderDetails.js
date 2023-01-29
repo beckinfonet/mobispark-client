@@ -1,52 +1,49 @@
 import * as React from "react";
-import Stack from "@mui/material/Stack";
-import { styled } from "@mui/material/styles";
 import { SocialIcon } from "react-social-icons";
 import { Typography } from "@mui/material";
-
-const Item = styled("div")(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
+import "./orderDetails.styles.css";
 
 export default function BasicTable() {
+  const today = new Date();
   return (
-    <div>
-      <Typography align="center">Vendor details:</Typography>
-      <Stack
-        direction={{ xs: "column", sm: "row" }}
-        spacing={{ xs: 1, sm: 2, md: 4 }}
-      >
-        <Item>
+    <div className="basic-details-section">
+      <Typography align="center" gutterBottom sx={{ fontWeight: "bold" }}>
+        Vendor details:
+      </Typography>
+      <div className="user-details-section">
+        <div className="item">
           <img
+            alt="vendor icon"
             src="https://pixlr.com/studio/template/8352fdc3-0e0e-4465-a3d3-af93beb070c4/thumbnail.webp"
             width={50}
             height={50}
             style={{ borderRadius: "10px" }}
           />
-        </Item>
-        <Item>
-          <div>Brandon Frank</div>
-          <div>(212)755-3455</div>
-        </Item>
-        <Item>
-          <SocialIcon
-            network="email"
-            style={{ height: 25, width: 25, margin: 10 }}
-          />
-          <SocialIcon
-            network="wechat"
-            style={{ height: 25, width: 25, margin: 10 }}
-          />
-        </Item>
-        <Item>
-          <Typography>Service Date</Typography>
-          <Typography>2/15/2023</Typography>
-        </Item>
-      </Stack>
+          <div style={{ marginLeft: "5px" }}>
+            <div>Brandon Frank</div>
+            <div>(212)755-3455</div>
+          </div>
+        </div>
+
+        <div className="item">
+          <div>
+            <SocialIcon
+              network="email"
+              style={{ height: 25, width: 25, margin: 10 }}
+            />
+            <SocialIcon
+              network="wechat"
+              style={{ height: 25, width: 25, margin: 10 }}
+            />
+          </div>
+          <div>
+            <Typography>Service Date</Typography>
+            <Typography>{`${
+              today.getMonth() + 1
+            }/${today.getDate()}/${today.getFullYear()}`}</Typography>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

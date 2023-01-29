@@ -1,0 +1,17 @@
+.basic-details-section {
+  width: 100%;
+}
+
+.basic-details-section .user-details-section {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.basic-details-section .user-details-section .item {
+  display: flex;
+  flex-flow: row wrap;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+}
