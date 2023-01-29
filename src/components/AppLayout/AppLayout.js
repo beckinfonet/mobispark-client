@@ -5,7 +5,7 @@ import Container from "@mui/material/Container";
 import { AppHeader } from "./AppHeader";
 import { AppFooter } from "./AppFooter";
 
-export function AppLayout({ signOut, children }) {
+export function AppLayout({ authStatus, signOut, children }) {
   return (
     <div
       style={{
@@ -15,7 +15,7 @@ export function AppLayout({ signOut, children }) {
         minHeight: "100%",
       }}
     >
-      <AppHeader signOut={signOut} />
+      <AppHeader authStatus={authStatus} signOut={signOut} />
       <Container sx={{ backgroundColor: "#fff", py: 10, flex: "1 0 auto" }}>
         <Box component="main">{children}</Box>
       </Container>

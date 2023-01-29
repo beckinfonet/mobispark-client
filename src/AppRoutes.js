@@ -1,33 +1,86 @@
 import React from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import { AppLayout } from "./components/AppLayout";
 import { BasicWash } from "./Pages/BasicWash";
 import { MainSelection } from "./Pages/MainSelection";
 import { ServiceDetails } from "./Pages/ServiceDetails";
 import { PaymentContainer } from "./Pages/Payments";
+import { Login } from "./Pages/Login";
+
+function PublicRoute({ children }) {
+  const { signOut, authStatus } = useAuthenticator((context) => [
+    context.authStatus,
+  ]);
+  // console.log("PublicRoute .......", authStatus);
+  return (
+    <AppLayout authStatus={authStatus} signOut={signOut}>
+      {children}
+    </AppLayout>
+  );
+}
+
+function PrivateRoute({ children }) {
+  const { authStatus, signOut } = useAuthenticator((context) => [
+    context.authStatus,
+  ]);
+  let location = useLocation();
+  // console.log("PrivateRoute .......", authStatus);
+  if (authStatus === "unauthenticated") {
+    // Redirect them to the /login page, but save the current location they were
+    // trying to go to when they were redirected. This allows us to send them
+    // along to that page after they login, which is a nicer user experience
+    // than dropping them off on the home page.
+    return <Navigate to="/login" state={{ from: location }} replace />;
+  } else {
+    return (
+      <AppLayout authStatus={authStatus} signOut={signOut}>
+        {children}
+      </AppLayout>
+    );
+  }
+}
 
 export const AppRoutes = () => {
-  const { signOut } = useAuthenticator((context) => [context.user]);
-
   return (
-    <AppLayout signOut={signOut}>
-      <Routes>
-        <Route
-          path="/"
-          element={<Navigate to="/main-selection" replace={true} />}
-        />
-        <Route path="/main-selection" element={<MainSelection />} />
-        <Route path="/basic-wash" element={<BasicWash />} />
-        <Route
-          path="/:category/:serviceId/details"
-          element={<ServiceDetails />}
-        />
-        <Route
-          path="/:category/:serviceId/payment"
-          element={<PaymentContainer />}
-        />
-      </Routes>
-    </AppLayout>
+    <Routes>
+      <Route
+        path="/"
+        element={<Navigate to="/main-selection" replace={true} />}
+      />
+      <Route path="/login" element={<Login />} />
+      <Route
+        path="main-selection"
+        element={
+          <PublicRoute>
+            <MainSelection />
+          </PublicRoute>
+        }
+      />
+      <Route
+        path="basic-wash"
+        element={
+          <PublicRoute>
+            <BasicWash />
+          </PublicRoute>
+        }
+      />
+      <Route
+        path=":category/:serviceId/details"
+        element={
+          <PublicRoute>
+            <ServiceDetails />
+          </PublicRoute>
+        }
+      />
+      <Route
+        path=":category/:serviceId/payment"
+        element={
+          <PrivateRoute>
+            <PaymentContainer />
+          </PrivateRoute>
+        }
+      />
+    </Routes>
   );
 };
