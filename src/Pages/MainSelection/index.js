@@ -124,7 +124,7 @@ export const MainSelection = () => {
             We will send updates occasionally.
           </DialogContentText> */}
           <Box component="form" noValidate autoComplete="off" sx={{ p: 2 }}>
-            <div style={{ minWidth: "400px" }}>
+            <div style={{ maxWidth: "400px", width: "100%" }}>
               <TextField
                 error={zipcodeTouched && zipCode.length < 6}
                 id="outlined-error-helper-text"
