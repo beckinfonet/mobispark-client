@@ -141,8 +141,8 @@ export default function PaymentForm() {
         </div>
       ) : (
         <div className="payment-successful-page">
-          <div class="check-container">
-            <div class="check-background">
+          <div className="check-container">
+            <div className="check-background">
               <svg
                 viewBox="0 0 65 51"
                 fill="none"
@@ -157,7 +157,7 @@ export default function PaymentForm() {
                 />
               </svg>
             </div>
-            <div class="check-shadow"></div>
+            <div className="check-shadow"></div>
           </div>
           <Typography
             variant="h5"
