@@ -23,7 +23,7 @@ export const BasicWash = () => {
 
   const navigate = useNavigate();
   const [selectedCategories, setSelectedCategories] = React.useState(
-    testOptions.filter((opt) => state.includes(opt.title))
+    testOptions.filter((opt) => state.categories.includes(opt.title))
   );
 
   const selectedCategoriesTotalPrice = React.useMemo(() => {
@@ -35,7 +35,9 @@ export const BasicWash = () => {
   };
 
   const handleServiceCardClick = (record) => () => {
-    navigate(`/basic-wash/${record.id}/details`, { state: record });
+    navigate(`/basic-wash/${record.id}/details`, {
+      state: { selectedVendor: record, dateAndZipCode: state.dateAndZipCode },
+    });
   };
 
   return (
