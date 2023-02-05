@@ -1,6 +1,7 @@
 import * as React from "react";
 import { SocialIcon } from "react-social-icons";
 import { Typography } from "@mui/material";
+import dayjs from "dayjs";
 import "./orderDetails.styles.css";
 
 export default function BasicTable(props) {
@@ -39,7 +40,9 @@ export default function BasicTable(props) {
           </div>
           <div>
             <Typography>Service Date</Typography>
-            <Typography>{`${values?.dateOfBooking}`}</Typography>
+            <Typography>{`${dayjs(values?.dateOfBooking?.$d).format(
+              "MM/DD/YYYY"
+            )} ${values?.timeSlot}`}</Typography>
           </div>
         </div>
       </div>

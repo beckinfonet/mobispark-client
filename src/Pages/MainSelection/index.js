@@ -18,7 +18,42 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import MenuItem from "@mui/material/MenuItem";
+import FormHelperText from "@mui/material/FormHelperText";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+
 import "./styles.css";
+
+const avialableTimeSlots = [
+  "00-01 AM",
+  "01-02 AM",
+  "02-03 AM",
+  "03-04 AM",
+  "04-05 AM",
+  "05-06 AM",
+  "06-07 AM",
+  "07-08 AM",
+  "08-09 AM",
+  "09-10 AM",
+  "10-11 AM",
+  "11-12 AM",
+  "12-01 PM",
+  "01-02 PM",
+  "02-03 PM",
+  "03-04 PM",
+  "04-05 PM",
+  "05-06 PM",
+  "06-07 PM",
+  "07-08 PM",
+  "08-09 PM",
+  "09-10 PM",
+  "10-11 PM",
+  "11-12 PM",
+];
 
 export const MainSelection = () => {
   const [categories, setCategories] = React.useState([]);
@@ -26,10 +61,12 @@ export const MainSelection = () => {
   const [values, setValues] = React.useState({
     zipCode: "",
     dateOfBooking: "",
+    timeSlot: "",
   });
   const [touched, setTouched] = React.useState({
     zipCode: false,
     dateOfBooking: false,
+    timeSlot: false,
   });
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
@@ -54,8 +91,12 @@ export const MainSelection = () => {
     setValues((old) => ({ ...old, zipCode: e.target.value }));
   };
 
-  const handleDateOfBookingChange = (e) => {
-    setValues((old) => ({ ...old, dateOfBooking: e.target.value }));
+  const handleDateOfBookingChange = (value) => {
+    setValues((old) => ({ ...old, dateOfBooking: value }));
+  };
+
+  const handleTimeSlotChange = (e) => {
+    setValues((old) => ({ ...old, timeSlot: e.target.value }));
   };
 
   const handleOpen = () => setOpen(true);
@@ -173,6 +214,7 @@ export const MainSelection = () => {
                   value={values.zipCode}
                   onChange={handleZipcodeChange}
                   inputProps={{
+                    placeholder: "Zipcode",
                     maxLength: "5",
                     onBlur: () =>
                       setTouched((old) => ({ ...old, zipCode: true })),
@@ -181,26 +223,68 @@ export const MainSelection = () => {
               </div>
               <div style={{ width: "100%", margin: "20px 0px" }}>
                 <label htmlFor="dateOfBooking">Date of booking</label>
-                <TextField
-                  error={
-                    touched.dateOfBooking && values.dateOfBooking.length === 0
-                  }
-                  id="date-of-booking"
-                  hideLabel
-                  type="datetime-local"
-                  value={values.dateOfBooking}
-                  fullWidth
-                  onChange={handleDateOfBookingChange}
-                  inputProps={{
-                    onBlur: () =>
-                      setTouched((old) => ({ ...old, dateOfBooking: true })),
-                  }}
-                  helperText={
-                    touched.dateOfBooking && values.dateOfBooking.length === 0
-                      ? "Field is required"
-                      : ""
-                  }
-                />
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DatePicker
+                    inputFormat="mm/dd/yyyy"
+                    value={values.dateOfBooking}
+                    onChange={handleDateOfBookingChange}
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        hideLabel
+                        error={
+                          touched.dateOfBooking &&
+                          values.dateOfBooking.length === 0
+                        }
+                        fullWidth
+                        inputProps={{
+                          ...params.inputProps,
+                          onBlur: () =>
+                            setTouched((old) => ({
+                              ...old,
+                              dateOfBooking: true,
+                            })),
+                        }}
+                        helperText={
+                          touched.dateOfBooking &&
+                          values.dateOfBooking.length === 0
+                            ? "Field is required"
+                            : ""
+                        }
+                      />
+                    )}
+                  />
+                </LocalizationProvider>
+              </div>
+              <div style={{ width: "100%", margin: "20px 0px" }}>
+                <label htmlFor="timeSlot">Time Slot</label>
+                <FormControl
+                  sx={{ m: 1, width: "100%" }}
+                  error={touched.timeSlot && values.timeSlot.length === 0}
+                >
+                  <Select
+                    id="time-slot"
+                    value={values.timeSlot}
+                    hideLabel
+                    onChange={handleTimeSlotChange}
+                    onBlur={() =>
+                      setTouched((old) => ({ ...old, timeSlot: true }))
+                    }
+                    displayEmpty
+                  >
+                    <MenuItem value="">
+                      <em>-- Select Time Slot --</em>
+                    </MenuItem>
+                    {avialableTimeSlots.map((timeSlot) => (
+                      <MenuItem key={timeSlot} value={timeSlot}>
+                        {timeSlot}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                  {touched.timeSlot && values.timeSlot.length === 0 && (
+                    <FormHelperText>Field is required</FormHelperText>
+                  )}
+                </FormControl>
               </div>
             </div>
           </Box>
