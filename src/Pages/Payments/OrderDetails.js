@@ -1,10 +1,12 @@
 import * as React from "react";
 import { SocialIcon } from "react-social-icons";
 import { Typography } from "@mui/material";
+import dayjs from "dayjs";
 import "./orderDetails.styles.css";
 
-export default function BasicTable() {
-  const today = new Date();
+export default function BasicTable(props) {
+  const { values } = props;
+
   return (
     <div className="basic-details-section">
       <Typography align="center" gutterBottom sx={{ fontWeight: "bold" }}>
@@ -38,9 +40,9 @@ export default function BasicTable() {
           </div>
           <div>
             <Typography>Service Date</Typography>
-            <Typography>{`${
-              today.getMonth() + 1
-            }/${today.getDate()}/${today.getFullYear()}`}</Typography>
+            <Typography>{`${dayjs(values?.dateOfBooking?.$d).format(
+              "MM/DD/YYYY"
+            )} ${values?.timeSlot}`}</Typography>
           </div>
         </div>
       </div>

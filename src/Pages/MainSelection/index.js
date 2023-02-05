@@ -10,20 +10,66 @@ import NoCrashIcon from "@mui/icons-material/NoCrashRounded";
 import MinorCruchIcon from "@mui/icons-material/MinorCrashRounded";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 // import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material/styles";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import MenuItem from "@mui/material/MenuItem";
+import FormHelperText from "@mui/material/FormHelperText";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+
 import "./styles.css";
+
+const avialableTimeSlots = [
+  "00-01 AM",
+  "01-02 AM",
+  "02-03 AM",
+  "03-04 AM",
+  "04-05 AM",
+  "05-06 AM",
+  "06-07 AM",
+  "07-08 AM",
+  "08-09 AM",
+  "09-10 AM",
+  "10-11 AM",
+  "11-12 AM",
+  "12-01 PM",
+  "01-02 PM",
+  "02-03 PM",
+  "03-04 PM",
+  "04-05 PM",
+  "05-06 PM",
+  "06-07 PM",
+  "07-08 PM",
+  "08-09 PM",
+  "09-10 PM",
+  "10-11 PM",
+  "11-12 PM",
+];
 
 export const MainSelection = () => {
   const [categories, setCategories] = React.useState([]);
   const [open, setOpen] = React.useState(false);
-  const [zipCode, setZipcode] = React.useState("");
-  const [zipcodeTouched, setZipcodeTouched] = React.useState(false);
+  const [values, setValues] = React.useState({
+    zipCode: "",
+    dateOfBooking: "",
+    timeSlot: "",
+  });
+  const [touched, setTouched] = React.useState({
+    zipCode: false,
+    dateOfBooking: false,
+    timeSlot: false,
+  });
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const navigate = useNavigate();
 
@@ -42,16 +88,31 @@ export const MainSelection = () => {
   };
 
   const handleZipcodeChange = (e) => {
-    setZipcode(e.target.value);
+    setValues((old) => ({ ...old, zipCode: e.target.value }));
+  };
+
+  const handleDateOfBookingChange = (value) => {
+    setValues((old) => ({ ...old, dateOfBooking: value }));
+  };
+
+  const handleTimeSlotChange = (e) => {
+    setValues((old) => ({ ...old, timeSlot: e.target.value }));
   };
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const handleContinue = () => {
-    if (zipCode.length === 6) {
-      navigate("/basic-wash", { state: categories });
+    if (values.zipCode.length === 5 && values.dateOfBooking) {
+      navigate("/basic-wash", {
+        state: { categories, dateAndZipCode: values },
+      });
     } else {
-      setZipcodeTouched(true);
+      setTouched((old) => ({
+        ...old,
+        zipCode: true,
+        dateOfBooking: true,
+        timeSlot: true,
+      }));
     }
   };
 
@@ -116,40 +177,127 @@ export const MainSelection = () => {
           <Typography>Mobile Tire Services</Typography>
         </div>
       </div>
-      <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Please provide zipcode</DialogTitle>
-        <DialogContent>
+      <Dialog
+        fullWidth
+        fullScreen={fullScreen}
+        open={open}
+        onClose={handleClose}
+      >
+        <DialogTitle
+          sx={{
+            background: "#1976d2",
+            color: "#ffffff",
+            textAlign: "center",
+            fontSize: "1.75rem",
+          }}
+        >
+          Please Provide Details
+        </DialogTitle>
+        <DialogContent dividers>
           {/* <DialogContentText>
             To subscribe to this website, please enter your email address here.
             We will send updates occasionally.
           </DialogContentText> */}
-          <Box component="form" noValidate autoComplete="off" sx={{ p: 2 }}>
-            <div style={{ maxWidth: "400px", width: "100%" }}>
-              <TextField
-                error={zipcodeTouched && zipCode.length < 6}
-                id="outlined-error-helper-text"
-                label="Zipcode"
-                helperText={
-                  zipcodeTouched && zipCode.length < 6
-                    ? zipCode.length === 0
-                      ? "Field is required"
-                      : "Please provide valid zipcode"
-                    : ""
-                }
-                value={zipCode}
-                sx={{ width: "100%" }}
-                onChange={handleZipcodeChange}
-                inputProps={{
-                  maxLength: "6",
-                  onBlur: () => setZipcodeTouched(true),
-                }}
-              />
+          <Box component="div" noValidate autoComplete="off" sx={{ p: 2 }}>
+            <div
+              style={{ maxWidth: "600px", width: "100%", margin: "30px 0px" }}
+            >
+              <div style={{ width: "100%", margin: "20px 0px" }}>
+                <label htmlFor="zipCode">Zipcode</label>
+                <TextField
+                  error={touched.zipCode && values.zipCode.length < 5}
+                  id="outlined-error-helper-text"
+                  hideLabel
+                  helperText={
+                    touched.zipCode && values.zipCode.length < 5
+                      ? values.zipCode.length === 0
+                        ? "Field is required"
+                        : "Please provide valid zipcode"
+                      : ""
+                  }
+                  fullWidth
+                  value={values.zipCode}
+                  onChange={handleZipcodeChange}
+                  inputProps={{
+                    placeholder: "Zipcode",
+                    maxLength: "5",
+                    onBlur: () =>
+                      setTouched((old) => ({ ...old, zipCode: true })),
+                  }}
+                />
+              </div>
+              <div style={{ width: "100%", margin: "20px 0px" }}>
+                <label htmlFor="dateOfBooking">Date of booking</label>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DatePicker
+                    value={values.dateOfBooking}
+                    onChange={handleDateOfBookingChange}
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        hideLabel
+                        error={
+                          touched.dateOfBooking &&
+                          values.dateOfBooking.length === 0
+                        }
+                        fullWidth
+                        inputProps={{
+                          ...params.inputProps,
+                          onBlur: () =>
+                            setTouched((old) => ({
+                              ...old,
+                              dateOfBooking: true,
+                            })),
+                        }}
+                        helperText={
+                          touched.dateOfBooking &&
+                          values.dateOfBooking.length === 0
+                            ? "Field is required"
+                            : ""
+                        }
+                      />
+                    )}
+                  />
+                </LocalizationProvider>
+              </div>
+              <div style={{ width: "100%", margin: "20px 0px" }}>
+                <label htmlFor="timeSlot">Time Slot</label>
+                <FormControl
+                  sx={{ m: 1, width: "100%" }}
+                  error={touched.timeSlot && values.timeSlot.length === 0}
+                >
+                  <Select
+                    id="time-slot"
+                    value={values.timeSlot}
+                    hideLabel
+                    onChange={handleTimeSlotChange}
+                    onBlur={() =>
+                      setTouched((old) => ({ ...old, timeSlot: true }))
+                    }
+                    displayEmpty
+                  >
+                    <MenuItem value="">
+                      <em>-- Select Time Slot --</em>
+                    </MenuItem>
+                    {avialableTimeSlots.map((timeSlot) => (
+                      <MenuItem key={timeSlot} value={timeSlot}>
+                        {timeSlot}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                  {touched.timeSlot && values.timeSlot.length === 0 && (
+                    <FormHelperText>Field is required</FormHelperText>
+                  )}
+                </FormControl>
+              </div>
             </div>
           </Box>
         </DialogContent>
-        <DialogActions>
+        <DialogActions sx={{ padding: "20px" }}>
           <Button onClick={handleClose}>Close</Button>
-          <Button onClick={handleContinue}>Continue</Button>
+          <Button variant="contained" onClick={handleContinue}>
+            Continue
+          </Button>
         </DialogActions>
       </Dialog>
       <div className="main-categories-footer">

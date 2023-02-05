@@ -31,6 +31,7 @@ const cardElementOptions = {
 
 export default function PaymentForm() {
   const data = useLocation();
+  const { selectedVendor, dateAndZipCode } = data.state || {};
   const [success, setSuccess] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
@@ -65,10 +66,10 @@ export default function PaymentForm() {
     }
   };
 
-  const BookingDetails = () => (
+  const BookingDetails = (props) => (
     <div className="summary-container">
       <p className="bold-font">ORDER SUMMARY</p>
-      <BasicTable />
+      <BasicTable {...props} />
     </div>
   );
 
@@ -79,7 +80,7 @@ export default function PaymentForm() {
       </p>
       <div className="row-item">
         <div>Base price</div>
-        <p className="price-indicator">${data?.state?.totalBaseRate}</p>
+        <p className="price-indicator">${selectedVendor?.totalBaseRate}</p>
       </div>
       <div className="row-item">
         <div>Tax</div>
@@ -87,7 +88,9 @@ export default function PaymentForm() {
       </div>
       <div className="row-item">
         <div>Total</div>
-        <p className="price-indicator">${tax + data?.state?.totalBaseRate}</p>
+        <p className="price-indicator">
+          ${tax + selectedVendor?.totalBaseRate}
+        </p>
       </div>
     </div>
   );
@@ -109,7 +112,7 @@ export default function PaymentForm() {
             Complete Your Payment
           </Typography>
           <div>
-            <BookingDetails />
+            <BookingDetails values={dateAndZipCode} />
             <Summary tax={34} />
           </div>
           <Divider />
