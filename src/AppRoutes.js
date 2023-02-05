@@ -7,6 +7,8 @@ import { MainSelection } from "./Pages/MainSelection";
 import { ServiceDetails } from "./Pages/ServiceDetails";
 import { PaymentContainer } from "./Pages/Payments";
 import { Login } from "./Pages/Login";
+import { Dashboard } from "./Pages/Dashboard";
+import { Profile } from "./Pages/Profile";
 
 function PublicRoute({ children }) {
   const { signOut, authStatus } = useAuthenticator((context) => [
@@ -54,6 +56,22 @@ export const AppRoutes = () => {
         element={
           <PublicRoute>
             <MainSelection />
+          </PublicRoute>
+        }
+      />
+      <Route
+        path="/dashboard"
+        element={
+          <PublicRoute>
+            <Dashboard />
+          </PublicRoute>
+        }
+      />
+      <Route
+        path="/profile"
+        element={
+          <PublicRoute>
+            <Profile />
           </PublicRoute>
         }
       />

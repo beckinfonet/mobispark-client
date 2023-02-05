@@ -207,7 +207,7 @@ export const MainSelection = () => {
                 <TextField
                   error={touched.zipCode && values.zipCode.length < 5}
                   id="outlined-error-helper-text"
-                  hideLabel
+                  // hideLabel
                   helperText={
                     touched.zipCode && values.zipCode.length < 5
                       ? values.zipCode.length === 0
@@ -235,7 +235,7 @@ export const MainSelection = () => {
                     renderInput={(params) => (
                       <TextField
                         {...params}
-                        hideLabel
+                        // hideLabel
                         error={
                           touched.dateOfBooking &&
                           values.dateOfBooking.length === 0
@@ -269,7 +269,7 @@ export const MainSelection = () => {
                   <Select
                     id="time-slot"
                     value={values.timeSlot}
-                    hideLabel
+                    // hideLabel
                     onChange={handleTimeSlotChange}
                     onBlur={() =>
                       setTouched((old) => ({ ...old, timeSlot: true }))
