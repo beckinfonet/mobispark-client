@@ -230,7 +230,6 @@ export const MainSelection = () => {
                 <label htmlFor="dateOfBooking">Date of booking</label>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DatePicker
-                    inputFormat="mm/dd/yyyy"
                     value={values.dateOfBooking}
                     onChange={handleDateOfBookingChange}
                     renderInput={(params) => (
