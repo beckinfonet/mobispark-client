@@ -107,7 +107,12 @@ export const MainSelection = () => {
         state: { categories, dateAndZipCode: values },
       });
     } else {
-      setTouched((old) => ({ ...old, zipCode: true, dateOfBooking: true }));
+      setTouched((old) => ({
+        ...old,
+        zipCode: true,
+        dateOfBooking: true,
+        timeSlot: true,
+      }));
     }
   };
 
