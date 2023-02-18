@@ -1,33 +1,202 @@
 import React from "react";
-import receiptImg from "../../assets/images/receipt-img.png";
+import Box from "@mui/material/Box";
+import Divider from "@mui/material/Divider";
+import Typography from "@mui/material/Typography";
+import Stepper from "@mui/material/Stepper";
+import Step from "@mui/material/Step";
+import StepLabel from "@mui/material/StepLabel";
 
-import Chip from "@mui/material/Chip";
 import "./styles.css";
 
-const UpcomingOrder = ({ color, label }) => {
+const steps = ["Booked", "Confirmed", "Completed"];
+const stepperMap = {
+  Booked: 1,
+  Cancelled: 1,
+  Confirmed: 2,
+  Completed: 3,
+};
+
+const pastOrders = [
+  {
+    bookingId: "1233-4524-2452-45245",
+    vendor: "Xavier's car detailing",
+    address: "1542 N Broadway, Baltimore, MD 21213",
+    packageType: "Basic",
+    bookingStatus: "Completed",
+    date: "02/08/2023",
+    timeSlot: "02-03 PM",
+    price: 262.5,
+    tax: 34,
+  },
+  {
+    bookingId: "1233-4524-6666-45245",
+    vendor: "Xavier's car detailing",
+    address: "1542 N Broadway, Baltimore, MD 21213",
+    packageType: "Basic",
+    bookingStatus: "Completed",
+    date: "02/08/2023",
+    timeSlot: "02-03 PM",
+    price: 262.5,
+    tax: 34,
+  },
+  {
+    bookingId: "1233-4524-4444-45245",
+    vendor: "Xavier's car detailing",
+    address: "1542 N Broadway, Baltimore, MD 21213",
+    packageType: "Basic",
+    bookingStatus: "Completed",
+    date: "02/08/2023",
+    timeSlot: "02-03 PM",
+    price: 262.5,
+    tax: 34,
+  },
+  {
+    bookingId: "1233-4524-7777-45245",
+    vendor: "Xavier's car detailing",
+    address: "1542 N Broadway, Baltimore, MD 21213",
+    packageType: "Basic",
+    bookingStatus: "Cancelled",
+    date: "02/08/2023",
+    timeSlot: "02-03 PM",
+    price: 262.5,
+    tax: 34,
+  },
+  {
+    bookingId: "1233-4524-3333-45246",
+    vendor: "Xavier's car detailing",
+    address: "1542 N Broadway, Baltimore, MD 21213",
+    packageType: "PRO",
+    bookingStatus: "Completed",
+    date: "02/08/2023",
+    timeSlot: "02-03 PM",
+    price: 262.5,
+    tax: 34,
+  },
+];
+
+const upcommingOrders = [
+  {
+    bookingId: "1233-4524-7777-45245",
+    vendor: "Xavier's car detailing",
+    address: "1542 N Broadway, Baltimore, MD 21213",
+    packageType: "Basic",
+    bookingStatus: "Booked",
+    date: "02/08/2023",
+    timeSlot: "02-03 PM",
+    price: 262.5,
+    tax: 34,
+  },
+  {
+    bookingId: "1233-4524-3333-45246",
+    vendor: "Xavier's car detailing",
+    address: "1542 N Broadway, Baltimore, MD 21213",
+    packageType: "PRO",
+    bookingStatus: "Confirmed",
+    date: "02/08/2023",
+    timeSlot: "02-03 PM",
+    price: 262.5,
+    tax: 34,
+  },
+];
+
+const BookingCard = (props) => {
+  const { details } = props;
+
+  const getCardType = (status) => {
+    switch (status) {
+      case "Completed":
+        return "blue";
+      case "Confirmed":
+        return "green";
+      case "Cancelled":
+        return "red";
+      default:
+        return "grey";
+    }
+  };
+
   return (
-    <div className="upcoming-order-container">
-      <div className="img-component">
-        <img src={receiptImg} width={50} height={60} className="receipt-img" />
+    <div className={`booking-card ${getCardType(details.bookingStatus)}`}>
+      <div className="card-cover-section">
+        <p className="location-section">{details.vendor}</p>
       </div>
-      <div className="text-details">
-        <p>Xavier's Full Detailing service</p>
-        <div>February 12, 2023 @11am</div>
-        <p>Jose's Detailing</p>
-        <Chip label={label} color={color} size="small" />
+      <div className="booking-status">
+        <div className="text-content">
+          Package: <span className="font-normal">{details.packageType}</span>
+        </div>
+        <div className="text-content">
+          Booking Status:{" "}
+          <span className="status">{details.bookingStatus}</span>
+        </div>
+      </div>
+      <div className="booking-details-section">
+        <div className="left-content">
+          <p className="date-time-text">
+            {details.date} :: {details.timeSlot}
+          </p>
+          <Typography variant="h6" gutterBottom>
+            {details.vendor}
+          </Typography>
+          <Typography gutterBottom>{details.address}</Typography>
+        </div>
+        <div className="price-details">
+          <div className="price-row">
+            <span>Booking ID</span>
+            <span className="bold">{details.bookingId}</span>
+          </div>
+          <div className="price-row">
+            <span>Base price</span>
+            <span className="bold">${details.price}</span>
+          </div>
+          <div className="price-row">
+            <span>Tax</span>
+            <span className="bold">${details.tax}</span>
+          </div>
+          <div className="price-row">
+            <span>Total</span>
+            <span className="bold">${details.price + details.tax}</span>
+          </div>
+        </div>
+      </div>
+      <div className="booking-tracker">
+        <Box sx={{ width: "100%" }}>
+          <Stepper
+            activeStep={stepperMap[details.bookingStatus]}
+            alternativeLabel
+          >
+            {steps.map((label) => (
+              <Step key={label}>
+                <StepLabel>{label}</StepLabel>
+              </Step>
+            ))}
+          </Stepper>
+        </Box>
       </div>
     </div>
   );
 };
-export const Dashboard = () => (
-  <div className="dashboard-container">
-    <div>You upcoming orders</div>
-    <UpcomingOrder label={"Confirmed"} color={"success"} />
-    <br />
-    <div>Your past orders</div>
-    <UpcomingOrder label={"Completed"} color={"primary"} />
-    <UpcomingOrder label={"Completed"} color={"primary"} />
-    <UpcomingOrder label={"cancelled"} color={"warning"} />
-    <UpcomingOrder label={"Completed"} color={"primary"} />
-  </div>
-);
+
+export const Dashboard = () => {
+  return (
+    <div className="booking-container">
+      <div className="booking-section">
+        <div className="cards-container">
+          <Divider>
+            <Typography variant="h5">UPCOMMING BOOKINGS</Typography>
+          </Divider>
+          {upcommingOrders.map((record) => (
+            <BookingCard key={record.bookingId} details={record} />
+          ))}
+          <br />
+          <br />
+          <Divider>
+            <Typography variant="h5">PAST BOOKINGS</Typography>
+          </Divider>
+          {pastOrders.map((record) => (
+            <BookingCard key={record.bookingId} details={record} />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
