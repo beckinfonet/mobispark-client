@@ -1,29 +1,163 @@
-.dashboard-container {
-  max-width: 600px;
-  margin: 20px auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+.booking-container {
+  max-width: 72rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.upcoming-order-container {
-  padding: 10px;
+.booking-container .booking-section {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.booking-container .cards-container {
+  max-width: 900px;
+  padding: 1rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
   width: 100%;
-  border-radius: 10px;
-  display: flex; 
-  border: 1px solid gray;
-  border-radius: 7px;
-  margin: 20px 0;
 }
 
-.upcoming-order-container .img-component {
+.booking-container .booking-card {
+  margin: 25px 0px;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 10%),
+    0 10px 10px -5px rgb(0 0 0 / 4%);
+}
+
+.booking-container .booking-card.grey {
+  border: 1px solid #ccc;
+}
+.booking-container .booking-card.grey .card-cover-section {
+  background-image: linear-gradient(
+    150deg,
+    rgba(185, 224, 255, 0.58) 0%,
+    rgba(243, 220, 246, 0.52) 35%,
+    rgba(223, 255, 242, 0.74) 74%
+  );
+}
+
+.booking-container .booking-card.blue {
+  border: 1px solid #1976d2;
+}
+.booking-container .booking-card.blue .card-cover-section {
+  background: linear-gradient(150deg, #1876d3 0%, #e2ebf4 35%, #1876d3 74%);
+}
+.booking-container .booking-card.blue .text-content .status {
+  color: #1876d3;
+}
+
+.booking-container .booking-card.green {
+  border: 1px solid #2e7d32;
+}
+.booking-container .booking-card.green .card-cover-section {
+  background: linear-gradient(150deg, #2e7d32 0%, #e7f6e8 35%, #2e7d32 74%);
+}
+.booking-container .booking-card.green .text-content .status {
+  color: #2e7d32;
+}
+
+.booking-container .booking-card.red {
+  border: 1px solid #d32f2f;
+}
+.booking-container .booking-card.red .card-cover-section {
+  background: linear-gradient(150deg, #d32f2f 0%, #ece6e6 35%, #d32f2f 74%);
+}
+.booking-container .booking-card.red .text-content .status {
+  color: #d32f2f;
+}
+
+.booking-container .card-cover-section {
+  background-position: center;
+  background-size: cover;
   display: flex;
-  flex-direction: row;
-  align-self: center;
-  justify-content: center;
+  align-items: center;
+  justify-content: flex-end;
+  height: 4rem;
+  padding: 1rem;
 }
 
-.upcoming-order-container .text-details {
-  padding: 20px;
+.booking-container .location-section {
+  margin: 0;
+  background-color: #000;
+  border-radius: 0.25rem;
+  opacity: 0.75;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 10%), 0 4px 6px -2px rgb(0 0 0 / 5%);
+  color: #fff;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.booking-container .booking-status {
+  background-color: #f7fafc;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-bottom: 0.75rem;
+  padding-top: 1rem;
+}
+
+.booking-container .text-content {
+  font-weight: 700;
+  color: #718096;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.booking-container .text-content .font-normal {
+  font-weight: 400;
+}
+
+.booking-container .booking-details-section {
+  padding: 1rem;
+  color: #4a5568;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.booking-container .left-content {
+  flex-grow: 2;
+}
+
+.booking-container .booking-tracker {
+  border: 1px solid #e2e8f0;
+  padding: 1rem;
+  color: #718096;
+}
+
+.booking-container .date-time-text {
+  margin: 0;
+  line-height: 1;
+  margin-top: 0.25rem;
+  color: #1a202c;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.booking-container .description-text {
+  margin: 0;
+}
+
+.booking-container .price-details {
+  flex-grow: 1;
+}
+
+.booking-container .price-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.booking-container .price-row > .bold {
+  font-weight: 600;
 }
