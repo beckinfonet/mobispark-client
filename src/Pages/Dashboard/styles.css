@@ -74,9 +74,8 @@
   background-size: cover;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  height: 4rem;
   padding: 1rem;
+  justify-content: space-between;
 }
 
 .booking-container .location-section {

@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
+import IconButton from "@mui/material/IconButton";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 
 import "./styles.css";
 
@@ -101,6 +104,7 @@ const upcommingOrders = [
 
 const BookingCard = (props) => {
   const { details } = props;
+  const [expand, setExpand] = useState(false);
 
   const getCardType = (status) => {
     switch (status) {
@@ -115,63 +119,85 @@ const BookingCard = (props) => {
     }
   };
 
+  const handleExpand = () => {
+    setExpand((old) => !old);
+  };
+
   return (
     <div className={`booking-card ${getCardType(details.bookingStatus)}`}>
       <div className="card-cover-section">
-        <p className="location-section">{details.vendor}</p>
-      </div>
-      <div className="booking-status">
-        <div className="text-content">
-          Package: <span className="font-normal">{details.packageType}</span>
-        </div>
-        <div className="text-content">
-          Booking Status:{" "}
-          <span className="status">{details.bookingStatus}</span>
-        </div>
-      </div>
-      <div className="booking-details-section">
-        <div className="left-content">
-          <p className="date-time-text">
-            {details.date} :: {details.timeSlot}
-          </p>
-          <Typography variant="h6" gutterBottom>
-            {details.vendor}
-          </Typography>
-          <Typography gutterBottom>{details.address}</Typography>
-        </div>
-        <div className="price-details">
-          <div className="price-row">
-            <span>Booking ID</span>
-            <span className="bold">{details.bookingId}</span>
-          </div>
-          <div className="price-row">
-            <span>Base price</span>
-            <span className="bold">${details.price}</span>
-          </div>
-          <div className="price-row">
-            <span>Tax</span>
-            <span className="bold">${details.tax}</span>
-          </div>
-          <div className="price-row">
-            <span>Total</span>
-            <span className="bold">${details.price + details.tax}</span>
-          </div>
+        <p className="location-section">
+          {details.vendor} | {details.date} :: {details.timeSlot} | STATUS :{" "}
+          {details.bookingStatus}
+        </p>
+
+        <div>
+          <IconButton aria-label="Expand More Icon" onClick={handleExpand}>
+            {expand ? (
+              <ExpandLessIcon fontSize="inherit" />
+            ) : (
+              <ExpandMoreIcon fontSize="inherit" />
+            )}
+          </IconButton>
         </div>
       </div>
-      <div className="booking-tracker">
-        <Box sx={{ width: "100%" }}>
-          <Stepper
-            activeStep={stepperMap[details.bookingStatus]}
-            alternativeLabel
-          >
-            {steps.map((label) => (
-              <Step key={label}>
-                <StepLabel>{label}</StepLabel>
-              </Step>
-            ))}
-          </Stepper>
-        </Box>
-      </div>
+      {expand && (
+        <>
+          <div className="booking-status">
+            <div className="text-content">
+              Package:{" "}
+              <span className="font-normal">{details.packageType}</span>
+            </div>
+            <div className="text-content">
+              Booking Status:{" "}
+              <span className="status">{details.bookingStatus}</span>
+            </div>
+          </div>
+          <div className="booking-details-section">
+            <div className="left-content">
+              <p className="date-time-text">
+                {details.date} :: {details.timeSlot}
+              </p>
+              <Typography variant="h6" gutterBottom>
+                {details.vendor}
+              </Typography>
+              <Typography gutterBottom>{details.address}</Typography>
+            </div>
+            <div className="price-details">
+              <div className="price-row">
+                <span>Booking ID</span>
+                <span className="bold">{details.bookingId}</span>
+              </div>
+              <div className="price-row">
+                <span>Base price</span>
+                <span className="bold">${details.price}</span>
+              </div>
+              <div className="price-row">
+                <span>Tax</span>
+                <span className="bold">${details.tax}</span>
+              </div>
+              <div className="price-row">
+                <span>Total</span>
+                <span className="bold">${details.price + details.tax}</span>
+              </div>
+            </div>
+          </div>
+          <div className="booking-tracker">
+            <Box sx={{ width: "100%" }}>
+              <Stepper
+                activeStep={stepperMap[details.bookingStatus]}
+                alternativeLabel
+              >
+                {steps.map((label) => (
+                  <Step key={label}>
+                    <StepLabel>{label}</StepLabel>
+                  </Step>
+                ))}
+              </Stepper>
+            </Box>
+          </div>
+        </>
+      )}
     </div>
   );
 };
