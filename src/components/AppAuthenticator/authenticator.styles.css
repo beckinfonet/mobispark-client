@@ -2,7 +2,6 @@
   display: flex;
   justify-content: center;
   background-color: #172b4d !important;
-  height: 100%;
 }
 
 .authenticator-root .authenticator-section {

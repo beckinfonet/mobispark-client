@@ -1,21 +1,36 @@
 .selection-container {
-  max-width: 600px;
   margin: 20px auto;
 }
+
 .selection-container .main-categories-header {
   text-align: center;
   padding: 20px 0px;
 }
 
+.selection-container .main-categories-header.last {
+  text-align: center;
+  padding: 20px 0px 0px;
+}
+
 .selection-container .main-categories-header h5 {
-  font-weight: 600;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: #172b4d;
+  font-size: 1.3rem;
+}
+
+.selection-container .main-categories-header button {
+  width: 150px;
+  border-radius: 10px;
+  margin: 6px;
 }
 
 .selection-container .main-categories-body {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(150px, 100%), 1fr));
   gap: 2rem;
-  margin: 30px 0px;
+  margin: 20px auto 30px;
+  max-width: 500px;
 }
 
 /* Small devices (landscape phones, 576px and up) */
