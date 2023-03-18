@@ -4,8 +4,8 @@ import Button from "@mui/material/Button";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import LocalCarWashIcon from "@mui/icons-material/LocalCarWashRounded";
 import CarRepairIcon from "@mui/icons-material/CarRepairRounded";
-import TireRepairIcon from "@mui/icons-material/TireRepairRounded";
-import GarageIcon from "@mui/icons-material/GarageRounded";
+// import TireRepairIcon from "@mui/icons-material/TireRepairRounded";
+// import GarageIcon from "@mui/icons-material/GarageRounded";
 import NoCrashIcon from "@mui/icons-material/NoCrashRounded";
 import MinorCruchIcon from "@mui/icons-material/MinorCrashRounded";
 import Box from "@mui/material/Box";
@@ -16,8 +16,8 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 // import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import { useTheme } from "@mui/material/styles";
+// import useMediaQuery from "@mui/material/useMediaQuery";
+// import { useTheme } from "@mui/material/styles";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
@@ -56,6 +56,8 @@ const avialableTimeSlots = [
 ];
 
 export const MainSelection = () => {
+  const [serviceType, setServiceType] = React.useState("");
+  const [shopType, setShopType] = React.useState("");
   const [categories, setCategories] = React.useState([]);
   const [open, setOpen] = React.useState(false);
   const [values, setValues] = React.useState({
@@ -68,8 +70,8 @@ export const MainSelection = () => {
     dateOfBooking: false,
     timeSlot: false,
   });
-  const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
+  // const theme = useTheme();
+  // const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const navigate = useNavigate();
 
@@ -80,11 +82,14 @@ export const MainSelection = () => {
   const isCategorySelected = (category) => categories.includes(category);
 
   const handleOnCategoryClick = (category) => () => {
-    setCategories((old) =>
-      isCategorySelected(category)
-        ? old.filter((c) => c !== category)
-        : [...old, category]
-    );
+    // setCategories((old) =>
+    //   isCategorySelected(category)
+    //     ? old.filter((c) => c !== category)
+    //     : [...old, category]
+    // );
+    if (shopType) {
+      setCategories(category);
+    }
   };
 
   const handleZipcodeChange = (e) => {
@@ -120,7 +125,40 @@ export const MainSelection = () => {
     <div className="selection-container">
       <div className="main-categories-header">
         <Typography gutterBottom align="center" variant="h5">
-          PLEASE SELECT SERVICE
+          1. Let's find your service
+        </Typography>
+        <div>
+          {["Mobile", "Stationary"].map((type) => (
+            <Button
+              variant={serviceType === type ? "contained" : "outlined"}
+              size="large"
+              onClick={() => setServiceType(type)}
+            >
+              {type}
+            </Button>
+          ))}
+        </div>
+      </div>
+      <div className="main-categories-header">
+        <Typography gutterBottom align="center" variant="h5">
+          2. Shop by type
+        </Typography>
+        <div>
+          {["SEDAN", "SUV", "3-ROW SUV"].map((item) => (
+            <Button
+              disabled={!serviceType}
+              variant={shopType === item ? "contained" : "outlined"}
+              size="large"
+              onClick={() => setShopType(item)}
+            >
+              {item}
+            </Button>
+          ))}
+        </div>
+      </div>
+      <div className="main-categories-header last">
+        <Typography gutterBottom align="center" variant="h5">
+          3. Please select service
         </Typography>
       </div>
       <div className="main-categories-body">
@@ -128,7 +166,7 @@ export const MainSelection = () => {
           className={`item ${isCategorySelected("Tint") ? "active" : ""}`}
           onClick={handleOnCategoryClick("Tint")}
         >
-          <MinorCruchIcon sx={{ fontSize: "100px" }} />
+          <MinorCruchIcon sx={{ fontSize: "75px" }} />
           <Typography>Tint</Typography>
         </div>
         <div
@@ -137,7 +175,7 @@ export const MainSelection = () => {
           }`}
           onClick={handleOnCategoryClick("Mobile Car Wash")}
         >
-          <LocalCarWashIcon sx={{ fontSize: "100px" }} />
+          <LocalCarWashIcon sx={{ fontSize: "75px" }} />
           <Typography>Mobile Car Wash</Typography>
         </div>
         <div
@@ -146,10 +184,10 @@ export const MainSelection = () => {
           }`}
           onClick={handleOnCategoryClick("Full Detailing")}
         >
-          <NoCrashIcon sx={{ fontSize: "100px" }} />
+          <NoCrashIcon sx={{ fontSize: "75px" }} />
           <Typography>Full Detailing</Typography>
         </div>
-        <div
+        {/* <div
           className={`item ${
             isCategorySelected("Body Shop Work") ? "active" : ""
           }`}
@@ -157,17 +195,17 @@ export const MainSelection = () => {
         >
           <GarageIcon sx={{ fontSize: "100px" }} />
           <Typography>Body Shop Work</Typography>
-        </div>
+        </div> */}
         <div
           className={`item ${
             isCategorySelected("Paintless Dent Repire") ? "active" : ""
           }`}
           onClick={handleOnCategoryClick("Paintless Dent Repire")}
         >
-          <CarRepairIcon sx={{ fontSize: "100px" }} />
+          <CarRepairIcon sx={{ fontSize: "75px" }} />
           <Typography>Paintless Dent Repire</Typography>
         </div>
-        <div
+        {/* <div
           className={`item ${
             isCategorySelected("Mobile Tire Services") ? "active" : ""
           }`}
@@ -175,36 +213,32 @@ export const MainSelection = () => {
         >
           <TireRepairIcon sx={{ fontSize: "100px" }} />
           <Typography>Mobile Tire Services</Typography>
-        </div>
+        </div> */}
       </div>
-      <Dialog
-        fullWidth
-        fullScreen={fullScreen}
-        open={open}
-        onClose={handleClose}
-      >
+      <Dialog fullWidth fullScreen={false} open={open} onClose={handleClose}>
         <DialogTitle
           sx={{
             background: "#1976d2",
             color: "#ffffff",
             textAlign: "center",
-            fontSize: "1.75rem",
+            fontSize: "1.5rem",
           }}
         >
           Please Provide Details
         </DialogTitle>
-        <DialogContent dividers>
+        <DialogContent sx={{ paddingBottom: "0px" }}>
           {/* <DialogContentText>
             To subscribe to this website, please enter your email address here.
             We will send updates occasionally.
           </DialogContentText> */}
-          <Box component="div" noValidate autoComplete="off" sx={{ p: 2 }}>
+          <Box component="div" noValidate autoComplete="off">
             <div
-              style={{ maxWidth: "600px", width: "100%", margin: "30px 0px" }}
+              style={{ maxWidth: "400px", width: "100%", margin: "0px auto" }}
             >
               <div style={{ width: "100%", margin: "20px 0px" }}>
                 <label htmlFor="zipCode">Zipcode</label>
                 <TextField
+                  size="small"
                   error={touched.zipCode && values.zipCode.length < 5}
                   id="outlined-error-helper-text"
                   // hideLabel
@@ -235,6 +269,7 @@ export const MainSelection = () => {
                     renderInput={(params) => (
                       <TextField
                         {...params}
+                        size="small"
                         // hideLabel
                         error={
                           touched.dateOfBooking &&
@@ -263,11 +298,12 @@ export const MainSelection = () => {
               <div style={{ width: "100%", margin: "20px 0px" }}>
                 <label htmlFor="timeSlot">Time Slot</label>
                 <FormControl
-                  sx={{ m: 1, width: "100%" }}
+                  sx={{ width: "100%" }}
                   error={touched.timeSlot && values.timeSlot.length === 0}
                 >
                   <Select
                     id="time-slot"
+                    size="small"
                     value={values.timeSlot}
                     // hideLabel
                     onChange={handleTimeSlotChange}
@@ -293,9 +329,13 @@ export const MainSelection = () => {
             </div>
           </Box>
         </DialogContent>
-        <DialogActions sx={{ padding: "20px" }}>
-          <Button onClick={handleClose}>Close</Button>
-          <Button variant="contained" onClick={handleContinue}>
+        <DialogActions sx={{ paddingBottom: "20px", justifyContent: "center" }}>
+          <Button
+            variant="contained"
+            size="large"
+            onClick={handleContinue}
+            sx={{ borderRadius: "20px", width: "200px" }}
+          >
             Continue
           </Button>
         </DialogActions>
@@ -308,6 +348,7 @@ export const MainSelection = () => {
           endIcon={<ArrowForwardIcon />}
           onClick={handleNavigate}
           disabled={categories.length === 0}
+          sx={{ borderRadius: "30px" }}
         >
           See results
         </Button>
