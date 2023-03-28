@@ -43,9 +43,8 @@ export const ServiceCategories = (props) => {
             sx={{
               borderRadius: "10px",
               fontSize: "10px",
-              minWidth: "160px",
-              margin: "0px",
-              padding: "7px",
+              minWidth: "170px",
+              padding: "8px",
             }}
             onClick={handleCategoryClick(service)}
           >
