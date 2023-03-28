@@ -29,30 +29,12 @@ import Select from "@mui/material/Select";
 import "./styles.css";
 
 const avialableTimeSlots = [
-  "00-01 AM",
-  "01-02 AM",
-  "02-03 AM",
-  "03-04 AM",
-  "04-05 AM",
-  "05-06 AM",
-  "06-07 AM",
-  "07-08 AM",
-  "08-09 AM",
-  "09-10 AM",
-  "10-11 AM",
-  "11-12 AM",
-  "12-01 PM",
-  "01-02 PM",
-  "02-03 PM",
-  "03-04 PM",
-  "04-05 PM",
-  "05-06 PM",
-  "06-07 PM",
-  "07-08 PM",
-  "08-09 PM",
-  "09-10 PM",
-  "10-11 PM",
-  "11-12 PM",
+  "09:00 - 10:30 AM",
+  "10:30 - 12:00 PM",
+  "12:00 - 01:30 PM",
+  "01:30 - 03:00 PM",
+  "03:00 - 04:30 PM",
+  "04:30 - 06:00 PM",
 ];
 
 export const MainSelection = () => {
