@@ -24,7 +24,7 @@ export const ServiceCategories = (props) => {
       sx={{
         my: 2,
         textAlign: "center",
-        "& button": { m: 1 },
+        "& button": { m: 0.3 },
       }}
     >
       {options.map((service) => {
@@ -38,9 +38,15 @@ export const ServiceCategories = (props) => {
                 ? "contained"
                 : "outlined"
             }
-            size="large"
+            size="md"
             startIcon={<Icon />}
-            sx={{ borderRadius: "10px" }}
+            sx={{
+              borderRadius: "10px",
+              fontSize: "10px",
+              minWidth: "160px",
+              margin: "0px",
+              padding: "7px",
+            }}
             onClick={handleCategoryClick(service)}
           >
             {service.title}
