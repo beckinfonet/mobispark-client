@@ -11,6 +11,7 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import { useLocation, useNavigate } from "react-router-dom";
+import "./styles.css";
 
 const pages = [
   // "Products", "Pricing", "Blog"
@@ -80,7 +81,13 @@ export function AppHeader(props) {
               textDecoration: "none",
             }}
           >
-            <img src="/logo.png" alt="logo" height="60" width="120" />
+            <img
+              className="brightness-img"
+              src="/logo-glow.png"
+              alt="logo"
+              height="80"
+              width="80"
+            />
           </Typography>
 
           {/* <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -135,7 +142,13 @@ export function AppHeader(props) {
               textDecoration: "none",
             }}
           >
-            <img src="/logo.png" alt="logo" height="60" width="120" />
+            <img
+              className="brightness-img"
+              src="/logo-glow.png"
+              alt="logo"
+              height="80"
+              width="80"
+            />
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
