@@ -1,0 +1,121 @@
+[
+  {
+    "_id": "6410a18f00b02be077b302ef",
+    "title": "Dorian's car detailing",
+    "location": "New York",
+    "fullAddress": "1542 N Broadway, Baltimore, MD 21213",
+    "image": "./assets/wax.jpeg",
+    "rate": 5,
+    "promoRate": 195,
+    "basePrice": 195,
+    "promoContentTop": "top company",
+    "promoContentBottom": "Located near you",
+    "serviceTypes": {
+      "interior": [
+        "Thorough vacuum",
+        "Deep carpet shampooing",
+        "Hot water extraction",
+        "Stain removal",
+        "Leather seats cleaned and conditioned",
+        "Door jambs cleaned"
+      ],
+      "exterior": [
+        "Carnauba wash application",
+        "Bug, road tar and tree sap removed",
+        "Tire shine",
+        "Wheel cleaning",
+        "Wheel fender cleaning",
+        "Paint sealer application"
+      ],
+      "_id": "6410a18f00b02be077b302f0"
+    },
+    "carwashPackages": [
+      {
+        "title": "Exterior Hand Wash",
+        "price": 30,
+        "availableIn": [
+          "basic",
+          "classic",
+          "premium",
+          "platinum"
+        ]
+      },
+      {
+        "title": "Rims + Tire Shine",
+        "price": 10,
+        "availableIn": [
+          "basic",
+          "classic",
+          "premium",
+          "platinum"
+        ]
+      },
+      {
+        "title": "Full Vacuum",
+        "price": 10,
+        "availableIn": [
+          "classic",
+          "premium",
+          "platinum"
+        ]
+      },
+      {
+        "title": "Interior Wipe Down",
+        "price": 5,
+        "availableIn": [
+          "classic",
+          "premium",
+          "platinum"
+        ]
+      },
+      {
+        "title": "Interior Windows",
+        "price": 5,
+        "availableIn": [
+          "classic",
+          "premium",
+          "platinum"
+        ]
+      },
+      {
+        "title": "Leather Conditioner",
+        "price": 5,
+        "availableIn": [
+          "premium",
+          "platinum"
+        ]
+      },
+      {
+        "title": "Dashboard / Plastic Trim Conditioner",
+        "price": 5,
+        "availableIn": [
+          "premium",
+          "platinum"
+        ]
+      },
+      {
+        "title": "Hand Wax",
+        "price": 5,
+        "availableIn": [
+          "premium",
+          "platinum"
+        ]
+      },
+      {
+        "title": "Shampoo Seats",
+        "price": 5,
+        "availableIn": [
+          "platinum"
+        ]
+      },
+      {
+        "title": "Shampoo Carpets",
+        "price": 5,
+        "availableIn": [
+          "platinum"
+        ]
+      }
+    ],
+    "__v": 0
+  }
+]

@@ -91,7 +91,7 @@ export const MainSelection = () => {
   const handleContinue = () => {
     if (values.zipCode.length === 5 && values.dateOfBooking) {
       navigate("/basic-wash", {
-        state: { categories, dateAndZipCode: values },
+        state: { categories, serviceType, shopType, dateAndZipCode: values },
       });
     } else {
       setTouched((old) => ({
@@ -110,8 +110,9 @@ export const MainSelection = () => {
           1. Let's find your service
         </Typography>
         <div>
-          {["Mobile", "Stationary"].map((type) => (
+          {["Mobile", "Stationary"].map((type, index) => (
             <Button
+              key={index}
               variant={serviceType === type ? "contained" : "outlined"}
               size="large"
               onClick={() => setServiceType(type)}
@@ -126,8 +127,9 @@ export const MainSelection = () => {
           2. Shop by type
         </Typography>
         <div>
-          {["SEDAN", "SUV", "3-ROW SUV"].map((item) => (
+          {["SEDAN", "SUV", "3-ROW SUV"].map((item, index) => (
             <Button
+              key={index}
               disabled={!serviceType}
               variant={shopType === item ? "contained" : "outlined"}
               size="large"
@@ -169,33 +171,16 @@ export const MainSelection = () => {
           <NoCrashIcon sx={{ fontSize: "75px" }} />
           <Typography>Full Detailing</Typography>
         </div>
-        {/* <div
-          className={`item ${
-            isCategorySelected("Body Shop Work") ? "active" : ""
-          }`}
-          onClick={handleOnCategoryClick("Body Shop Work")}
-        >
-          <GarageIcon sx={{ fontSize: "100px" }} />
-          <Typography>Body Shop Work</Typography>
-        </div> */}
+
         <div
           className={`item ${
-            isCategorySelected("Paintless Dent Repire") ? "active" : ""
+            isCategorySelected("Paintless Dent Repair") ? "active" : ""
           }`}
-          onClick={handleOnCategoryClick("Paintless Dent Repire")}
+          onClick={handleOnCategoryClick("Paintless Dent Repair")}
         >
           <CarRepairIcon sx={{ fontSize: "75px" }} />
-          <Typography>Paintless Dent Repire</Typography>
+          <Typography>Paintless Dent Repair</Typography>
         </div>
-        {/* <div
-          className={`item ${
-            isCategorySelected("Mobile Tire Services") ? "active" : ""
-          }`}
-          onClick={handleOnCategoryClick("Mobile Tire Services")}
-        >
-          <TireRepairIcon sx={{ fontSize: "100px" }} />
-          <Typography>Mobile Tire Services</Typography>
-        </div> */}
       </div>
       <Dialog fullWidth fullScreen={false} open={open} onClose={handleClose}>
         <DialogTitle
@@ -209,10 +194,6 @@ export const MainSelection = () => {
           Please Provide Details
         </DialogTitle>
         <DialogContent sx={{ paddingBottom: "0px" }}>
-          {/* <DialogContentText>
-            To subscribe to this website, please enter your email address here.
-            We will send updates occasionally.
-          </DialogContentText> */}
           <Box component="div" noValidate autoComplete="off">
             <div
               style={{ maxWidth: "400px", width: "100%", margin: "0px auto" }}
@@ -223,7 +204,6 @@ export const MainSelection = () => {
                   size="small"
                   error={touched.zipCode && values.zipCode.length < 5}
                   id="outlined-error-helper-text"
-                  // hideLabel
                   helperText={
                     touched.zipCode && values.zipCode.length < 5
                       ? values.zipCode.length === 0

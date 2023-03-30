@@ -60,8 +60,6 @@ export function AppHeader(props) {
     navigate("/login", { state: { from: location } });
   };
 
-  console.log("AppHeader ....", authStatus);
-
   return (
     <AppBar component="nav">
       <Container maxWidth="lg">
