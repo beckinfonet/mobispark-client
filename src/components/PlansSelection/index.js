@@ -29,21 +29,24 @@ const PlanCard = (props) => {
     optionsCount = 0,
     handleBookCarWash,
   } = props;
-  const filteredOptions = serviceTypes.interior.length - optionsCount;
 
-  const interiorOptions = serviceTypes.interior
-    .slice(0, filteredOptions)
-    .map((item, idx) => ({
-      id: idx + 1,
-      label: item,
-    }));
+  // const filteredOptions = serviceTypes.interior.length - optionsCount;
 
-  const exteriorOptions = serviceTypes.exterior
-    .slice(0, filteredOptions)
-    .map((item, idx) => ({
-      id: idx + 1,
-      label: item,
-    }));
+  // const interiorOptions = serviceTypes.interior
+  //   .slice(0, filteredOptions)
+  //   .map((item, idx) => ({
+  //     id: idx + 1,
+  //     label: item,
+  //   }));
+
+  // const exteriorOptions = serviceTypes.exterior
+  //   .slice(0, filteredOptions)
+  //   .map((item, idx) => ({
+  //     id: idx + 1,
+  //     label: item,
+  //   }));
+
+  const offeredServicesInPackage = serviceTypes.map((service) => service.title);
 
   return (
     <div className="plan-card">
@@ -51,18 +54,18 @@ const PlanCard = (props) => {
         <span>{type}</span>
         <h2>{name}</h2>
         <h1>{price}</h1>
-        <h2>Interior</h2>
+        {/* <h2>Interior</h2> */}
         <div className="plan-options-section">
-          {interiorOptions.map((option, index) => (
-            <Option key={index} label={option.label} />
+          {offeredServicesInPackage.map((option, index) => (
+            <Option key={index} label={option} />
           ))}
         </div>
-        <h2>Exterior</h2>
-        <div className="plan-options-section">
+        {/* <h2>Exterior</h2> */}
+        {/* <div className="plan-options-section">
           {exteriorOptions.map((option, index) => (
             <Option key={index} label={option.label} />
           ))}
-        </div>
+        </div> */}
         <button className="plan-button" onClick={handleBookCarWash}>
           {`Book for ${price}`}
           <svg
@@ -86,32 +89,71 @@ const PlanCard = (props) => {
 };
 
 export const PlansSelection = (props) => {
-  const { promoRate, serviceTypes, handleBookCarWash } = props || {};
+  const { promoRate, serviceTypes, handleBookCarWash, carwashPackages } =
+    props || {};
+
+  const basicService = carwashPackages.filter((serviceType) => {
+    return serviceType.availableIn.includes("basic") ? serviceType.title : null;
+  });
+
+  const classicService = carwashPackages.filter((serviceType) => {
+    return serviceType.availableIn.includes("classic")
+      ? serviceType.title
+      : null;
+  });
+
+  const premiumService = carwashPackages.filter((serviceType) => {
+    return serviceType.availableIn.includes("premium")
+      ? serviceType.title
+      : null;
+  });
+
+  const platinumService = carwashPackages.filter((serviceType) => {
+    return serviceType.availableIn.includes("platinum")
+      ? serviceType.title
+      : null;
+  });
+
   return (
     <div className="plans-container">
-      <PlanCard
-        type="BASIC"
-        name="START"
-        price={`$${promoRate}`}
-        optionsCount={2}
-        serviceTypes={serviceTypes}
-        handleBookCarWash={() => handleBookCarWash(promoRate)}
-      />
-      <PlanCard
-        type="POPULAR"
-        name="PRO"
-        price={`$${promoRate * 1.5}`}
-        optionsCount={1}
-        serviceTypes={serviceTypes}
-        handleBookCarWash={() => handleBookCarWash(promoRate * 1.5)}
-      />
-      <PlanCard
-        type="SPECIAL"
-        name="CLASSIC"
-        price={`$${promoRate * 2}`}
-        serviceTypes={serviceTypes}
-        handleBookCarWash={() => handleBookCarWash(promoRate * 2)}
-      />
+      {basicService && (
+        <PlanCard
+          type="BASIC"
+          name="START"
+          price={`$${promoRate}`}
+          optionsCount={2}
+          serviceTypes={basicService}
+          handleBookCarWash={() => handleBookCarWash(promoRate)}
+        />
+      )}
+      {classicService && (
+        <PlanCard
+          type="CLASSIC"
+          name="PRO"
+          price={`$${promoRate * 1.5}`}
+          optionsCount={1}
+          serviceTypes={classicService}
+          handleBookCarWash={() => handleBookCarWash(promoRate * 1.5)}
+        />
+      )}
+      {premiumService && (
+        <PlanCard
+          type="PREMIUM"
+          name="BEST BUNDLE"
+          price={`$${promoRate * 2}`}
+          serviceTypes={premiumService}
+          handleBookCarWash={() => handleBookCarWash(promoRate * 2)}
+        />
+      )}
+      {platinumService && (
+        <PlanCard
+          type="PLATINUM"
+          name="FULL PACKAGE"
+          price={`$${promoRate * 2}`}
+          serviceTypes={platinumService}
+          handleBookCarWash={() => handleBookCarWash(promoRate * 2)}
+        />
+      )}
     </div>
   );
 };

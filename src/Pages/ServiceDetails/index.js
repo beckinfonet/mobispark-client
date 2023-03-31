@@ -29,7 +29,7 @@ export const ServiceDetails = () => {
   const data = useLocation();
   const { serviceId, category } = useParams();
   const navigate = useNavigate();
-  const { title, rate, fullAddress, promoRate, serviceTypes } =
+  const { title, rate, fullAddress, promoRate, serviceTypes, carwashPackages } =
     data.state.selectedVendor;
   const handleBookCarWash = (totalBaseRate) => {
     navigate(`/${category}/${serviceId}/payment`, {
@@ -63,6 +63,7 @@ export const ServiceDetails = () => {
         promoRate={promoRate}
         serviceTypes={serviceTypes}
         handleBookCarWash={handleBookCarWash}
+        carwashPackages={carwashPackages}
       />
     </Box>
   );
