@@ -1,0 +1,17 @@
+.vendor-dashboard-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0px;
+  padding: 0px;
+}
+
+.vendor-dashboard-container .field-comp {
+  display: block;
+  width: 100%;
+}
+
+.checkbox-styles {
+  margin: 0px 10px;
+  padding: 5px;
+}

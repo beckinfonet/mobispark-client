@@ -9,6 +9,7 @@ import { PaymentContainer } from "./Pages/Payments";
 import { Login } from "./Pages/Login";
 import { Dashboard } from "./Pages/Dashboard";
 import { Profile } from "./Pages/Profile";
+import { VendorDashboard } from "./Pages/VendorDashboard";
 
 function PublicRoute({ children }) {
   const { signOut, authStatus } = useAuthenticator((context) => [
@@ -96,6 +97,14 @@ export const AppRoutes = () => {
         element={
           <PrivateRoute>
             <PaymentContainer />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="vendor-dashboard"
+        element={
+          <PrivateRoute>
+            <VendorDashboard />
           </PrivateRoute>
         }
       />
