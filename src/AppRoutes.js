@@ -101,7 +101,7 @@ export const AppRoutes = () => {
         }
       />
       <Route
-        path="vendor-dashboard"
+        path="vendor-dashboard/:vendorId"
         element={
           <PrivateRoute>
             <VendorDashboard />

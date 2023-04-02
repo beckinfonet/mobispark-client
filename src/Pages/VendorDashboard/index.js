@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 import Button from "@mui/material/Button";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 import "./styles.css";
-
-import testData from "./testData.json";
 
 const initialValues = {
   title: "",
@@ -115,8 +117,25 @@ const ServiceDisplay = ({ data }) => {
 };
 
 export const VendorDashboard = () => {
-  const [services, setServices] = useState(testData);
+  const params = useParams();
+
+  const [loading, setLoading] = useState(true);
+  const [services, setServices] = useState(null);
   const [openBuilder, setOpenBuilder] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios(
+        `https://formula312-server-2xrue.ondigitalocean.app/vendor/${params.vendorId}`
+      );
+      setServices(result.data);
+      if (result.data.carwashPackages.length) {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const handleBuilder = () => {
     setOpenBuilder(!openBuilder);
@@ -142,8 +161,13 @@ export const VendorDashboard = () => {
   return (
     <div className="vendor-dashboard-container">
       <p>VENDOR DASHBOARD</p>
-
-      {services &&
+      {loading && (
+        <Box sx={{ display: "flex" }}>
+          <CircularProgress />
+        </Box>
+      )}
+      {!loading &&
+        services.carwashPackages.length &&
         services.carwashPackages.map((item, index) => (
           <div key={index}>
             <ServiceDisplay data={item} />
