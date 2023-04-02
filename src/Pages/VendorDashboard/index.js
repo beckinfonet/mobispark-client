@@ -122,6 +122,7 @@ export const VendorDashboard = () => {
   const [loading, setLoading] = useState(true);
   const [services, setServices] = useState(null);
   const [openBuilder, setOpenBuilder] = useState(false);
+  const [makeUpdateCall, setMakeUpdateCall] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -137,6 +138,22 @@ export const VendorDashboard = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    if (makeUpdateCall) {
+      let body = JSON.parse(JSON.stringify(services));
+      delete body._id;
+      const insertNewData = async () => {
+        const result = await axios.put(
+          `https://formula312-server-2xrue.ondigitalocean.app/vendor/${params.vendorId}`,
+          { body: services }
+        );
+        console.log("result: ", result);
+      };
+      insertNewData();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [makeUpdateCall]);
+
   const handleBuilder = () => {
     setOpenBuilder(!openBuilder);
   };
@@ -147,11 +164,11 @@ export const VendorDashboard = () => {
       price: data.price,
       title: data.title,
     };
-
     setServices((prev) => ({
       ...prev,
       carwashPackages: [...prev.carwashPackages, newRecord],
     }));
+    setMakeUpdateCall(true);
   };
 
   const handleAdderComp = (value) => {
@@ -161,6 +178,7 @@ export const VendorDashboard = () => {
   return (
     <div className="vendor-dashboard-container">
       <p>VENDOR DASHBOARD</p>
+      {console.log("typeof", typeof services, services)}
       {loading && (
         <Box sx={{ display: "flex" }}>
           <CircularProgress />
