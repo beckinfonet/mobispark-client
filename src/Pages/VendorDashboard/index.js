@@ -63,9 +63,10 @@ const ServiceBuilder = ({ handleNewUpdates, showServiceAdder }) => {
 
   const handleInputs = (evt) => {
     const { name, value } = evt.target;
+
     setState((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: name === "price" ? Number(value) : value,
     }));
   };
 
@@ -143,10 +144,11 @@ export const VendorDashboard = () => {
       let body = JSON.parse(JSON.stringify(services));
       delete body._id;
       const insertNewData = async () => {
-        const result = await axios.put(
-          `https://formula312-server-2xrue.ondigitalocean.app/vendor/${params.vendorId}`,
-          { body: services }
-        );
+        const result = await axios({
+          method: "put",
+          url: `https://formula312-server-2xrue.ondigitalocean.app/vendor/${params.vendorId}`,
+          body: body,
+        });
         console.log("result: ", result);
       };
       insertNewData();
