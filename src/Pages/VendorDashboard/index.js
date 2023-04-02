@@ -147,9 +147,10 @@ export const VendorDashboard = () => {
         const result = await axios({
           method: "put",
           url: `https://formula312-server-2xrue.ondigitalocean.app/vendor/${params.vendorId}`,
-          body: body,
+          data: body,
         });
         console.log("result: ", result);
+        setMakeUpdateCall(false);
       };
       insertNewData();
     }
