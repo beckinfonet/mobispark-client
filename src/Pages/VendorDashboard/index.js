@@ -178,7 +178,6 @@ export const VendorDashboard = () => {
   return (
     <div className="vendor-dashboard-container">
       <p>VENDOR DASHBOARD</p>
-      {console.log("typeof", typeof services, services)}
       {loading && (
         <Box sx={{ display: "flex" }}>
           <CircularProgress />
