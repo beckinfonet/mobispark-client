@@ -1,0 +1,221 @@
+{
+  "title": "CarCare To Go",
+  "location": "Bethesda, MD",
+  "fullAddress": "5420 Butler Rd",
+  "image": "./assets/wax.jpeg",
+  "rate": 5,
+  "promoRate": 195,
+  "basePrice": 195,
+  "promoContentTop": "top company",
+  "promoContentBottom": "Located near you",
+  "offeredServiceTypes": [
+    "tint",
+    "mobile-car-wash",
+    "full-detailing",
+    "paintless-dent-repair"
+  ],
+  "serviceTypes": {
+    "interior": [
+      "mobile-car-wash",
+      "full-detailing"
+    ],
+    "exterior": [
+      "mobile-car-wash",
+      "full-detailing",
+      "paintless-dent-repair"
+    ],
+    "_id": "6410a18f00b02be077b302f0"
+  },
+  "carwashPackages": [
+    {
+      "id": 1,
+      "title": "Exterior Hand Wash",
+      "price": 30,
+      "availableIn": [
+        {
+          "basic": true
+        },
+        {
+          "classic": true
+        },
+        {
+          "premium": true
+        },
+        {
+          "platinum": true
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Rims + Tire Shine",
+      "price": 10,
+      "availableIn": [
+        {
+          "basic": true
+        },
+        {
+          "classic": true
+        },
+        {
+          "premium": true
+        },
+        {
+          "platinum": true
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Full Vacuum",
+      "price": 10,
+      "availableIn": [
+        {
+          "basic": false
+        },
+        {
+          "classic": true
+        },
+        {
+          "premium": true
+        },
+        {
+          "platinum": true
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Interior Wipe Down",
+      "price": 5,
+      "availableIn": [
+        {
+          "basic": false
+        },
+        {
+          "classic": true
+        },
+        {
+          "premium": true
+        },
+        {
+          "platinum": true
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Interior Windows",
+      "price": 5,
+      "availableIn": [
+        {
+          "basic": false
+        },
+        {
+          "classic": true
+        },
+        {
+          "premium": true
+        },
+        {
+          "platinum": true
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Leather Conditioner",
+      "price": 5,
+      "availableIn": [
+        {
+          "basic": false
+        },
+        {
+          "classic": false
+        },
+        {
+          "premium": true
+        },
+        {
+          "platinum": true
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Dashboard / Plastic Trim Conditioner",
+      "price": 5,
+      "availableIn": [
+        {
+          "basic": false
+        },
+        {
+          "classic": false
+        },
+        {
+          "premium": true
+        },
+        {
+          "platinum": true
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "title": "Hand Wax",
+      "price": 5,
+      "availableIn": [
+        {
+          "basic": false
+        },
+        {
+          "classic": false
+        },
+        {
+          "premium": true
+        },
+        {
+          "platinum": true
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "title": "Shampoo Seats",
+      "price": 5,
+      "availableIn": [
+        {
+          "basic": false
+        },
+        {
+          "classic": false
+        },
+        {
+          "premium": false
+        },
+        {
+          "platinum": true
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "title": "Shampoo Carpets",
+      "price": 5,
+      "availableIn": [
+        {
+          "basic": false
+        },
+        {
+          "classic": false
+        },
+        {
+          "premium": false
+        },
+        {
+          "platinum": true
+        }
+      ]
+    }
+  ]
+}

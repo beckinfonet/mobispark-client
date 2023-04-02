@@ -2,49 +2,61 @@ import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import "./styles.css";
 
+import testData from "./testData.json";
+
 const initialValues = {
   title: "",
   price: 0,
   availableIn: [],
 };
 
-const options = {
-  basic: false,
-  classic: false,
-  premium: false,
-  platinum: false,
-};
+const options = [
+  { basic: false },
+  { classic: false },
+  { premium: false },
+  { platinum: false },
+];
 
 const checkboxSupply = [
   {
-    title: "Basic",
+    title: "basic",
     name: "basic",
   },
   {
-    title: "Classic",
+    title: "classic",
     name: "classic",
   },
   {
-    title: "Premium",
+    title: "premium",
     name: "premium",
   },
   {
-    title: "Platinum",
+    title: "platinum",
     name: "platinum",
   },
 ];
 
-const ServiceBuilder = () => {
-  const [payload, setPayload] = useState([]);
+const ServiceBuilder = ({ handleNewUpdates, showServiceAdder }) => {
   const [state, setState] = useState(initialValues);
   const [checkedVals, setCheckedVals] = useState(options);
 
   const handleBoxes = (evt) => {
     const { name, checked } = evt.target;
-    setCheckedVals((prev) => ({
-      ...prev,
-      [name]: checked,
-    }));
+
+    const result = checkedVals.map((item) => {
+      if (Object.keys(item)[0] === name) {
+        return { [name]: checked };
+      } else {
+        return item;
+      }
+    });
+    setCheckedVals(result);
+  };
+
+  const addToMain = () => {
+    const newPackage = { ...state, availableIn: [checkedVals] };
+    handleNewUpdates(newPackage);
+    showServiceAdder(false);
   };
 
   const handleInputs = (evt) => {
@@ -54,9 +66,9 @@ const ServiceBuilder = () => {
       [name]: value,
     }));
   };
+
   return (
     <div style={{ display: "flex", margin: "15px 0px" }}>
-      {/* {console.log("state: ", state)} */}
       <input placeholder="Service name" name="title" onChange={handleInputs} />
       <input placeholder="price" name="price" onChange={handleInputs} />
       {checkboxSupply.map(({ title, name }, index) => (
@@ -65,34 +77,86 @@ const ServiceBuilder = () => {
           <input name={name} type="checkbox" onClick={(e) => handleBoxes(e)} />
         </span>
       ))}
+      <span>
+        <Button onClick={addToMain}>Add record</Button>
+      </span>
     </div>
   );
 };
 
-const ServiceDisplay = (data) => {
-  if (!data.length) {
-    return <p>No data to show</p>;
-  }
-
-  return <div>map it all here</div>;
+const ServiceDisplay = ({ data }) => {
+  const { title, price, availableIn } = data;
+  return (
+    <div style={{ display: "flex", margin: "15px 0px" }}>
+      <input
+        placeholder="Service name"
+        name="title"
+        value={title}
+        onChange={() => console.log("to be developed later")}
+      />
+      <input
+        placeholder="price"
+        name="price"
+        value={price}
+        onChange={() => console.log("to be developed later")}
+      />
+      {availableIn.map((item, index) => (
+        <span key={index} className="checkbox-styles">
+          <label>{Object.keys(item)}</label>
+          <input
+            type="checkbox"
+            checked={item[Object.keys(item)]}
+            onChange={() => console.log("to be developed later")}
+          />
+        </span>
+      ))}
+    </div>
+  );
 };
 
 export const VendorDashboard = () => {
-  const [services, setServices] = useState([]);
+  const [services, setServices] = useState(testData);
   const [openBuilder, setOpenBuilder] = useState(false);
 
   const handleBuilder = () => {
     setOpenBuilder(!openBuilder);
   };
 
+  const handleNewUpdates = (data) => {
+    const newRecord = {
+      availableIn: data.availableIn[0],
+      price: data.price,
+      title: data.title,
+    };
+
+    setServices((prev) => ({
+      ...prev,
+      carwashPackages: [...prev.carwashPackages, newRecord],
+    }));
+  };
+
+  const handleAdderComp = (value) => {
+    setOpenBuilder(value);
+  };
+
   return (
     <div className="vendor-dashboard-container">
       <p>VENDOR DASHBOARD</p>
-      <Button onClick={handleBuilder}>+ Please add service</Button>
-      {services.length > 0 &&
-        services.map((item) => <ServiceDisplay data={item} />)}
 
-      {openBuilder && <ServiceBuilder />}
+      {services &&
+        services.carwashPackages.map((item, index) => (
+          <div key={index}>
+            <ServiceDisplay data={item} />
+          </div>
+        ))}
+
+      {openBuilder && (
+        <ServiceBuilder
+          showServiceAdder={handleAdderComp}
+          handleNewUpdates={handleNewUpdates}
+        />
+      )}
+      <Button onClick={handleBuilder}>+ Please add service</Button>
     </div>
   );
 };
