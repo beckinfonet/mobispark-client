@@ -89,27 +89,28 @@ const PlanCard = (props) => {
 };
 
 export const PlansSelection = (props) => {
-  const { promoRate, serviceTypes, handleBookCarWash, carwashPackages } =
-    props || {};
+  const { promoRate, handleBookCarWash, carwashPackages } = props || {};
 
   const basicService = carwashPackages.filter((serviceType) => {
-    return serviceType.availableIn.includes("basic") ? serviceType.title : null;
+    return serviceType.availableIn.some((obj) => obj.basic === true)
+      ? serviceType.title
+      : null;
   });
 
   const classicService = carwashPackages.filter((serviceType) => {
-    return serviceType.availableIn.includes("classic")
+    return serviceType.availableIn.some((obj) => obj.classic === true)
       ? serviceType.title
       : null;
   });
 
   const premiumService = carwashPackages.filter((serviceType) => {
-    return serviceType.availableIn.includes("premium")
+    return serviceType.availableIn.some((obj) => obj.premium === true)
       ? serviceType.title
       : null;
   });
 
   const platinumService = carwashPackages.filter((serviceType) => {
-    return serviceType.availableIn.includes("platinum")
+    return serviceType.availableIn.some((obj) => obj.platinum === true)
       ? serviceType.title
       : null;
   });
