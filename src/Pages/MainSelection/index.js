@@ -160,9 +160,9 @@ export const MainSelection = () => {
           onClick={handleOnCategoryClick("Mobile Car Wash")}
         >
           <LocalCarWashIcon sx={{ fontSize: "75px" }} />
-          <Typography>Mobile Car Wash</Typography>
+          <Typography>Car Wash</Typography>
         </div>
-        <div
+        {/* <div
           className={`item ${
             isCategorySelected("Full Detailing") ? "active" : ""
           }`}
@@ -180,7 +180,7 @@ export const MainSelection = () => {
         >
           <CarRepairIcon sx={{ fontSize: "75px" }} />
           <Typography>Paintless Dent Repair</Typography>
-        </div>
+        </div> */}
       </div>
       <Dialog fullWidth fullScreen={false} open={open} onClose={handleClose}>
         <DialogTitle
