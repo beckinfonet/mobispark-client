@@ -69,7 +69,7 @@ export const AppFooter = () => {
         <div className="footer-bottom-section">
           <div className="copy-rights-section">
             <a href="/" className="logo-link">
-              <img src="/logo2.png" alt="logo" height="50" width="100" />
+              <img src="/logo-glow.png" alt="logo" height="100" width="100" />
             </a>
             <span className="copy-rights-text">
               &copy; {new Date().getFullYear()} Company, Inc
