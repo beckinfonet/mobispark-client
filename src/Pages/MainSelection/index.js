@@ -105,7 +105,7 @@ export const MainSelection = () => {
 
   return (
     <div className="selection-container">
-      <div className="main-categories-header">
+      {/* <div className="main-categories-header">
         <Typography gutterBottom align="center" variant="h5">
           1. Let's find your service
         </Typography>
@@ -121,16 +121,16 @@ export const MainSelection = () => {
             </Button>
           ))}
         </div>
-      </div>
+      </div> */}
       <div className="main-categories-header">
         <Typography gutterBottom align="center" variant="h5">
-          2. Shop by type
+          1. Select vehicle type:
         </Typography>
         <div>
           {["SEDAN", "SUV", "3-ROW SUV"].map((item, index) => (
             <Button
               key={index}
-              disabled={!serviceType}
+              // disabled={!serviceType}
               variant={shopType === item ? "contained" : "outlined"}
               size="large"
               onClick={() => setShopType(item)}
@@ -142,7 +142,7 @@ export const MainSelection = () => {
       </div>
       <div className="main-categories-header last">
         <Typography gutterBottom align="center" variant="h5">
-          3. Please select service
+          2. Select mobile service:
         </Typography>
       </div>
       <div className="main-categories-body">
