@@ -4,6 +4,8 @@ import axios from "axios";
 import Button from "@mui/material/Button";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
+
+import { TermsAndConditions } from "./TermsAndConditions";
 import "./styles.css";
 
 const initialValues = {
@@ -119,7 +121,7 @@ const ServiceDisplay = ({ data }) => {
 
 export const VendorDashboard = () => {
   const params = useParams();
-
+  const [termsAccepted, setTerms] = useState(false);
   const [loading, setLoading] = useState(true);
   const [services, setServices] = useState(null);
   const [openBuilder, setOpenBuilder] = useState(false);
@@ -137,6 +139,7 @@ export const VendorDashboard = () => {
     };
 
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -180,27 +183,36 @@ export const VendorDashboard = () => {
 
   return (
     <div className="vendor-dashboard-container">
-      <p>VENDOR DASHBOARD</p>
-      {loading && (
-        <Box sx={{ display: "flex" }}>
-          <CircularProgress />
-        </Box>
-      )}
-      {!loading &&
-        services.carwashPackages.length &&
-        services.carwashPackages.map((item, index) => (
-          <div key={index}>
-            <ServiceDisplay data={item} />
-          </div>
-        ))}
-
-      {openBuilder && (
-        <ServiceBuilder
-          showServiceAdder={handleAdderComp}
-          handleNewUpdates={handleNewUpdates}
+      {!termsAccepted ? (
+        <TermsAndConditions
+          onAccept={() => setTerms(true)}
+          onDeny={() => setTerms(false)}
         />
+      ) : (
+        <>
+          <p>VENDOR DASHBOARD</p>
+          {loading && (
+            <Box sx={{ display: "flex" }}>
+              <CircularProgress />
+            </Box>
+          )}
+          {!loading &&
+            services.carwashPackages.length &&
+            services.carwashPackages.map((item, index) => (
+              <div key={index}>
+                <ServiceDisplay data={item} />
+              </div>
+            ))}
+
+          {openBuilder && (
+            <ServiceBuilder
+              showServiceAdder={handleAdderComp}
+              handleNewUpdates={handleNewUpdates}
+            />
+          )}
+          <Button onClick={handleBuilder}>+ Please add service</Button>
+        </>
       )}
-      <Button onClick={handleBuilder}>+ Please add service</Button>
     </div>
   );
 };
