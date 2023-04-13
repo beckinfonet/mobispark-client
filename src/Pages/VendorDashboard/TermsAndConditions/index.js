@@ -14,7 +14,7 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: "95%",
   bgcolor: "background.paper",
-  border: "2px solid #000",
+  border: "1px solid gray",
   boxShadow: 24,
   p: 4,
   overflowY: "auto",
@@ -36,7 +36,7 @@ export const TermsAndConditions = ({ onAccept, onDeny }) => {
 
   return (
     <div>
-      <Button onClick={handleOpen}>Open modal</Button>
+      <Button onClick={handleOpen}>Read Terms and Conditions</Button>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
