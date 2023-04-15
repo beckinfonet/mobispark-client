@@ -5,8 +5,11 @@ import Button from "@mui/material/Button";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 
+import { EditItem } from "../../components/VendorDashboard/EditItem";
+import { DisplayItem } from "../../components/VendorDashboard/DisplayItem";
 import { TermsAndConditions } from "./TermsAndConditions";
 import "./styles.css";
+import { Typography } from "@mui/material";
 
 const initialValues = {
   title: "",
@@ -89,39 +92,37 @@ const ServiceBuilder = ({ handleNewUpdates, showServiceAdder }) => {
   );
 };
 
-const ServiceDisplay = ({ data }) => {
-  const { title, price, availableIn } = data;
+const ServiceItem = (props) => {
+  const [isEdit, setEdit] = useState(false);
+
+  const handleEditSubmit = (data, id) => {
+    // setShowAddItem(false);
+    // setExpand(true);
+    props.onAddItem(data, id);
+  };
+
   return (
     <div style={{ display: "flex", margin: "15px 0px" }}>
-      <input
-        placeholder="Service name"
-        name="title"
-        value={title}
-        onChange={() => console.log("to be developed later")}
-      />
-      <input
-        placeholder="price"
-        name="price"
-        value={price}
-        onChange={() => console.log("to be developed later")}
-      />
-      {availableIn.map((item, index) => (
-        <span key={index} className="checkbox-styles">
-          <label>{Object.keys(item)}</label>
-          <input
-            type="checkbox"
-            checked={item[Object.keys(item)]}
-            onChange={() => console.log("to be developed later")}
-          />
-        </span>
-      ))}
+      {isEdit ? (
+        <EditItem
+          {...props}
+          onCancel={() => setEdit(false)}
+          onSubmit={handleEditSubmit}
+        />
+      ) : (
+        <DisplayItem
+          {...props}
+          // onHide={handleOnHide}
+          onEdit={() => setEdit(true)}
+        />
+      )}
     </div>
   );
 };
 
 export const VendorDashboard = () => {
   const params = useParams();
-  const [termsAccepted, setTerms] = useState(false);
+  const [termsAccepted, setTerms] = useState(true);
   const [loading, setLoading] = useState(true);
   const [services, setServices] = useState(null);
   const [openBuilder, setOpenBuilder] = useState(false);
@@ -181,6 +182,21 @@ export const VendorDashboard = () => {
     setOpenBuilder(value);
   };
 
+  const updateParentData = (data) => {
+    // add logic here
+  };
+
+  const handleAddItemInCategory = (serviceTypeId) => (data, itemId) => {
+    setServices((prev) => {
+      return {
+        ...prev,
+        carwashPackages: prev.carwashPackages.map((item) => {
+          return item._id === serviceTypeId ? { ...data } : item;
+        }),
+      };
+    });
+  };
+
   return (
     <div className="vendor-dashboard-container">
       {!termsAccepted ? (
@@ -190,7 +206,9 @@ export const VendorDashboard = () => {
         />
       ) : (
         <>
-          <p>VENDOR DASHBOARD</p>
+          <Typography align="center" sx={{ mt: 3, fontWeight: 600 }}>
+            VENDOR DASHBOARD
+          </Typography>
           {loading && (
             <Box sx={{ display: "flex" }}>
               <CircularProgress />
@@ -200,7 +218,11 @@ export const VendorDashboard = () => {
             services.carwashPackages.length &&
             services.carwashPackages.map((item, index) => (
               <div key={index}>
-                <ServiceDisplay data={item} />
+                <ServiceItem
+                  data={item}
+                  updateParentData={updateParentData}
+                  onAddItem={handleAddItemInCategory(item._id)}
+                />
               </div>
             ))}
 
