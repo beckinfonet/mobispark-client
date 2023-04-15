@@ -9,6 +9,7 @@ import { EditItem } from "../../components/VendorDashboard/EditItem";
 import { DisplayItem } from "../../components/VendorDashboard/DisplayItem";
 import { TermsAndConditions } from "./TermsAndConditions";
 import "./styles.css";
+import { Typography } from "@mui/material";
 
 const initialValues = {
   title: "",
@@ -198,7 +199,6 @@ export const VendorDashboard = () => {
 
   return (
     <div className="vendor-dashboard-container">
-      {/* {console.log("SERVICES: ", services)} */}
       {!termsAccepted ? (
         <TermsAndConditions
           onAccept={() => setTerms(true)}
@@ -206,7 +206,9 @@ export const VendorDashboard = () => {
         />
       ) : (
         <>
-          <p>VENDOR DASHBOARD</p>
+          <Typography align="center" sx={{ mt: 3, fontWeight: 600 }}>
+            VENDOR DASHBOARD
+          </Typography>
           {loading && (
             <Box sx={{ display: "flex" }}>
               <CircularProgress />
