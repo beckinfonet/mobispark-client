@@ -6,6 +6,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 
 import { EditItem } from "../../components/VendorDashboard/EditItem";
+import { DisplayItem } from "../../components/VendorDashboard/DisplayItem";
 import { TermsAndConditions } from "./TermsAndConditions";
 import "./styles.css";
 
@@ -93,58 +94,10 @@ const ServiceBuilder = ({ handleNewUpdates, showServiceAdder }) => {
 const ServiceItem = (props) => {
   const [isEdit, setEdit] = useState(false);
 
-  // const [modifiedData, setModifiedData] = useState({
-  //   title: title,
-  //   price: price,
-  //   availableIn: [],
-  // });
-
-  const handleChange = (evt) => {
-    const { name, value } = evt.target;
-    console.log({ name, value });
-    // setModifiedData((prev) => ({
-    //   ...prev,
-    //   [name]: value,
-    // }));
-    // updateParentData(modifiedData);
-  };
-
   const handleEditSubmit = (data, id) => {
-    console.log("data inside the parent: ", data, "id: ", id);
     // setShowAddItem(false);
     // setExpand(true);
     props.onAddItem(data, id);
-  };
-
-  const ItemDisplay = ({ data, onEdit }) => {
-    const { title, price, availableIn } = data;
-    return (
-      <>
-        <button onClick={onEdit}>Edit</button>
-        <input
-          placeholder="Service name"
-          name="title"
-          value={title}
-          onChange={(evt) => handleChange(evt)}
-        />
-        <input
-          placeholder="price"
-          name="price"
-          value={price}
-          onChange={(evt) => handleChange(evt)}
-        />
-        {availableIn.map((item, index) => (
-          <span key={index} className="checkbox-styles">
-            <label>{Object.keys(item)}</label>
-            <input
-              type="checkbox"
-              checked={item[Object.keys(item)]}
-              onChange={() => console.log("to be developed later")}
-            />
-          </span>
-        ))}
-      </>
-    );
   };
 
   return (
@@ -156,7 +109,7 @@ const ServiceItem = (props) => {
           onSubmit={handleEditSubmit}
         />
       ) : (
-        <ItemDisplay
+        <DisplayItem
           {...props}
           // onHide={handleOnHide}
           onEdit={() => setEdit(true)}
