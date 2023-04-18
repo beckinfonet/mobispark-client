@@ -94,28 +94,6 @@ export const EditItem = (props) => {
                   );
                 }}
               />
-
-              // <FormControlLabel
-              //   sx={{ width: 160 }}
-              //   control={
-              //     <Controller
-              //       name={name}
-              //       render={({ onChange: onCheckChange }) => {
-              //         return (
-              //           <Checkbox
-              //             checked={data.availableIn.some(
-              //               (item) => item[name] === true
-              //             )}
-              //             // onChange={() => onCheckChange(handleSelect(name))}
-              //           />
-              //         );
-              //       }}
-              //       control={control}
-              //     />
-              //   }
-              //   key={name}
-              //   label={name}
-              // />
             ))}
           </Grid>
         </Grid>

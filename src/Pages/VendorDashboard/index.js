@@ -96,8 +96,6 @@ const ServiceItem = (props) => {
   const [isEdit, setEdit] = useState(false);
 
   const handleEditSubmit = (data, id) => {
-    // setShowAddItem(false);
-    // setExpand(true);
     setEdit(false);
     props.onAddItem(data, id);
   };
@@ -196,6 +194,7 @@ export const VendorDashboard = () => {
         }),
       };
     });
+    setMakeUpdateCall(true);
   };
 
   return (
