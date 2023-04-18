@@ -98,6 +98,7 @@ const ServiceItem = (props) => {
   const handleEditSubmit = (data, id) => {
     // setShowAddItem(false);
     // setExpand(true);
+    setEdit(false);
     props.onAddItem(data, id);
   };
 

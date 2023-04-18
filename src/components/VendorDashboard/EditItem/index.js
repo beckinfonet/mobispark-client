@@ -72,28 +72,50 @@ export const EditItem = (props) => {
             />
           </Grid>
           <Grid item xs={12}>
-            {["basic", "classic", "premium", "platinum"].map((name) => (
-              <FormControlLabel
-                sx={{ width: 160 }}
-                control={
-                  <Controller
-                    name={name}
-                    render={({ onChange: onCheckChange }) => {
-                      return (
-                        <Checkbox
-                          checked={data.availableIn.some(
-                            (item) => item[name] === true
-                          )}
-                          // onChange={() => onCheckChange(handleSelect(name))}
-                        />
-                      );
-                    }}
-                    control={control}
-                  />
-                }
-                key={name}
-                label={name}
+            {[
+              { label: "Basic", name: "availableIn.0.basic" },
+              { label: "Classic", name: "availableIn.1.classic" },
+              { label: "Premium", name: "availableIn.2.premium" },
+              { label: "Platinum", name: "availableIn.3.platinum" },
+            ].map(({ label, name }) => (
+              <Controller
+                name={name}
+                control={control}
+                render={({ field }) => {
+                  return (
+                    <FormControlLabel
+                      {...field}
+                      control={<Checkbox name={name} checked={field.value} />}
+                      label={label}
+                      onChange={(e) => {
+                        field.onChange(e.target.checked);
+                      }}
+                    />
+                  );
+                }}
               />
+
+              // <FormControlLabel
+              //   sx={{ width: 160 }}
+              //   control={
+              //     <Controller
+              //       name={name}
+              //       render={({ onChange: onCheckChange }) => {
+              //         return (
+              //           <Checkbox
+              //             checked={data.availableIn.some(
+              //               (item) => item[name] === true
+              //             )}
+              //             // onChange={() => onCheckChange(handleSelect(name))}
+              //           />
+              //         );
+              //       }}
+              //       control={control}
+              //     />
+              //   }
+              //   key={name}
+              //   label={name}
+              // />
             ))}
           </Grid>
         </Grid>
