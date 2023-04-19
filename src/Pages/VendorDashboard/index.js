@@ -11,13 +11,13 @@ import { AddItem } from "../../components/VendorDashboard/AddItem";
 
 import "./styles.css";
 
-const ServiceBuilder = ({ handleNewUpdates, showServiceAdder }) => {
+const ServiceBuilder = ({ handleNewUpdates, showServiceAdder, onCancel }) => {
   const onSubmit = (data) => {
     handleNewUpdates(data);
     showServiceAdder(false);
   };
 
-  return <AddItem onSubmit={onSubmit} />;
+  return <AddItem onSubmit={onSubmit} onCancel={onCancel} />;
 };
 
 const ServiceItem = (props) => {
@@ -148,9 +148,17 @@ export const VendorDashboard = () => {
             <ServiceBuilder
               showServiceAdder={handleAdderComp}
               handleNewUpdates={handleNewUpdates}
+              onCancel={handleBuilder}
             />
           )}
-          <Button onClick={handleBuilder}>+ Please add service</Button>
+          <Button
+            onClick={handleBuilder}
+            variant="outlined"
+            color="success"
+            sx={{ mt: 1 }}
+          >
+            + Add new service
+          </Button>
         </>
       )}
     </div>
