@@ -1,95 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import Button from "@mui/material/Button";
 import CircularProgress from "@mui/material/CircularProgress";
-import Box from "@mui/material/Box";
+import { Box, Typography, Button } from "@mui/material/";
 
 import { EditItem } from "../../components/VendorDashboard/EditItem";
 import { DisplayItem } from "../../components/VendorDashboard/DisplayItem";
 import { TermsAndConditions } from "./TermsAndConditions";
+import { AddItem } from "../../components/VendorDashboard/AddItem";
+
 import "./styles.css";
-import { Typography } from "@mui/material";
-
-const initialValues = {
-  title: "",
-  price: 0,
-  availableIn: [],
-};
-
-const options = [
-  { basic: false },
-  { classic: false },
-  { premium: false },
-  { platinum: false },
-];
-
-const checkboxSupply = [
-  {
-    title: "basic",
-    name: "basic",
-  },
-  {
-    title: "classic",
-    name: "classic",
-  },
-  {
-    title: "premium",
-    name: "premium",
-  },
-  {
-    title: "platinum",
-    name: "platinum",
-  },
-];
 
 const ServiceBuilder = ({ handleNewUpdates, showServiceAdder }) => {
-  const [state, setState] = useState(initialValues);
-  const [checkedVals, setCheckedVals] = useState(options);
-
-  const handleBoxes = (evt) => {
-    const { name, checked } = evt.target;
-
-    const result = checkedVals.map((item) => {
-      if (Object.keys(item)[0] === name) {
-        return { [name]: checked };
-      } else {
-        return item;
-      }
-    });
-    setCheckedVals(result);
-  };
-
-  const addToMain = () => {
-    const newPackage = { ...state, availableIn: [checkedVals] };
-    handleNewUpdates(newPackage);
+  const onSubmit = (data) => {
+    handleNewUpdates(data);
     showServiceAdder(false);
   };
 
-  const handleInputs = (evt) => {
-    const { name, value } = evt.target;
-
-    setState((prev) => ({
-      ...prev,
-      [name]: name === "price" ? Number(value) : value,
-    }));
-  };
-
-  return (
-    <div style={{ display: "flex", margin: "15px 0px" }}>
-      <input placeholder="Service name" name="title" onChange={handleInputs} />
-      <input placeholder="price" name="price" onChange={handleInputs} />
-      {checkboxSupply.map(({ title, name }, index) => (
-        <span key={index} className="checkbox-styles">
-          <label>{title}</label>
-          <input name={name} type="checkbox" onClick={(e) => handleBoxes(e)} />
-        </span>
-      ))}
-      <span>
-        <Button onClick={addToMain}>Add record</Button>
-      </span>
-    </div>
-  );
+  return <AddItem onSubmit={onSubmit} />;
 };
 
 const ServiceItem = (props) => {
@@ -165,24 +93,15 @@ export const VendorDashboard = () => {
   };
 
   const handleNewUpdates = (data) => {
-    const newRecord = {
-      availableIn: data.availableIn[0],
-      price: data.price,
-      title: data.title,
-    };
     setServices((prev) => ({
       ...prev,
-      carwashPackages: [...prev.carwashPackages, newRecord],
+      carwashPackages: [...prev.carwashPackages, data],
     }));
     setMakeUpdateCall(true);
   };
 
   const handleAdderComp = (value) => {
     setOpenBuilder(value);
-  };
-
-  const updateParentData = (data) => {
-    // add logic here
   };
 
   const handleAddItemInCategory = (serviceTypeId) => (data, itemId) => {
@@ -220,7 +139,6 @@ export const VendorDashboard = () => {
               <div key={index}>
                 <ServiceItem
                   data={item}
-                  updateParentData={updateParentData}
                   onAddItem={handleAddItemInCategory(item._id)}
                 />
               </div>
