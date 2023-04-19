@@ -6,7 +6,7 @@ import { Grid } from "@mui/material";
 import { TextField } from "@mui/material";
 import { Button } from "@mui/material";
 
-function AddItem({ onSubmit }) {
+function AddItem({ onSubmit, onCancel }) {
   const {
     handleSubmit,
     formState: { errors },
@@ -103,7 +103,14 @@ function AddItem({ onSubmit }) {
           </Grid>
         </Grid>
         <Grid sx={{ mt: 1, display: "flex", justifyContent: "center" }}>
-          <Button variant="contained" type="submit">
+          <Button
+            variant="outlined"
+            onClick={onCancel}
+            sx={{ mr: 1, width: "40%" }}
+          >
+            Cancel
+          </Button>
+          <Button variant="contained" type="submit" sx={{ width: "40%" }}>
             Add Service
           </Button>
         </Grid>

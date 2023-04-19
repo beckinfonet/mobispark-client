@@ -7,7 +7,7 @@ import { TextField } from "@mui/material";
 import { Button } from "@mui/material";
 
 export const EditItem = (props) => {
-  const { data } = props;
+  const { data, onCancel } = props;
   const {
     handleSubmit,
     formState: { errors },
@@ -99,7 +99,14 @@ export const EditItem = (props) => {
           </Grid>
         </Grid>
         <Grid sx={{ mt: 1, display: "flex", justifyContent: "center" }}>
-          <Button variant="contained" type="submit">
+          <Button
+            variant="outlined"
+            onClick={onCancel}
+            sx={{ mr: 1, width: "40%" }}
+          >
+            Cancel
+          </Button>
+          <Button variant="contained" type="submit" sx={{ width: "40%" }}>
             Update Item
           </Button>
         </Grid>

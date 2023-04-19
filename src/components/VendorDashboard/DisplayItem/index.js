@@ -78,7 +78,14 @@ export const DisplayItem = ({ data, onEdit }) => {
           boxShadow: 1,
         }}
       >
-        <Grid item sx={{ fontSize: 18, fontWeight: 600, pb: 1 }}>
+        <Grid
+          item
+          sx={{
+            fontSize: 18,
+            fontWeight: 600,
+            pb: 1,
+          }}
+        >
           {title}
         </Grid>
         <Grid
@@ -89,8 +96,14 @@ export const DisplayItem = ({ data, onEdit }) => {
             flexDirection: "row",
           }}
         >
-          <Grid item xs={10}>
-            <Typography>Available in:</Typography>
+          <Grid item xs={9}>
+            <Typography
+              sx={{
+                backgroundColor: "aliceblue",
+              }}
+            >
+              Available in:
+            </Typography>
             {availableIn.map((item, index) => (
               <div key={index} className="checkbox-styles">
                 <input
@@ -102,8 +115,11 @@ export const DisplayItem = ({ data, onEdit }) => {
               </div>
             ))}
           </Grid>
-          <Grid item xs={2}>
-            <Typography>Price:</Typography>${price}
+          <Grid item xs={3}>
+            <Typography sx={{ backgroundColor: "aliceblue" }}>
+              Price:
+            </Typography>
+            ${price}
             <CustomizedSwitches />
           </Grid>
         </Grid>
