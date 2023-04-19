@@ -77,8 +77,9 @@ export const EditItem = (props) => {
               { label: "Classic", name: "availableIn.1.classic" },
               { label: "Premium", name: "availableIn.2.premium" },
               { label: "Platinum", name: "availableIn.3.platinum" },
-            ].map(({ label, name }) => (
+            ].map(({ label, name }, index) => (
               <Controller
+                key={index}
                 name={name}
                 control={control}
                 render={({ field }) => {
