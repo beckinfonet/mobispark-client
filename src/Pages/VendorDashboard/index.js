@@ -4,6 +4,7 @@ import axios from "axios";
 import CircularProgress from "@mui/material/CircularProgress";
 import { Box, Typography, Button } from "@mui/material/";
 
+import { VendorProfile } from "../../components/VendorDashboard/VendorProfile";
 import { EditItem } from "../../components/VendorDashboard/EditItem";
 import { DisplayItem } from "../../components/VendorDashboard/DisplayItem";
 import { TermsAndConditions } from "./TermsAndConditions";
@@ -128,6 +129,7 @@ export const VendorDashboard = () => {
           <Typography align="center" sx={{ mt: 3, fontWeight: 600 }}>
             VENDOR DASHBOARD
           </Typography>
+          <VendorProfile />
           {loading && (
             <Box sx={{ display: "flex" }}>
               <CircularProgress />

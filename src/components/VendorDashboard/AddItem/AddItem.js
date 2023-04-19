@@ -6,7 +6,7 @@ import { Grid } from "@mui/material";
 import { TextField } from "@mui/material";
 import { Button } from "@mui/material";
 
-function AddItem({ onSubmit, onCancel }) {
+const AddItem = ({ onSubmit, onCancel }) => {
   const {
     handleSubmit,
     formState: { errors },
@@ -117,6 +117,6 @@ function AddItem({ onSubmit, onCancel }) {
       </form>
     </Stack>
   );
-}
+};
 
 export { AddItem };
