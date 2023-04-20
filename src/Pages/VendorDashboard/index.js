@@ -129,7 +129,7 @@ export const VendorDashboard = () => {
           <Typography align="center" sx={{ mt: 3, fontWeight: 600 }}>
             VENDOR DASHBOARD
           </Typography>
-          <VendorProfile />
+          {services && <VendorProfile data={services} />}
           {loading && (
             <Box sx={{ display: "flex" }}>
               <CircularProgress />
