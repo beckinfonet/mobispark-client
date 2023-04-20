@@ -22,37 +22,39 @@ const ProfileViewMode = ({ setToEditMode }) => {
   );
 };
 
-const VendorProfile = ({ onSubmitUserProfileData }) => {
+const VendorProfile = ({ onSubmitUserProfileData, data }) => {
   const [viewMode, setViewMode] = useState(false);
+  const { companyName, companyStreetAddress, email, city, state, zipcode } =
+    data?.vendorProfile;
   const {
     handleSubmit,
     formState: { errors },
     control,
   } = useForm({
     defaultValues: {
-      companyName: "",
-      companyStreetAddress: "",
-      city: "",
-      state: "",
-      zipcode: "",
-      email: "",
+      companyName: companyName,
+      companyStreetAddress: companyStreetAddress,
+      city: city,
+      state: state,
+      zipcode: zipcode,
+      email: email,
       mainPhoneNumber: {
-        value: "",
+        value: data.vendorProfile.mainPhoneNumber.value,
         authenticated: false,
       },
       secondaryPhone: {
-        value: "",
+        value: data.vendorProfile.secondaryPhone.value,
         authenticated: false,
       },
       contactPerson: {
-        firstName: "",
-        lastName: "",
+        firstName: data.vendorProfile.contactPerson.firstName,
+        lastName: data.vendorProfile.contactPerson.lastName,
         cellPhone: {
-          value: "",
+          value: data.vendorProfile.contactPerson.cellPhone.value,
           authenticated: false,
         },
         email: {
-          value: "",
+          value: data.vendorProfile.contactPerson.email.value,
           authenticated: false,
         },
       },
@@ -76,7 +78,8 @@ const VendorProfile = ({ onSubmitUserProfileData }) => {
       <Typography sx={{ textAlign: "center", mt: 2, mb: 2, fontWeight: 600 }}>
         Company Profile
       </Typography>
-      {!viewMode ? (
+      {!data && <p>LOADING...</p>}
+      {!viewMode && data ? (
         <ProfileViewMode setToEditMode={handleEditMode} />
       ) : (
         <form onSubmit={handleSubmit(handleFormSubmit)} className="form">
@@ -297,7 +300,7 @@ const VendorProfile = ({ onSubmitUserProfileData }) => {
 
             <Grid item xs={12}>
               <Controller
-                name="contactPerson.cellphone.value"
+                name="contactPerson.cellPhone.value"
                 control={control}
                 render={({ field, fieldState: { error } }) => (
                   <TextField
