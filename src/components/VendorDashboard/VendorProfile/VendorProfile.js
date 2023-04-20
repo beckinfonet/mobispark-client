@@ -22,7 +22,7 @@ const ProfileViewMode = ({ setToEditMode }) => {
   );
 };
 
-const VendorProfile = ({ onSubmitUserProfileData, data }) => {
+const VendorProfile = ({ submitUserProfileData, data }) => {
   const [viewMode, setViewMode] = useState(false);
   const { companyName, companyStreetAddress, email, city, state, zipcode } =
     data?.vendorProfile;
@@ -62,11 +62,12 @@ const VendorProfile = ({ onSubmitUserProfileData, data }) => {
   });
 
   const handleFormSubmit = (data) => {
-    // onSubmitUserProfileData(data);
+    submitUserProfileData(data);
+    setViewMode(false);
   };
 
-  const handleEditMode = () => {
-    setViewMode(true);
+  const handleEditMode = (flag) => {
+    setViewMode(flag);
   };
 
   const onCancel = () => {
@@ -80,7 +81,7 @@ const VendorProfile = ({ onSubmitUserProfileData, data }) => {
       </Typography>
       {!data && <p>LOADING...</p>}
       {!viewMode && data ? (
-        <ProfileViewMode setToEditMode={handleEditMode} />
+        <ProfileViewMode setToEditMode={() => handleEditMode(true)} />
       ) : (
         <form onSubmit={handleSubmit(handleFormSubmit)} className="form">
           <Grid

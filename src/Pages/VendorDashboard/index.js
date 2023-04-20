@@ -117,6 +117,14 @@ export const VendorDashboard = () => {
     setMakeUpdateCall(true);
   };
 
+  const submitUserProfileData = (data) => {
+    setServices((prev) => ({
+      ...prev,
+      vendorProfile: data,
+    }));
+    setMakeUpdateCall(true);
+  };
+
   return (
     <div className="vendor-dashboard-container">
       {!termsAccepted ? (
@@ -129,7 +137,12 @@ export const VendorDashboard = () => {
           <Typography align="center" sx={{ mt: 3, fontWeight: 600 }}>
             VENDOR DASHBOARD
           </Typography>
-          {services && <VendorProfile data={services} />}
+          {services && (
+            <VendorProfile
+              data={services}
+              submitUserProfileData={submitUserProfileData}
+            />
+          )}
           {loading && (
             <Box sx={{ display: "flex" }}>
               <CircularProgress />
