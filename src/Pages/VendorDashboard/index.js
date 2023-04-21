@@ -144,7 +144,13 @@ export const VendorDashboard = () => {
             />
           )}
           {loading && (
-            <Box sx={{ display: "flex" }}>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
               <CircularProgress />
             </Box>
           )}
