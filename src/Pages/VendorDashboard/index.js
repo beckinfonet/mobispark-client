@@ -148,6 +148,9 @@ export const VendorDashboard = () => {
               <CircularProgress />
             </Box>
           )}
+          <Typography align="center" sx={{ mt: 3, fontWeight: 600 }}>
+            VENDOR SERVICES
+          </Typography>
           {!loading &&
             services.carwashPackages.length &&
             services.carwashPackages.map((item, index) => (
