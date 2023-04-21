@@ -5,7 +5,40 @@ import { Grid } from "@mui/material";
 import { TextField } from "@mui/material";
 import { Button } from "@mui/material";
 
-const ProfileViewMode = ({ setToEditMode }) => {
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+
+const ProfileViewMode = ({ data, setToEditMode }) => {
+  const { city, companyName, companyStreetAddress, email, state, zipcode } =
+    data.vendorProfile;
+
+  function createData(name, value) {
+    return { name, value };
+  }
+
+  const rows = [
+    createData("Company name", companyName),
+    createData("Address", companyStreetAddress),
+    createData("City", city),
+    createData("State", state),
+    createData("Zipcode", zipcode),
+    createData("Email", email),
+    createData("Main phone", data.vendorProfile.mainPhoneNumber.value),
+    createData("Alternative", data.vendorProfile.secondaryPhone.value),
+  ];
+
+  const contactRow = [
+    createData("First name", data.vendorProfile.contactPerson.firstName),
+    createData("Last name", data.vendorProfile.contactPerson.lastName),
+    createData("Cellphone", data.vendorProfile.contactPerson.cellPhone.value),
+    createData("Email", data.vendorProfile.contactPerson.email.value),
+  ];
+
   return (
     <Grid container>
       <Grid
@@ -13,7 +46,66 @@ const ProfileViewMode = ({ setToEditMode }) => {
         xs={12}
         sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
       >
-        <Typography>View mode</Typography>
+        <TableContainer component={Paper}>
+          <Table aria-label="simple table">
+            <TableBody>
+              {rows.map((row) => (
+                <TableRow
+                  key={row.name}
+                  sx={{
+                    "&:last-child td, &:last-child th": { border: 0 },
+                  }}
+                >
+                  <TableCell component="th" scope="row">
+                    {row.name}
+                  </TableCell>
+                  <TableCell align="left">{row.value}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <Typography sx={{ m: 1, mt: 2, fontWeight: 600 }}>
+          Contact person info
+        </Typography>
+
+        <TableContainer component={Paper}>
+          <Table aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell align="center">Company info</TableCell>
+                <TableCell align="center"></TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {contactRow.map((row) => (
+                <TableRow
+                  key={row.name}
+                  sx={{
+                    "&:last-child td, &:last-child th": { border: 0 },
+                  }}
+                >
+                  <TableCell component="th" scope="row">
+                    {row.name}
+                  </TableCell>
+                  <TableCell align="left">{row.value}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Grid>
+
+      <Grid
+        item
+        xs={12}
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          mt: 1,
+        }}
+      >
         <Button variant="outlined" onClick={setToEditMode}>
           Edit info
         </Button>
@@ -81,7 +173,10 @@ const VendorProfile = ({ submitUserProfileData, data }) => {
       </Typography>
       {!data && <p>LOADING...</p>}
       {!viewMode && data ? (
-        <ProfileViewMode setToEditMode={() => handleEditMode(true)} />
+        <ProfileViewMode
+          setToEditMode={() => handleEditMode(true)}
+          data={data}
+        />
       ) : (
         <form onSubmit={handleSubmit(handleFormSubmit)} className="form">
           <Grid
