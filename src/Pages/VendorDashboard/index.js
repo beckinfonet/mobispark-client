@@ -50,7 +50,7 @@ const ServiceItem = (props) => {
 
 export const VendorDashboard = () => {
   const params = useParams();
-  const [termsAccepted, setTerms] = useState(true);
+  const [termsAccepted, setTerms] = useState(false);
   const [loading, setLoading] = useState(true);
   const [services, setServices] = useState(null);
   const [openBuilder, setOpenBuilder] = useState(false);

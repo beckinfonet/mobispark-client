@@ -257,7 +257,7 @@ export const MainSelection = () => {
                   />
                 </LocalizationProvider>
               </div>
-              <div style={{ width: "100%", margin: "20px 0px" }}>
+              {/* <div style={{ width: "100%", margin: "20px 0px" }}>
                 <label htmlFor="timeSlot">Time Slot</label>
                 <FormControl
                   sx={{ width: "100%" }}
@@ -287,7 +287,7 @@ export const MainSelection = () => {
                     <FormHelperText>Field is required</FormHelperText>
                   )}
                 </FormControl>
-              </div>
+              </div> */}
             </div>
           </Box>
         </DialogContent>
