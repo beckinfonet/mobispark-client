@@ -226,6 +226,7 @@ export const MainSelection = () => {
                 <label htmlFor="dateOfBooking">Date of booking</label>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DatePicker
+                    disablePast
                     value={values.dateOfBooking}
                     onChange={handleDateOfBookingChange}
                     renderInput={(params) => (
