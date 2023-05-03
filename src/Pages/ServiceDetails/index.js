@@ -40,6 +40,7 @@ export const ServiceDetails = () => {
   const { title, rate, fullAddress, promoRate, serviceTypes, carwashPackages } =
     data.state.selectedVendor;
   const [open, setOpen] = React.useState(false);
+  const [proceedForward, setProceedForward] = React.useState(false);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -56,6 +57,10 @@ export const ServiceDetails = () => {
         dateAndZipCode: { ...data.state.dateAndZipCode },
       },
     });
+  };
+
+  const handleOnEventConfirmed = () => {
+    setProceedForward(true);
   };
 
   return (
@@ -92,6 +97,7 @@ export const ServiceDetails = () => {
             <BookMeetingInlineWidget
               user={{ email: "beckinfonet@gmail.com", name: "Beck" }}
               calenly={"https://calendly.com/foodrates"}
+              onEventConfirmed={handleOnEventConfirmed}
             />
           </Box>
         </DialogContent>
@@ -104,14 +110,16 @@ export const ServiceDetails = () => {
           >
             Cancel
           </Button>
-          <Button
-            variant="contained"
-            size="large"
-            onClick={handleBookCarWash}
-            sx={{ borderRadius: "20px", width: "200px" }}
-          >
-            Continue
-          </Button>
+          {proceedForward && (
+            <Button
+              variant="contained"
+              size="large"
+              onClick={handleBookCarWash}
+              sx={{ borderRadius: "20px", width: "200px" }}
+            >
+              Continue
+            </Button>
+          )}
         </DialogActions>
       </Dialog>
 
