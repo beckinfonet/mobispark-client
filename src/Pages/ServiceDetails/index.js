@@ -102,14 +102,16 @@ export const ServiceDetails = () => {
           </Box>
         </DialogContent>
         <DialogActions sx={{ paddingBottom: "20px", justifyContent: "center" }}>
-          <Button
-            variant="contained"
-            size="large"
-            onClick={handleClose}
-            sx={{ borderRadius: "20px", width: "200px" }}
-          >
-            Cancel
-          </Button>
+          {!proceedForward && (
+            <Button
+              variant="contained"
+              size="large"
+              onClick={handleClose}
+              sx={{ borderRadius: "20px", width: "200px" }}
+            >
+              Cancel
+            </Button>
+          )}
           {proceedForward && (
             <Button
               variant="contained"
