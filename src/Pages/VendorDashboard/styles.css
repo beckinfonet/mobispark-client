@@ -19,3 +19,20 @@
 .service-name {
   margin-right: 10px;
 }
+
+.agreement {
+  font-size: 12px;
+}
+
+.agreement input {
+  border: none;
+  border-bottom: 1px solid gray;
+  min-width: 10px;
+  max-width: 200px;
+}
+
+.agreement input:focus {
+  outline: none;
+  border: none;
+  border-bottom: 1px solid gray;
+}
