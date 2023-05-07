@@ -115,7 +115,9 @@ export const TermsAndConditions = ({ onAccept, onDeny }) => {
               </Button>
               <Button
                 variant="contained"
-                onClick={() => onAccept()}
+                onClick={() =>
+                  onAccept({ ...agreement, agreementConsentTaken: true })
+                }
                 disabled={checkDisabled()}
               >
                 Accept
