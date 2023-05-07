@@ -125,11 +125,21 @@ export const VendorDashboard = () => {
     setMakeUpdateCall(true);
   };
 
+  const sendAgreementToRecords = (agreement) => {
+    setServices((prev) => ({
+      ...prev,
+      agreement: [agreement],
+    }));
+    setMakeUpdateCall(true);
+  };
+
   return (
     <div className="vendor-dashboard-container">
-      {!termsAccepted ? (
+      {!services?.agreement?.[0].agreementConsentTaken ? (
         <TermsAndConditions
-          onAccept={() => setTerms(true)}
+          onAccept={(agreement) => {
+            sendAgreementToRecords(agreement);
+          }}
           onDeny={() => setTerms(false)}
         />
       ) : (
