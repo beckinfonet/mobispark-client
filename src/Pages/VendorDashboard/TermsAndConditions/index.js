@@ -48,6 +48,10 @@ export const TermsAndConditions = ({ onAccept, onDeny }) => {
     }));
   };
 
+  const checkDisabled = () => {
+    return !Object.values(agreement).every((keyValue) => keyValue.length > 0);
+  };
+
   return (
     <div>
       <Button onClick={handleOpen}>Read Terms and Conditions</Button>
@@ -109,7 +113,11 @@ export const TermsAndConditions = ({ onAccept, onDeny }) => {
               <Button variant="outlined" onClick={() => handleDeny()}>
                 Deny
               </Button>
-              <Button variant="contained" onClick={() => onAccept()}>
+              <Button
+                variant="contained"
+                onClick={() => onAccept()}
+                disabled={checkDisabled()}
+              >
                 Accept
               </Button>
             </Stack>
