@@ -74,8 +74,12 @@ export const MainSelection = () => {
   return (
     <div className="selection-container">
       <div className="main-categories-header">
-        <Typography gutterBottom align="center" variant="h5">
-          1. Select vehicle type:
+        <Typography
+          gutterBottom
+          align="center"
+          sx={{ fontSize: 22, fontWeight: "bold" }}
+        >
+          1. SELECT VEHICLE TYPE:
         </Typography>
         <div>
           {["SEDAN", "SUV", "3-ROW SUV"].map((item, index) => (
@@ -91,8 +95,18 @@ export const MainSelection = () => {
         </div>
       </div>
       <div className="main-categories-header last">
-        <Typography gutterBottom align="center" variant="h5">
-          2. Select mobile service:
+        <Typography
+          gutterBottom
+          align="center"
+          sx={{ fontSize: 22, fontWeight: "bold" }}
+        >
+          2. SELECT{" "}
+          <span
+            style={{ fontWeight: "bold", fontsize: "18px", color: "green" }}
+          >
+            mobile
+          </span>{" "}
+          SERVICE:
         </Typography>
       </div>
       <div className="main-categories-body">
