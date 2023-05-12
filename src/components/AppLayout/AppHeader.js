@@ -16,7 +16,7 @@ import "./styles.css";
 const pages = [
   // "Products", "Pricing", "Blog"
 ];
-const settings = ["Profile", "Dashboard", "Logout"];
+const settings = ["Profile", "Dashboard", "Logout", "Bookings"];
 
 export function AppHeader(props) {
   const { authStatus } = props;
@@ -25,9 +25,6 @@ export function AppHeader(props) {
   const [, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
-  // const handleOpenNavMenu = (event) => {
-  //   setAnchorElNav(event.currentTarget);
-  // };
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -47,6 +44,10 @@ export function AppHeader(props) {
 
     if (selection === "Profile") {
       navigate("/profile");
+    }
+
+    if (selection === "Bookings") {
+      navigate("/bookings");
     }
 
     if (selection === "Logout") {
@@ -87,43 +88,6 @@ export function AppHeader(props) {
               width="80"
             />
           </Typography>
-
-          {/* <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: "block", md: "none" },
-              }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box> */}
           <Typography
             variant="h5"
             noWrap

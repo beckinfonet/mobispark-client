@@ -61,8 +61,8 @@ export const VendorDashboard = () => {
       const result = await axios(
         `https://formula312-server-2xrue.ondigitalocean.app/vendor/${params.vendorId}`
       );
-      setServices(result.data);
-      if (result.data.carwashPackages.length) {
+      setServices(result?.data);
+      if (result?.data?.carwashPackages?.length) {
         setLoading(false);
       }
     };
