@@ -5,15 +5,18 @@ import Link from "@mui/material/Link";
 import MailIcon from "@mui/icons-material/Mail";
 import Button from "@mui/material/Button";
 import PhoneCallbackIcon from "@mui/icons-material/PhoneCallback";
-import { useAuthenticator } from "@aws-amplify/ui-react";
+// import { useAuthenticator } from "@aws-amplify/ui-react";
+import { useNavigate } from "react-router-dom";
 
 import "./AppFooter.css";
 
 export const AppFooter = () => {
-  const authResponse = useAuthenticator((context) => [context.authStatus]);
+  // const authResponse = useAuthenticator((context) => [context.authStatus]);
+  const navigate = useNavigate();
 
   const handleSignUpClick = () => {
-    authResponse.toSignUp();
+    // authResponse.toSignUp();
+    navigate("/vendor-signup");
   };
 
   return (
@@ -21,7 +24,7 @@ export const AppFooter = () => {
       <Container maxWidth="lg">
         <Box sx={{ textAlign: "center", my: 1 }}>
           <span style={{ fontSize: "18px", color: "white" }}>
-            Register for free:
+            Are you a VENDOR?
           </span>
           <Button
             variant="contained"
@@ -29,7 +32,7 @@ export const AppFooter = () => {
             sx={{ backgroundColor: "#fa2a55", m: 1 }}
             onClick={handleSignUpClick}
           >
-            Sign Up!
+            Sign Up here!
           </Button>
         </Box>
         <Box

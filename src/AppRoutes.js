@@ -10,12 +10,12 @@ import { Login } from "./Pages/Login";
 import { Dashboard } from "./Pages/Dashboard";
 import { Profile } from "./Pages/Profile";
 import { VendorDashboard } from "./Pages/VendorDashboard";
+import { VendorSignup } from "./Pages/VendorSignup";
 
 function PublicRoute({ children }) {
   const { signOut, authStatus } = useAuthenticator((context) => [
     context.authStatus,
   ]);
-  // console.log("PublicRoute .......", authStatus);
   return (
     <AppLayout authStatus={authStatus} signOut={signOut}>
       {children}
@@ -61,7 +61,7 @@ export const AppRoutes = () => {
         }
       />
       <Route
-        path="/dashboard"
+        path="/bookings"
         element={
           <PublicRoute>
             <Dashboard />
@@ -105,6 +105,14 @@ export const AppRoutes = () => {
         element={
           <PrivateRoute>
             <VendorDashboard />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="vendor-signup"
+        element={
+          <PrivateRoute>
+            <VendorSignup />
           </PrivateRoute>
         }
       />
