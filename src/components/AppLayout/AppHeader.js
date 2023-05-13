@@ -37,9 +37,10 @@ export function AppHeader(props) {
     setAnchorElUser(null);
   };
 
+  const vendorId = "64292a77a3166bcd75d4e16f";
   const handlemenuItemClick = (selection) => {
     if (selection === "Dashboard") {
-      navigate("/dashboard");
+      navigate(`/vendor-dashboard/${vendorId}`);
     }
 
     if (selection === "Profile") {
