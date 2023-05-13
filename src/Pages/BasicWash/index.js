@@ -4,18 +4,14 @@ import { useNavigate, useLocation } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LocalCarWashIcon from "@mui/icons-material/LocalCarWashRounded";
-import CarRepairIcon from "@mui/icons-material/CarRepairRounded";
-import NoCrashIcon from "@mui/icons-material/NoCrashRounded";
 import MinorCruchIcon from "@mui/icons-material/MinorCrashRounded";
 
 import { ServiceCategories } from "../../components/ServiceCategories";
 import { ServiceCard } from "../../components/ServiceDetailsCard/ServiceCard";
 
 const testOptions = [
-  { title: "Tint", cost: 20, Icon: MinorCruchIcon },
+  { title: "Mobile Tint", cost: 20, Icon: MinorCruchIcon },
   { title: "Mobile Car Wash", cost: 5, Icon: LocalCarWashIcon },
-  { title: "Full Detailing", cost: 5, Icon: NoCrashIcon },
-  { title: "Paintless Dent Repair", cost: 35, Icon: CarRepairIcon },
 ];
 
 export const BasicWash = () => {

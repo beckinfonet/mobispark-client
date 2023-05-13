@@ -1,0 +1,1 @@
+export { VendorSignup } from "./VendorSignup";
