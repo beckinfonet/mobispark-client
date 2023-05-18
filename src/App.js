@@ -17,7 +17,9 @@ const CircularColor = () => {
 };
 
 function App() {
-  const { authStatus } = useAuthenticator((context) => [context.authStatus]);
+  const { authStatus, user } = useAuthenticator((context) => [
+    context.authStatus,
+  ]);
   return (
     <>
       {authStatus === "configuring" ? (
@@ -26,7 +28,7 @@ function App() {
           <Authenticator />
         </>
       ) : (
-        <AppRoutes />
+        <AppRoutes user={user} />
       )}
     </>
   );
