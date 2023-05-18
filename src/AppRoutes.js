@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import { AppLayout } from "./components/AppLayout";
@@ -44,7 +45,21 @@ function PrivateRoute({ children }) {
   }
 }
 
-export const AppRoutes = () => {
+export const AppRoutes = ({ user }) => {
+  const [userInfo, setUserInfo] = useState([]);
+  const { username } = user || {};
+
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      const result = await axios.get(
+        `https://formula312-server-2xrue.ondigitalocean.app/vendorstatus/${username}`
+      );
+      setUserInfo(result);
+    };
+
+    fetchUserInfo();
+  }, []);
+
   return (
     <Routes>
       <Route
@@ -112,7 +127,7 @@ export const AppRoutes = () => {
         path="vendor-signup"
         element={
           <PrivateRoute>
-            <VendorSignup />
+            <VendorSignup user={user} />
           </PrivateRoute>
         }
       />
