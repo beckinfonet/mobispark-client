@@ -117,7 +117,7 @@ const ProfileViewMode = ({ data, setToEditMode }) => {
 const VendorProfile = ({ submitUserProfileData, data }) => {
   const [viewMode, setViewMode] = useState(false);
   const { companyName, companyStreetAddress, email, city, state, zipcode } =
-    data?.vendorProfile;
+    data?.vendorProfile ?? {};
   const {
     handleSubmit,
     formState: { errors },
@@ -131,22 +131,22 @@ const VendorProfile = ({ submitUserProfileData, data }) => {
       zipcode: zipcode,
       email: email,
       mainPhoneNumber: {
-        value: data.vendorProfile.mainPhoneNumber.value,
+        value: data?.vendorProfile?.mainPhoneNumber?.value,
         authenticated: false,
       },
       secondaryPhone: {
-        value: data.vendorProfile.secondaryPhone.value,
+        value: data?.vendorProfile?.secondaryPhone?.value,
         authenticated: false,
       },
       contactPerson: {
-        firstName: data.vendorProfile.contactPerson.firstName,
-        lastName: data.vendorProfile.contactPerson.lastName,
+        firstName: data?.vendorProfile?.contactPerson?.firstName,
+        lastName: data?.vendorProfile?.contactPerson?.lastName,
         cellPhone: {
-          value: data.vendorProfile.contactPerson.cellPhone.value,
+          value: data?.vendorProfile?.contactPerson?.cellPhone?.value,
           authenticated: false,
         },
         email: {
-          value: data.vendorProfile.contactPerson.email.value,
+          value: data?.vendorProfile?.contactPerson?.email?.value,
           authenticated: false,
         },
       },

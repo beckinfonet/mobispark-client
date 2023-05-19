@@ -38,6 +38,7 @@ export const BasicWash = () => {
     const filterWord = snakeCaseIt(title);
 
     setFilterWord(filterWord);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedCategories, selectedCategories[0].title]);
 
   const navigate = useNavigate();

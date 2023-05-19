@@ -13,13 +13,11 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./styles.css";
 
-const pages = [
-  // "Products", "Pricing", "Blog"
-];
+// const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Dashboard", "Logout", "Bookings"];
 
 export function AppHeader(props) {
-  const { authStatus } = props;
+  const { authStatus, user } = props;
   const location = useLocation();
   const navigate = useNavigate();
   const [, setAnchorElNav] = React.useState(null);
@@ -37,10 +35,11 @@ export function AppHeader(props) {
     setAnchorElUser(null);
   };
 
-  const vendorId = "64292a77a3166bcd75d4e16f";
+  // const vendorId = "64292a77a3166bcd75d4e16f";
+
   const handlemenuItemClick = (selection) => {
     if (selection === "Dashboard") {
-      navigate(`/vendor-dashboard/${vendorId}`);
+      navigate(`/vendor-dashboard/${user?.data?.[0]?._id}`);
     }
 
     if (selection === "Profile") {
@@ -113,7 +112,7 @@ export function AppHeader(props) {
               width="80"
             />
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          {/* <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Button
                 key={page}
@@ -123,7 +122,7 @@ export function AppHeader(props) {
                 {page}
               </Button>
             ))}
-          </Box>
+          </Box> */}
 
           {authStatus === "authenticated" ? (
             <Box sx={{ flexGrow: 0 }}>
@@ -155,14 +154,18 @@ export function AppHeader(props) {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
-                {settings.map((setting) => (
-                  <MenuItem
-                    key={setting}
-                    onClick={() => handlemenuItemClick(setting)}
-                  >
-                    <Typography textAlign="center">{setting}</Typography>
-                  </MenuItem>
-                ))}
+                {settings.map((setting) =>
+                  setting === "Dashboard" &&
+                  user?.data?.[0]?.userInfo?.platformApprovalStatus !==
+                    "APPROVED" ? null : (
+                    <MenuItem
+                      key={setting}
+                      onClick={() => handlemenuItemClick(setting)}
+                    >
+                      <Typography textAlign="center">{setting}</Typography>
+                    </MenuItem>
+                  )
+                )}
               </Menu>
             </Box>
           ) : (

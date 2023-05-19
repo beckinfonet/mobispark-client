@@ -3,6 +3,60 @@ import axios from "axios";
 import { Box, Grid } from "@mui/material";
 import { TextField, Button, Checkbox, FormControlLabel } from "@mui/material";
 
+const bodyTEST = {
+  title: "Dustins Shop",
+  location: "Bethesda, MD",
+  fullAddress: "5420 Butler Rd",
+  image: "./assets/wax.jpeg",
+  vendorProfile: {
+    companyName: "Woodland Hills Cleaners",
+    companyStreetAddress: "123 Main Street",
+    city: "Bethesda",
+    state: "MD",
+    zipcode: "11234",
+    email: "woodlandcleaners@gmail.com",
+    mainPhoneNumber: {
+      value: 9173863863,
+      authenticated: false,
+    },
+    secondaryPhone: {
+      value: 9292559322,
+      authenticated: false,
+    },
+    contactPerson: {
+      firstName: "Joe",
+      lastName: "Rogan",
+      cellPhone: {
+        value: 345534436234,
+        authenticated: false,
+      },
+      email: {
+        value: "",
+        authenticated: false,
+      },
+    },
+  },
+  rate: 5,
+  promoRate: 195,
+  basePrice: 195,
+  promoContentTop: "top company",
+  promoContentBottom: "Located near you",
+  serviceTypes: {
+    interior: ["mobile-car-wash", "full-detailing"],
+    exterior: ["mobile-car-wash", "full-detailing", "paintless-dent-repair"],
+    _id: "6410a18f00b02be077b302f0",
+  },
+  offeredServiceTypes: ["tint", "mobile-car-wash"],
+  carwashPackages: [],
+  agreement: [
+    {
+      agreementConsentTaken: false,
+      clientName: "",
+      clientAddress: "",
+    },
+  ],
+};
+
 export const VendorSignup = ({ user }) => {
   const [formData, setFormData] = useState({
     firstName: "",
@@ -20,10 +74,17 @@ export const VendorSignup = ({ user }) => {
   });
 
   const insertNewData = async (body) => {
+    const reqBody = {
+      ...bodyTEST,
+      userInfo: {
+        username: user.username,
+        platformApprovalStatus: "PENDING",
+      },
+    };
     const result = await axios({
       method: "POST",
       url: `https://formula312-server-2xrue.ondigitalocean.app/vendor`,
-      data: body,
+      data: reqBody,
     });
     console.log("result ==>", result);
   };

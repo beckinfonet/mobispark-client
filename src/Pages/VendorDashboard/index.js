@@ -62,7 +62,7 @@ export const VendorDashboard = () => {
         `https://formula312-server-2xrue.ondigitalocean.app/vendor/${params.vendorId}`
       );
       setServices(result?.data);
-      if (result?.data?.carwashPackages?.length) {
+      if (result?.data) {
         setLoading(false);
       }
     };
@@ -167,16 +167,16 @@ export const VendorDashboard = () => {
           <Typography align="center" sx={{ mt: 3, fontWeight: 600 }}>
             VENDOR SERVICES
           </Typography>
-          {!loading &&
-            services.carwashPackages.length &&
-            services.carwashPackages.map((item, index) => (
-              <div key={index}>
-                <ServiceItem
-                  data={item}
-                  onAddItem={handleAddItemInCategory(item._id)}
-                />
-              </div>
-            ))}
+          {!loading && services.carwashPackages.length
+            ? services.carwashPackages.map((item, index) => (
+                <div key={index}>
+                  <ServiceItem
+                    data={item}
+                    onAddItem={handleAddItemInCategory(item._id)}
+                  />
+                </div>
+              ))
+            : null}
 
           {openBuilder && (
             <ServiceBuilder
