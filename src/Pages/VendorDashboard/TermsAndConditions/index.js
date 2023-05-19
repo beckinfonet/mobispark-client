@@ -41,16 +41,16 @@ export const TermsAndConditions = ({ onAccept, onDeny }) => {
     onDeny();
   };
 
-  const handleAgreement = (evt) => {
-    setAgreement((prev) => ({
-      ...prev,
-      [evt.target.name]: evt.target.value,
-    }));
-  };
+  // const handleAgreement = (evt) => {
+  //   setAgreement((prev) => ({
+  //     ...prev,
+  //     [evt.target.name]: evt.target.value,
+  //   }));
+  // };
 
-  const checkDisabled = () => {
-    return !Object.values(agreement).every((keyValue) => keyValue.length > 0);
-  };
+  // const checkDisabled = () => {
+  //   return !Object.values(agreement).every((keyValue) => keyValue.length > 0);
+  // };
 
   return (
     <div>
@@ -88,26 +88,13 @@ export const TermsAndConditions = ({ onAccept, onDeny }) => {
               This Company-Client Agreement ("Agreement") is made and entered
               into by and between FORMULA312 LLC, a [State] corporation with its
               principal place of business at [Address] and its website located
-              at www.formula312.com ("Company"), and{" "}
-              <input
-                placeholder="Client name"
-                name="clientName"
-                onChange={(evt) => handleAgreement(evt)}
-                value={agreement.clientName}
-              />
-              , with its principal place of business at{" "}
-              <input
-                placeholder="Client address"
-                name="clientAddress"
-                onChange={(evt) => handleAgreement(evt)}
-                value={agreement.clientAddress}
-              />
-              ("Client"), collectively referred to as the "Parties." RECITALS
-              The company operates an online aggregator website that collects
-              and displays information about various products and services
-              ("Aggregator Website"). The client desires to participate in the
-              Aggregator Website as a provider of its products or services
-              ("Client Products"). AGREEMENT
+              at www.formula312.com ("Company"), and [Client Name], with its
+              principal place of business at [Address] ("Client"), collectively
+              referred to as the "Parties." RECITALS The company operates an
+              online aggregator website that collects and displays information
+              about various products and services ("Aggregator Website"). The
+              client desires to participate in the Aggregator Website as a
+              provider of its products or services ("Client Products").
             </Typography>
             <Stack spacing={2}>
               <Button variant="outlined" onClick={() => handleDeny()}>
@@ -115,10 +102,8 @@ export const TermsAndConditions = ({ onAccept, onDeny }) => {
               </Button>
               <Button
                 variant="contained"
-                onClick={() =>
-                  onAccept({ ...agreement, agreementConsentTaken: true })
-                }
-                disabled={checkDisabled()}
+                onClick={() => onAccept({ agreementConsentTaken: true })}
+                // disabled={checkDisabled()}
               >
                 Accept
               </Button>

@@ -19,7 +19,7 @@ export function AppLayout({ authStatus, signOut, children, user }) {
       <Container sx={{ backgroundColor: "#fff", py: 10, flex: "1 0 auto" }}>
         <Box component="main">{children}</Box>
       </Container>
-      <AppFooter />
+      <AppFooter user={user} />
     </div>
   );
 }

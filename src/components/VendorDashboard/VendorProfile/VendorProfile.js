@@ -28,15 +28,18 @@ const ProfileViewMode = ({ data, setToEditMode }) => {
     createData("State", state),
     createData("Zipcode", zipcode),
     createData("Email", email),
-    createData("Main phone", data.vendorProfile.mainPhoneNumber.value),
-    createData("Alternative", data.vendorProfile.secondaryPhone.value),
+    createData("Main phone", data?.vendorProfile?.mainPhoneNumber?.value),
+    createData("Alternative", data?.vendorProfile?.secondaryPhone?.value),
   ];
 
   const contactRow = [
     createData("First name", data.vendorProfile.contactPerson.firstName),
     createData("Last name", data.vendorProfile.contactPerson.lastName),
-    createData("Cellphone", data.vendorProfile.contactPerson.cellPhone.value),
-    createData("Email", data.vendorProfile.contactPerson.email.value),
+    createData(
+      "Cellphone",
+      data?.vendorProfile?.contactPerson?.cellPhone?.value
+    ),
+    createData("Email", data?.vendorProfile?.contactPerson?.email?.value),
   ];
 
   return (
