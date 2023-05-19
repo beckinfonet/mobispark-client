@@ -13,18 +13,18 @@ import { Profile } from "./Pages/Profile";
 import { VendorDashboard } from "./Pages/VendorDashboard";
 import { VendorSignup } from "./Pages/VendorSignup";
 
-function PublicRoute({ children }) {
+function PublicRoute({ children, user }) {
   const { signOut, authStatus } = useAuthenticator((context) => [
     context.authStatus,
   ]);
   return (
-    <AppLayout authStatus={authStatus} signOut={signOut}>
+    <AppLayout authStatus={authStatus} signOut={signOut} user={user}>
       {children}
     </AppLayout>
   );
 }
 
-function PrivateRoute({ children }) {
+function PrivateRoute({ children, user }) {
   const { authStatus, signOut } = useAuthenticator((context) => [
     context.authStatus,
   ]);
@@ -38,7 +38,7 @@ function PrivateRoute({ children }) {
     return <Navigate to="/login" state={{ from: location }} replace />;
   } else {
     return (
-      <AppLayout authStatus={authStatus} signOut={signOut}>
+      <AppLayout authStatus={authStatus} signOut={signOut} user={user}>
         {children}
       </AppLayout>
     );
@@ -70,7 +70,7 @@ export const AppRoutes = ({ user }) => {
       <Route
         path="main-selection"
         element={
-          <PublicRoute>
+          <PublicRoute user={userInfo}>
             <MainSelection />
           </PublicRoute>
         }
@@ -78,7 +78,7 @@ export const AppRoutes = ({ user }) => {
       <Route
         path="/bookings"
         element={
-          <PublicRoute>
+          <PublicRoute user={userInfo}>
             <Dashboard />
           </PublicRoute>
         }
@@ -86,7 +86,7 @@ export const AppRoutes = ({ user }) => {
       <Route
         path="/profile"
         element={
-          <PublicRoute>
+          <PublicRoute user={userInfo}>
             <Profile />
           </PublicRoute>
         }
@@ -94,7 +94,7 @@ export const AppRoutes = ({ user }) => {
       <Route
         path="basic-wash"
         element={
-          <PublicRoute>
+          <PublicRoute user={userInfo}>
             <BasicWash />
           </PublicRoute>
         }
@@ -102,7 +102,7 @@ export const AppRoutes = ({ user }) => {
       <Route
         path=":category/:serviceId/details"
         element={
-          <PublicRoute>
+          <PublicRoute user={userInfo}>
             <ServiceDetails />
           </PublicRoute>
         }
@@ -110,7 +110,7 @@ export const AppRoutes = ({ user }) => {
       <Route
         path=":category/:serviceId/payment"
         element={
-          <PrivateRoute>
+          <PrivateRoute user={userInfo}>
             <PaymentContainer />
           </PrivateRoute>
         }
@@ -118,7 +118,7 @@ export const AppRoutes = ({ user }) => {
       <Route
         path="vendor-dashboard/:vendorId"
         element={
-          <PrivateRoute>
+          <PrivateRoute user={userInfo}>
             <VendorDashboard />
           </PrivateRoute>
         }
@@ -126,7 +126,7 @@ export const AppRoutes = ({ user }) => {
       <Route
         path="vendor-signup"
         element={
-          <PrivateRoute>
+          <PrivateRoute user={userInfo}>
             <VendorSignup user={user} />
           </PrivateRoute>
         }
