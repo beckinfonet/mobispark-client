@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 import "./AppFooter.css";
 
-export const AppFooter = () => {
+export const AppFooter = ({ user }) => {
   // const authResponse = useAuthenticator((context) => [context.authStatus]);
   const navigate = useNavigate();
 
@@ -23,17 +23,35 @@ export const AppFooter = () => {
     <Box component="footer" className="app-footer">
       <Container maxWidth="lg">
         <Box sx={{ textAlign: "center", my: 1 }}>
-          <span style={{ fontSize: "18px", color: "white" }}>
-            Are you a VENDOR?
-          </span>
-          <Button
-            variant="contained"
-            color="error"
-            sx={{ backgroundColor: "#fa2a55", m: 1 }}
-            onClick={handleSignUpClick}
-          >
-            Sign Up here!
-          </Button>
+          {user?.data?.[0]?.userInfo?.platformApprovalStatus === "APPROVED" ? (
+            <>
+              <span style={{ fontSize: "18px", color: "white" }}>
+                Want a referral bonus?
+              </span>
+              <Button
+                variant="contained"
+                color="error"
+                sx={{ backgroundColor: "#fa2a55", m: 1 }}
+                // onClick={handleSignUpClick}
+              >
+                Refer a vendor here!
+              </Button>
+            </>
+          ) : (
+            <>
+              <span style={{ fontSize: "18px", color: "white" }}>
+                Are you a VENDOR?
+              </span>
+              <Button
+                variant="contained"
+                color="error"
+                sx={{ backgroundColor: "#fa2a55", m: 1 }}
+                onClick={handleSignUpClick}
+              >
+                Sign Up here!
+              </Button>
+            </>
+          )}
         </Box>
         <Box
           sx={{

@@ -75,7 +75,7 @@ export const VendorSignup = ({ user }) => {
 
   const insertNewData = async (body) => {
     const reqBody = {
-      ...bodyTEST,
+      ...body,
       userInfo: {
         username: user.username,
         platformApprovalStatus: "PENDING",
@@ -106,22 +106,71 @@ export const VendorSignup = ({ user }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    // const reqBody = {
+    //   title: formData?.legalBusinessName,
+    //   location: formData.legalBusinessCity,
+    //   fullAddress: formData.legalBusinessAddress,
+    //   image: "./assets/wax.jpeg",
+    //   rate: 0,
+    //   promoRate: 0,
+    //   basePrice: 0,
+    //   promoContentTop: "",
+    //   promoContentBottom: "",
+    //   serviceTypes: {},
+    //   carwashPackages: [],
+    //   userInfo: {
+    //     username: user.username,
+    //     platformApprovalStatus: "PENDING",
+    //   },
+    // };
     const reqBody = {
       title: formData?.legalBusinessName,
       location: formData.legalBusinessCity,
       fullAddress: formData.legalBusinessAddress,
       image: "./assets/wax.jpeg",
-      rate: 0,
-      promoRate: 0,
-      basePrice: 0,
-      promoContentTop: "",
-      promoContentBottom: "",
-      serviceTypes: {},
-      carwashPackages: [],
-      userInfo: {
-        username: user.username,
-        platformApprovalStatus: "PENDING",
+      vendorProfile: {
+        companyName: formData?.legalBusinessName,
+        companyStreetAddress: formData.legalBusinessAddress,
+        city: formData.legalBusinessCity,
+        state: formData.legalBusinessState,
+        zipcode: formData.legalBusinessZipcode,
+        email: formData.businessEmail,
+        mainPhoneNumber: {
+          value: formData.businessPhoneNumber,
+          authenticated: false,
+        },
+        contactPerson: {
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          cellPhone: {
+            value: formData.personalPhoneNumber,
+            authenticated: false,
+          },
+          email: {
+            value: formData.personalEmail,
+            authenticated: false,
+          },
+        },
       },
+      rate: 0,
+      promoRate: 195,
+      basePrice: 195,
+      promoContentTop: "top company",
+      promoContentBottom: "Located near you",
+      serviceTypes: {
+        interior: ["mobile-car-wash", "full-detailing"],
+        exterior: ["mobile-car-wash", "full-detailing"],
+        _id: "6410a18f00b02be077b302f0",
+      },
+      offeredServiceTypes: ["mobile-tint", "mobile-car-wash"],
+      carwashPackages: [],
+      agreement: [
+        {
+          agreementConsentTaken: false,
+          clientName: "",
+          clientAddress: "",
+        },
+      ],
     };
     insertNewData(reqBody);
   };
