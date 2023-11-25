@@ -1,23 +1,15 @@
 import * as React from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Rating from "@mui/material/Rating";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogTitle from "@mui/material/DialogTitle";
-import Dialog from "@mui/material/Dialog";
-import Button from "@mui/material/Button";
-
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { ImageSlider } from "../../components/ImageSlider";
 import { PlansSelection } from "../../components/PlansSelection";
-import { BookMeetingInlineWidget } from "../../components/BookAppointment";
 
 const images = [
   {
     id: 1,
-    src: "https://www.tidalwaveautospa.com/wp-content/uploads/2022/10/DJM_TidalWave_RedefineU_20220628-072.jpg",
+    src: "https://hips.hearstapps.com/hmg-prod/images/man-hoovering-seat-of-car-during-car-cleaning-royalty-free-image-1585677173.jpg?crop=0.668xw:1.00xh;0.247xw,0&resize=1200:*",
   },
   {
     id: 2,
@@ -37,30 +29,13 @@ export const ServiceDetails = () => {
   const data = useLocation();
   const { serviceId, category } = useParams();
   const navigate = useNavigate();
-  const { title, rate, fullAddress, promoRate, serviceTypes, carwashPackages } =
-    data.state.selectedVendor;
-  const [open, setOpen] = React.useState(false);
-  const [proceedForward, setProceedForward] = React.useState(false);
+  const { title, rate, fullAddress, promoRate, servicePlans } =
+    data?.state?.selectedVendor;
 
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
-  const bookAppointment = () => {
-    handleOpen();
-  };
-
-  const handleBookCarWash = (totalBaseRate) => {
-    handleClose();
-    navigate(`/${category}/${serviceId}/payment`, {
-      state: {
-        selectedVendor: { ...data.state.selectedVendor, totalBaseRate },
-        dateAndZipCode: { ...data.state.dateAndZipCode },
-      },
+  const handleBookCarWash = () => {
+    navigate(`/${category}/${serviceId}/available-slots`, {
+      state: data.state,
     });
-  };
-
-  const handleOnEventConfirmed = () => {
-    setProceedForward(true);
   };
 
   return (
@@ -81,55 +56,11 @@ export const ServiceDetails = () => {
         <Rating name="text-feedback" precision={0.1} value={rate} readOnly />
         <Box sx={{ ml: 1 }}>305 ratings</Box>
       </Box>
-      <Dialog fullWidth fullScreen open={open} onClose={handleClose}>
-        <DialogTitle
-          sx={{
-            background: "#1976d2",
-            color: "#ffffff",
-            textAlign: "center",
-            fontSize: "1.5rem",
-          }}
-        >
-          Please Provide Details
-        </DialogTitle>
-        <DialogContent sx={{ paddingBottom: "0px" }}>
-          <Box component="div" noValidate autoComplete="off">
-            <BookMeetingInlineWidget
-              user={{ email: "beckinfonet@gmail.com", name: "Beck" }}
-              calenly={"https://calendly.com/foodrates"}
-              onEventConfirmed={handleOnEventConfirmed}
-            />
-          </Box>
-        </DialogContent>
-        <DialogActions sx={{ paddingBottom: "20px", justifyContent: "center" }}>
-          {!proceedForward && (
-            <Button
-              variant="contained"
-              size="large"
-              onClick={handleClose}
-              sx={{ borderRadius: "20px", width: "200px" }}
-            >
-              Cancel
-            </Button>
-          )}
-          {proceedForward && (
-            <Button
-              variant="contained"
-              size="large"
-              onClick={handleBookCarWash}
-              sx={{ borderRadius: "20px", width: "200px" }}
-            >
-              Continue
-            </Button>
-          )}
-        </DialogActions>
-      </Dialog>
 
       <PlansSelection
         promoRate={promoRate}
-        serviceTypes={serviceTypes}
-        handleBookCarWash={bookAppointment}
-        carwashPackages={carwashPackages}
+        servicePlans={servicePlans}
+        handleBookCarWash={handleBookCarWash}
       />
     </Box>
   );

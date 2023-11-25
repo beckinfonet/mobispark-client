@@ -20,15 +20,8 @@ const Option = (props) => (
 );
 
 const PlanCard = (props) => {
-  const {
-    type,
-    name,
-    price,
-    description,
-    serviceTypes,
-    optionsCount = 0,
-    handleBookCarWash,
-  } = props;
+  const { type, name, price, description, serviceTypes, handleBookCarWash } =
+    props;
 
   // const filteredOptions = serviceTypes.interior.length - optionsCount;
 
@@ -46,8 +39,6 @@ const PlanCard = (props) => {
   //     label: item,
   //   }));
 
-  const offeredServicesInPackage = serviceTypes.map((service) => service.title);
-
   return (
     <div className="plan-card">
       <div className="selected">
@@ -56,8 +47,8 @@ const PlanCard = (props) => {
         <h1>{price}</h1>
         {/* <h2>Interior</h2> */}
         <div className="plan-options-section">
-          {offeredServicesInPackage.map((option, index) => (
-            <Option key={index} label={option} />
+          {serviceTypes.map((option) => (
+            <Option key={option.id} label={option.name} />
           ))}
         </div>
         {/* <h2>Exterior</h2> */}
@@ -89,31 +80,24 @@ const PlanCard = (props) => {
 };
 
 export const PlansSelection = (props) => {
-  const { promoRate, handleBookCarWash, carwashPackages } = props || {};
+  console.log(props);
+  const { promoRate, handleBookCarWash, servicePlans = [] } = props || {};
 
-  const basicService = carwashPackages.filter((serviceType) => {
-    return serviceType.availableIn.some((obj) => obj.basic === true)
-      ? serviceType.title
-      : null;
-  });
+  const basicService = servicePlans?.filter((plan) =>
+    plan.availablePlans.includes("Basic")
+  );
 
-  const classicService = carwashPackages.filter((serviceType) => {
-    return serviceType.availableIn.some((obj) => obj.classic === true)
-      ? serviceType.title
-      : null;
-  });
+  const classicService = servicePlans?.filter((plan) =>
+    plan.availablePlans.includes("Classic")
+  );
 
-  const premiumService = carwashPackages.filter((serviceType) => {
-    return serviceType.availableIn.some((obj) => obj.premium === true)
-      ? serviceType.title
-      : null;
-  });
+  const premiumService = servicePlans?.filter((plan) =>
+    plan.availablePlans.includes("Premium")
+  );
 
-  const platinumService = carwashPackages.filter((serviceType) => {
-    return serviceType.availableIn.some((obj) => obj.platinum === true)
-      ? serviceType.title
-      : null;
-  });
+  const platinumService = servicePlans?.filter((plan) =>
+    plan.availablePlans.includes("Platinum")
+  );
 
   return (
     <div className="plans-container">
@@ -122,7 +106,6 @@ export const PlansSelection = (props) => {
           type="BASIC"
           name="START"
           price={`$${promoRate}`}
-          optionsCount={2}
           serviceTypes={basicService}
           handleBookCarWash={() => handleBookCarWash(promoRate)}
         />
@@ -132,7 +115,6 @@ export const PlansSelection = (props) => {
           type="CLASSIC"
           name="PRO"
           price={`$${promoRate * 1.5}`}
-          optionsCount={1}
           serviceTypes={classicService}
           handleBookCarWash={() => handleBookCarWash(promoRate * 1.5)}
         />

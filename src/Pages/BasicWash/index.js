@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -8,6 +7,7 @@ import MinorCruchIcon from "@mui/icons-material/MinorCrashRounded";
 
 import { ServiceCategories } from "../../components/ServiceCategories";
 import { ServiceCard } from "../../components/ServiceDetailsCard/ServiceCard";
+import dataJSON from "../../assets/jsons/data.json";
 
 const testOptions = [
   { title: "Mobile Tint", cost: 20, Icon: MinorCruchIcon },
@@ -16,30 +16,20 @@ const testOptions = [
 
 export const BasicWash = () => {
   const { state } = useLocation();
-  const [vendors, setVendors] = useState([]);
-  const [filterWord, setFilterWord] = useState(state.categories);
   const [selectedCategories, setSelectedCategories] = React.useState(
     testOptions.filter((opt) => state.categories.includes(opt.title))
   );
 
-  useEffect(() => {
-    const fetchVendors = async () => {
-      const result = await axios(
-        "https://formula312-server-2xrue.ondigitalocean.app/vendors"
-      );
-      setVendors(result.data);
-    };
+  // useEffect(() => {
+  //   const fetchVendors = async () => {
+  //     const result = await axios(
+  //       "https://formula312-server-2xrue.ondigitalocean.app/vendors"
+  //     );
+  //     setVendors(result.data);
+  //   };
 
-    fetchVendors();
-  }, []);
-
-  useEffect(() => {
-    const { title } = selectedCategories[0];
-    const filterWord = snakeCaseIt(title);
-
-    setFilterWord(filterWord);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedCategories, selectedCategories[0].title]);
+  //   fetchVendors();
+  // }, []);
 
   const navigate = useNavigate();
 
@@ -53,15 +43,6 @@ export const BasicWash = () => {
     });
   };
 
-  const snakeCaseIt = (str) =>
-    str &&
-    str
-      .match(
-        /[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g
-      )
-      .map((x) => x.toLowerCase())
-      .join("-");
-
   return (
     <Box>
       <ServiceCategories
@@ -70,17 +51,14 @@ export const BasicWash = () => {
         onClick={handleCategoryClick}
       />
       <Grid container spacing={3}>
-        {vendors.length &&
-          vendors.map((record, key) =>
-            record.offeredServiceTypes.includes(snakeCaseIt(filterWord)) ? (
-              <Grid item xs={12} md={4} key={key}>
-                <ServiceCard
-                  data={record}
-                  onClick={handleServiceCardClick(record)}
-                />
-              </Grid>
-            ) : null
-          )}
+        {dataJSON.data.map((record, key) => (
+          <Grid item xs={12} md={4} key={key}>
+            <ServiceCard
+              data={record}
+              onClick={handleServiceCardClick(record)}
+            />
+          </Grid>
+        ))}
       </Grid>
     </Box>
   );

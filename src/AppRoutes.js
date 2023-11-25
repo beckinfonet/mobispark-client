@@ -6,6 +6,7 @@ import { AppLayout } from "./components/AppLayout";
 import { BasicWash } from "./Pages/BasicWash";
 import { MainSelection } from "./Pages/MainSelection";
 import { ServiceDetails } from "./Pages/ServiceDetails";
+import { AvailableSlots } from "./Pages/AvailableSlots";
 import { PaymentContainer } from "./Pages/Payments";
 import { Login } from "./Pages/Login";
 import { Dashboard } from "./Pages/Dashboard";
@@ -104,6 +105,14 @@ export const AppRoutes = ({ user }) => {
         element={
           <PublicRoute user={userInfo}>
             <ServiceDetails />
+          </PublicRoute>
+        }
+      />
+      <Route
+        path=":category/:serviceId/available-slots"
+        element={
+          <PublicRoute user={userInfo}>
+            <AvailableSlots />
           </PublicRoute>
         }
       />

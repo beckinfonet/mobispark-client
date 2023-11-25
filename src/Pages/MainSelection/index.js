@@ -14,6 +14,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { DemoItem } from "@mui/x-date-pickers/internals/demo";
 import "./styles.css";
 
 export const MainSelection = () => {
@@ -168,38 +169,35 @@ export const MainSelection = () => {
                 />
               </div>
               <div style={{ width: "100%", margin: "20px 0px" }}>
-                <label htmlFor="dateOfBooking">Date of booking</label>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DatePicker
-                    disablePast
-                    value={values.dateOfBooking}
-                    onChange={handleDateOfBookingChange}
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        size="small"
-                        error={
-                          touched.dateOfBooking &&
-                          values.dateOfBooking.length === 0
-                        }
-                        fullWidth
-                        inputProps={{
-                          ...params.inputProps,
-                          onBlur: () =>
-                            setTouched((old) => ({
-                              ...old,
-                              dateOfBooking: true,
-                            })),
-                        }}
-                        helperText={
-                          touched.dateOfBooking &&
-                          values.dateOfBooking.length === 0
-                            ? "Field is required"
-                            : ""
-                        }
-                      />
-                    )}
-                  />
+                  <DemoItem label="Date of booking">
+                    <DatePicker
+                      disablePast
+                      value={values.dateOfBooking}
+                      onChange={handleDateOfBookingChange}
+                      slotProps={{
+                        textField: {
+                          fullWidth: true,
+                          size: "small",
+                          helperText:
+                            touched.dateOfBooking &&
+                            values.dateOfBooking.length === 0
+                              ? "Field is required"
+                              : "",
+                          error:
+                            touched.dateOfBooking &&
+                            values.dateOfBooking.length === 0,
+                          inputProps: {
+                            onBlur: () =>
+                              setTouched((old) => ({
+                                ...old,
+                                dateOfBooking: true,
+                              })),
+                          },
+                        },
+                      }}
+                    />
+                  </DemoItem>
                 </LocalizationProvider>
               </div>
             </div>

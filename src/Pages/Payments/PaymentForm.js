@@ -10,6 +10,7 @@ import { Typography } from "@mui/material";
 import BasicTable from "./OrderDetails";
 
 import "./styles.css";
+import { useAuthenticator } from "@aws-amplify/ui-react";
 
 const cardElementOptions = {
   iconStyle: "solid",
@@ -29,12 +30,42 @@ const cardElementOptions = {
   },
 };
 
+const BookingDetails = (props) => (
+  <div className="summary-container">
+    <p className="bold-font">ORDER SUMMARY</p>
+    <BasicTable {...props} />
+  </div>
+);
+
+const Summary = ({ basePrice, tax, totalPrice }) => (
+  <div className="summary-container">
+    <p>
+      <b>Price breakdown</b>
+    </p>
+    <div className="row-item">
+      <div>Base price</div>
+      <p className="price-indicator">${basePrice}</p>
+    </div>
+    <div className="row-item">
+      <div>Tax</div>
+      <p className="price-indicator">${tax}</p>
+    </div>
+    <div className="row-item">
+      <div>Total</div>
+      <p className="price-indicator">${totalPrice}</p>
+    </div>
+  </div>
+);
+
 export default function PaymentForm() {
   const data = useLocation();
+  const { user } = useAuthenticator((context) => [context.authStatus]);
   const { selectedVendor, dateAndZipCode } = data.state || {};
   const [success, setSuccess] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
+  const tax = 34;
+  const totalPrice = tax + selectedVendor?.basePrice;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -49,7 +80,7 @@ export default function PaymentForm() {
         const response = await axios.post(
           "https://oyster-app-6q5gi.ondigitalocean.app/payment",
           {
-            amount: 89000,
+            amount: totalPrice,
             id,
           }
         );
@@ -65,35 +96,6 @@ export default function PaymentForm() {
       console.log(error.message);
     }
   };
-
-  const BookingDetails = (props) => (
-    <div className="summary-container">
-      <p className="bold-font">ORDER SUMMARY</p>
-      <BasicTable {...props} />
-    </div>
-  );
-
-  const Summary = ({ tax }) => (
-    <div className="summary-container">
-      <p>
-        <b>Price breakdown</b>
-      </p>
-      <div className="row-item">
-        <div>Base price</div>
-        <p className="price-indicator">${selectedVendor?.totalBaseRate}</p>
-      </div>
-      <div className="row-item">
-        <div>Tax</div>
-        <p className="price-indicator">${tax}</p>
-      </div>
-      <div className="row-item">
-        <div>Total</div>
-        <p className="price-indicator">
-          ${tax + selectedVendor?.totalBaseRate}
-        </p>
-      </div>
-    </div>
-  );
 
   return (
     <div className="payment-container">
@@ -112,8 +114,15 @@ export default function PaymentForm() {
             Complete Your Payment
           </Typography>
           <div>
-            <BookingDetails values={dateAndZipCode} />
-            <Summary tax={34} />
+            <BookingDetails
+              userInfo={user?.attributes}
+              values={dateAndZipCode}
+            />
+            <Summary
+              basePrice={selectedVendor?.basePrice}
+              tax={tax}
+              totalPrice={totalPrice}
+            />
           </div>
           <Divider />
           <Card

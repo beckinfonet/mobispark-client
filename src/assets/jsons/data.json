@@ -11,24 +11,18 @@
       "basePrice": 195,
       "promoContentTop": "top company",
       "promoContentBottom": "Located near you",
-      "serviceTypes": {
-        "interior": [
-          "Thorough vacuum",
-          "Deep carpet shampooing",
-          "Hot water extraction",
-          "Stain removal",
-          "Leather seats cleaned and conditioned",
-          "Door jambs cleaned"
-        ],
-        "exterior": [
-          "Carnauba wash application",
-          "Bug, road tar and tree sap removed",
-          "Tire shine",
-          "Wheel cleaning",
-          "Wheel fender cleaning",
-          "Paint sealer application"
-        ]
-      }
+      "servicePlans": [
+        {
+          "id": 1,
+          "name": "Window Tint",
+          "availablePlans": ["Premium", "Platinum"]
+        },
+        {
+          "id": 2,
+          "name": "Seat Shampoo",
+          "availablePlans": ["Basic", "Classic", "Premium", "Platinum"]
+        }
+      ]
     },
     {
       "id": "2",
@@ -41,24 +35,18 @@
       "basePrice": 180,
       "promoContentTop": "pricebreaker",
       "promoContentBottom": "Soonest service",
-      "serviceTypes": {
-        "interior": [
-          "Thorough vacuum",
-          "Deep carpet shampooing",
-          "Hot water extraction",
-          "Stain removal",
-          "Leather seats cleaned and conditioned",
-          "Door jambs cleaned"
-        ],
-        "exterior": [
-          "Carnauba wash application",
-          "Bug, road tar and tree sap removed",
-          "Tire shine",
-          "Wheel cleaning",
-          "Wheel fender cleaning",
-          "Paint sealer application"
-        ]
-      }
+      "servicePlans": [
+        {
+          "id": 1,
+          "name": "Window Tint",
+          "availablePlans": ["Premium", "Platinum"]
+        },
+        {
+          "id": 2,
+          "name": "Seat Shampoo",
+          "availablePlans": ["Basic", "Classic", "Premium", "Platinum"]
+        }
+      ]
     },
     {
       "id": "3",
@@ -71,24 +59,18 @@
       "basePrice": 205,
       "promoContentTop": "best price available",
       "promoContentBottom": "Available now",
-      "serviceTypes": {
-        "interior": [
-          "Thorough vacuum",
-          "Deep carpet shampooing",
-          "Hot water extraction",
-          "Stain removal",
-          "Leather seats cleaned and conditioned",
-          "Door jambs cleaned"
-        ],
-        "exterior": [
-          "Carnauba wash application",
-          "Bug, road tar and tree sap removed",
-          "Tire shine",
-          "Wheel cleaning",
-          "Wheel fender cleaning",
-          "Paint sealer application"
-        ]
-      }
+      "servicePlans": [
+        {
+          "id": 1,
+          "name": "Window Tint",
+          "availablePlans": ["Premium", "Platinum"]
+        },
+        {
+          "id": 2,
+          "name": "Seat Shampoo",
+          "availablePlans": ["Basic", "Classic", "Premium", "Platinum"]
+        }
+      ]
     },
     {
       "id": "4",
@@ -101,24 +83,18 @@
       "basePrice": 195,
       "promoContentTop": "best rated",
       "promoContentBottom": "Located near you",
-      "serviceTypes": {
-        "interior": [
-          "Thorough vacuum",
-          "Deep carpet shampooing",
-          "Hot water extraction",
-          "Stain removal",
-          "Leather seats cleaned and conditioned",
-          "Door jambs cleaned"
-        ],
-        "exterior": [
-          "Carnauba wash application",
-          "Bug, road tar and tree sap removed",
-          "Tire shine",
-          "Wheel cleaning",
-          "Wheel fender cleaning",
-          "Paint sealer application"
-        ]
-      }
+      "servicePlans": [
+        {
+          "id": 1,
+          "name": "Window Tint",
+          "availablePlans": ["Premium", "Platinum"]
+        },
+        {
+          "id": 2,
+          "name": "Seat Shampoo",
+          "availablePlans": ["Basic", "Classic", "Premium", "Platinum"]
+        }
+      ]
     },
     {
       "id": "5",
@@ -131,24 +107,18 @@
       "basePrice": 145,
       "promoContentTop": "good service",
       "promoContentBottom": "Located near you",
-      "serviceTypes": {
-        "interior": [
-          "Thorough vacuum",
-          "Deep carpet shampooing",
-          "Hot water extraction",
-          "Stain removal",
-          "Leather seats cleaned and conditioned",
-          "Door jambs cleaned"
-        ],
-        "exterior": [
-          "Carnauba wash application",
-          "Bug, road tar and tree sap removed",
-          "Tire shine",
-          "Wheel cleaning",
-          "Wheel fender cleaning",
-          "Paint sealer application"
-        ]
-      }
+      "servicePlans": [
+        {
+          "id": 1,
+          "name": "Window Tint",
+          "availablePlans": ["Premium", "Platinum"]
+        },
+        {
+          "id": 2,
+          "name": "Seat Shampoo",
+          "availablePlans": ["Basic", "Classic", "Premium", "Platinum"]
+        }
+      ]
     },
     {
       "id": "6",
@@ -161,24 +131,18 @@
       "basePrice": 165,
       "promoContentTop": "great price",
       "promoContentBottom": "Located near you",
-      "serviceTypes": {
-        "interior": [
-          "Thorough vacuum",
-          "Deep carpet shampooing",
-          "Hot water extraction",
-          "Stain removal",
-          "Leather seats cleaned and conditioned",
-          "Door jambs cleaned"
-        ],
-        "exterior": [
-          "Carnauba wash application",
-          "Bug, road tar and tree sap removed",
-          "Tire shine",
-          "Wheel cleaning",
-          "Wheel fender cleaning",
-          "Paint sealer application"
-        ]
-      }
+      "servicePlans": [
+        {
+          "id": 1,
+          "name": "Window Tint",
+          "availablePlans": ["Premium", "Platinum"]
+        },
+        {
+          "id": 2,
+          "name": "Seat Shampoo",
+          "availablePlans": ["Basic", "Classic", "Premium", "Platinum"]
+        }
+      ]
     }
   ]
 }

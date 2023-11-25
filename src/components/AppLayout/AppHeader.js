@@ -14,7 +14,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import "./styles.css";
 
 // const pages = ["Products", "Pricing", "Blog"];
-const settings = ["Profile", "Dashboard", "Logout", "Bookings"];
+const settings = ["Profile", "Dashboard", "Bookings", "Logout"];
 
 export function AppHeader(props) {
   const { authStatus, user } = props;
@@ -72,7 +72,8 @@ export function AppHeader(props) {
             href="/"
             sx={{
               mr: 2,
-              display: { xs: "none", md: "flex" },
+              display: { xs: "none", md: "flex", lg: "flex" },
+              flexGrow: 1,
               fontWeight: 700,
               fontFamily: "inherit",
               letterSpacing: "none",
