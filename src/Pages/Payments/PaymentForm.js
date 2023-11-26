@@ -78,7 +78,7 @@ export default function PaymentForm() {
       try {
         const { id } = paymentMethod;
         const response = await axios.post(
-          "https://oyster-app-6q5gi.ondigitalocean.app/payment",
+          "https://whale-app-snfl3.ondigitalocean.app/payment",
           {
             amount: totalPrice,
             id,
