@@ -32,9 +32,17 @@ export const ServiceDetails = () => {
   const { title, rate, fullAddress, promoRate, servicePlans } =
     data?.state?.selectedVendor;
 
-  const handleBookCarWash = () => {
+  const handleBookCarWash = (config) => {
+    window.scrollTo(0, 0);
     navigate(`/${category}/${serviceId}/available-slots`, {
-      state: data.state,
+      state: {
+        ...data.state,
+        selectedPlan: config?.planType,
+        selectedVendor: {
+          ...data?.state?.selectedVendor,
+          basePrice: config?.price,
+        },
+      },
     });
   };
 
@@ -56,7 +64,6 @@ export const ServiceDetails = () => {
         <Rating name="text-feedback" precision={0.1} value={rate} readOnly />
         <Box sx={{ ml: 1 }}>305 ratings</Box>
       </Box>
-
       <PlansSelection
         promoRate={promoRate}
         servicePlans={servicePlans}

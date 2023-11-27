@@ -1,12 +1,12 @@
 {
   "data": [
     {
-      "id": "1",
+      "id": "9c3cecb0-8d07-11ee-8e40-bd621a86dfb7",
       "title": "Miguel's car detailing",
       "location": "New York",
       "fullAddress": "1542 N Broadway, Baltimore, MD 21213",
       "image": "./assets/wax.jpeg",
-      "rate": 5.0,
+      "rate": 5,
       "promoRate": 195,
       "basePrice": 195,
       "promoContentTop": "top company",
@@ -25,7 +25,7 @@
       ]
     },
     {
-      "id": "2",
+      "id": "b71f66c0-8d07-11ee-8e40-bd621a86dfb7",
       "title": "Jose's car shop",
       "location": "Virginia, 2.5 miles away",
       "fullAddress": "1542 N Broadway, Baltimore, MD 21213",
@@ -49,12 +49,12 @@
       ]
     },
     {
-      "id": "3",
+      "id": "c36b2310-8d07-11ee-8e40-bd621a86dfb7",
       "title": "Daniel's car shop",
       "fullAddress": "1542 N Broadway, Baltimore, MD 21213",
       "location": "San Francisco",
       "image": "./assets/wax.jpeg",
-      "rate": 4.0,
+      "rate": 4,
       "promoRate": 180,
       "basePrice": 205,
       "promoContentTop": "best price available",
@@ -73,12 +73,12 @@
       ]
     },
     {
-      "id": "4",
+      "id": "cc041090-8d07-11ee-8e40-bd621a86dfb7",
       "title": "Xavier's car detailing",
       "fullAddress": "1542 N Broadway, Baltimore, MD 21213",
       "location": "San Jose",
       "image": "./assets/wax.jpeg",
-      "rate": 5.0,
+      "rate": 5,
       "promoRate": 175,
       "basePrice": 195,
       "promoContentTop": "best rated",
@@ -97,7 +97,7 @@
       ]
     },
     {
-      "id": "5",
+      "id": "d6708590-8d07-11ee-8e40-bd621a86dfb7",
       "title": "Miguel's car shop",
       "fullAddress": "1542 N Broadway, Baltimore, MD 21213",
       "location": "Washington D.C.",
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "id": "6",
+      "id": "dedbfa70-8d07-11ee-8e40-bd621a86dfb7",
       "title": "Miguel's car shop",
       "fullAddress": "1542 N Broadway, Baltimore, MD 21213",
       "location": "Seattle",

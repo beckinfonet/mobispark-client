@@ -31,6 +31,7 @@ export const ProWash = () => {
   };
 
   const handleServiceCardClick = (record) => () => {
+    window.scrollTo(0, 0);
     navigate(`/pro-wash/${record.id}/details`, { state: record });
   };
 

@@ -38,6 +38,7 @@ export function AppHeader(props) {
   // const vendorId = "64292a77a3166bcd75d4e16f";
 
   const handlemenuItemClick = (selection) => {
+    window.scrollTo(0, 0);
     if (selection === "Dashboard") {
       navigate(`/vendor-dashboard/${user?.data?.[0]?._id}`);
     }
@@ -58,6 +59,7 @@ export function AppHeader(props) {
   };
 
   const handleLoginOnClick = () => {
+    window.scrollTo(0, 0);
     navigate("/login", { state: { from: location } });
   };
 

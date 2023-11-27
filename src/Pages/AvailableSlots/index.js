@@ -39,15 +39,15 @@ const slots = [
 
 export const AvailableSlots = () => {
   const data = useLocation();
-  console.log("Router state", data?.state?.dateAndZipCode?.dateOfBooking);
+  const navigate = useNavigate();
   const { serviceId, category } = useParams();
   const [bookingDate, setBookingDate] = React.useState(
     dayjs(data?.state?.dateAndZipCode?.dateOfBooking?.$d)
   );
   const [bookingSlot, setBookingSlot] = React.useState("");
-  const navigate = useNavigate();
 
   const handleSlotConfirmAndContinue = () => {
+    window.scrollTo(0, 0);
     navigate(`/${category}/${serviceId}/payment`, {
       state: {
         ...data.state,

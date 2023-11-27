@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
@@ -10,6 +10,9 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 
 import "./styles.css";
+import axios from "axios";
+import { useAuthenticator } from "@aws-amplify/ui-react";
+import dayjs from "dayjs";
 
 const steps = ["Booked", "Confirmed", "Completed"];
 const stepperMap = {
@@ -18,89 +21,6 @@ const stepperMap = {
   Confirmed: 2,
   Completed: 3,
 };
-
-const pastOrders = [
-  {
-    bookingId: "1233-4524-2452-45245",
-    vendor: "Xavier's car detailing",
-    address: "1542 N Broadway, Baltimore, MD 21213",
-    packageType: "Basic",
-    bookingStatus: "Completed",
-    date: "02/08/2023",
-    timeSlot: "02-03 PM",
-    price: 262.5,
-    tax: 34,
-  },
-  {
-    bookingId: "1233-4524-6666-45245",
-    vendor: "Xavier's car detailing",
-    address: "1542 N Broadway, Baltimore, MD 21213",
-    packageType: "Basic",
-    bookingStatus: "Completed",
-    date: "02/08/2023",
-    timeSlot: "02-03 PM",
-    price: 262.5,
-    tax: 34,
-  },
-  {
-    bookingId: "1233-4524-4444-45245",
-    vendor: "Xavier's car detailing",
-    address: "1542 N Broadway, Baltimore, MD 21213",
-    packageType: "Basic",
-    bookingStatus: "Completed",
-    date: "02/08/2023",
-    timeSlot: "02-03 PM",
-    price: 262.5,
-    tax: 34,
-  },
-  {
-    bookingId: "1233-4524-7777-45245",
-    vendor: "Xavier's car detailing",
-    address: "1542 N Broadway, Baltimore, MD 21213",
-    packageType: "Basic",
-    bookingStatus: "Cancelled",
-    date: "02/08/2023",
-    timeSlot: "02-03 PM",
-    price: 262.5,
-    tax: 34,
-  },
-  {
-    bookingId: "1233-4524-3333-45246",
-    vendor: "Xavier's car detailing",
-    address: "1542 N Broadway, Baltimore, MD 21213",
-    packageType: "PRO",
-    bookingStatus: "Completed",
-    date: "02/08/2023",
-    timeSlot: "02-03 PM",
-    price: 262.5,
-    tax: 34,
-  },
-];
-
-const upcommingOrders = [
-  {
-    bookingId: "1233-4524-7777-45245",
-    vendor: "Xavier's car detailing",
-    address: "1542 N Broadway, Baltimore, MD 21213",
-    packageType: "Basic",
-    bookingStatus: "Booked",
-    date: "02/08/2023",
-    timeSlot: "02-03 PM",
-    price: 262.5,
-    tax: 34,
-  },
-  {
-    bookingId: "1233-4524-3333-45246",
-    vendor: "Xavier's car detailing",
-    address: "1542 N Broadway, Baltimore, MD 21213",
-    packageType: "PRO",
-    bookingStatus: "Confirmed",
-    date: "02/08/2023",
-    timeSlot: "02-03 PM",
-    price: 262.5,
-    tax: 34,
-  },
-];
 
 const BookingCard = (props) => {
   const { details } = props;
@@ -158,15 +78,21 @@ const BookingCard = (props) => {
               <p className="date-time-text">
                 {details.date} :: {details.timeSlot}
               </p>
-              <Typography variant="h6" gutterBottom>
-                {details.vendor}
+              <Typography
+                variant="h6"
+                gutterBottom
+                sx={{ textTransform: "uppercase" }}
+              >
+                {details.vendorName}
               </Typography>
               <Typography gutterBottom>{details.address}</Typography>
             </div>
             <div className="price-details">
               <div className="price-row">
-                <span>Booking ID</span>
-                <span className="bold">{details.bookingId}</span>
+                <span>Booking Time</span>
+                <span className="bold">
+                  {dayjs(details.bookingDateTime).format("MM-DD-YYYY hh:mm A")}
+                </span>
               </div>
               <div className="price-row">
                 <span>Base price</span>
@@ -203,25 +129,95 @@ const BookingCard = (props) => {
 };
 
 export const Dashboard = () => {
+  const { user } = useAuthenticator((context) => [context.authStatus]);
+  const [bookings, setBookings] = useState({
+    status: "",
+    data: [],
+    error: null,
+  });
+
+  useEffect(() => {
+    axios
+      .get(`/api/bookings/list/${user?.attributes?.sub}`)
+      .then((res) => {
+        setBookings({ status: "success", data: res?.data?.data || [] });
+      })
+      .catch((error) => {
+        setBookings({ status: "error", error: error });
+      });
+  }, []);
+
+  const upcommingBookings = bookings?.data?.filter((x) =>
+    ["Booked", "Confirmed"].includes(x.bookingStatus)
+  );
+
+  const pastBookings = bookings?.data?.filter(
+    (x) => !["Booked", "Confirmed"].includes(x.bookingStatus)
+  );
+
   return (
     <div className="booking-container">
       <div className="booking-section">
-        <div className="cards-container">
-          <Divider>
-            <Typography variant="h5">UPCOMMING BOOKINGS</Typography>
-          </Divider>
-          {upcommingOrders.map((record) => (
-            <BookingCard key={record.bookingId} details={record} />
-          ))}
-          <br />
-          <br />
-          <Divider>
-            <Typography variant="h5">PAST BOOKINGS</Typography>
-          </Divider>
-          {pastOrders.map((record) => (
-            <BookingCard key={record.bookingId} details={record} />
-          ))}
-        </div>
+        {bookings?.status === "error" && (
+          <div>
+            <Typography
+              variant="h4"
+              align="center"
+              color="text.secondary"
+              sx={{
+                margin: "30px 0px",
+                fontFamily: "inherit",
+                fontWeight: "600",
+                textTransform: "uppercase",
+              }}
+            >
+              Something went wrong, Please try after sometime.
+            </Typography>
+          </div>
+        )}
+        {bookings.status === "success" && (
+          <div className="cards-container">
+            {bookings?.data?.length === 0 && (
+              <div>
+                <Typography
+                  variant="h4"
+                  align="center"
+                  color="text.secondary"
+                  sx={{
+                    margin: "30px 0px",
+                    fontFamily: "inherit",
+                    fontWeight: "600",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  No records found
+                </Typography>
+              </div>
+            )}
+            {upcommingBookings?.length > 0 && (
+              <>
+                <Divider>
+                  <Typography variant="h5">UPCOMMING BOOKINGS</Typography>
+                </Divider>
+                {upcommingBookings?.map((record) => (
+                  <BookingCard key={record.bookingId} details={record} />
+                ))}
+              </>
+            )}
+            {pastBookings?.length > 0 && (
+              <>
+                <br />
+                <br />
+                <Divider>
+                  <Typography variant="h5">PAST BOOKINGS</Typography>
+                </Divider>
+                {pastBookings?.map((record) => (
+                  <BookingCard key={record.bookingId} details={record} />
+                ))}
+              </>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

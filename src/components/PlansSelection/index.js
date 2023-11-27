@@ -80,7 +80,6 @@ const PlanCard = (props) => {
 };
 
 export const PlansSelection = (props) => {
-  console.log(props);
   const { promoRate, handleBookCarWash, servicePlans = [] } = props || {};
 
   const basicService = servicePlans?.filter((plan) =>
@@ -107,7 +106,9 @@ export const PlansSelection = (props) => {
           name="START"
           price={`$${promoRate}`}
           serviceTypes={basicService}
-          handleBookCarWash={() => handleBookCarWash(promoRate)}
+          handleBookCarWash={() =>
+            handleBookCarWash({ planType: "Basic", price: promoRate })
+          }
         />
       )}
       {classicService && (
@@ -116,7 +117,9 @@ export const PlansSelection = (props) => {
           name="PRO"
           price={`$${promoRate * 1.5}`}
           serviceTypes={classicService}
-          handleBookCarWash={() => handleBookCarWash(promoRate * 1.5)}
+          handleBookCarWash={() =>
+            handleBookCarWash({ planType: "Classic", price: promoRate * 1.5 })
+          }
         />
       )}
       {premiumService && (
@@ -125,7 +128,9 @@ export const PlansSelection = (props) => {
           name="BEST BUNDLE"
           price={`$${promoRate * 2}`}
           serviceTypes={premiumService}
-          handleBookCarWash={() => handleBookCarWash(promoRate * 2)}
+          handleBookCarWash={() =>
+            handleBookCarWash({ planType: "Premium", price: promoRate * 2 })
+          }
         />
       )}
       {platinumService && (
@@ -134,7 +139,9 @@ export const PlansSelection = (props) => {
           name="FULL PACKAGE"
           price={`$${promoRate * 2}`}
           serviceTypes={platinumService}
-          handleBookCarWash={() => handleBookCarWash(promoRate * 2)}
+          handleBookCarWash={() =>
+            handleBookCarWash({ planType: "Platinum", price: promoRate * 2.5 })
+          }
         />
       )}
     </div>

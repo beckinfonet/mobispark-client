@@ -59,6 +59,7 @@ export const MainSelection = () => {
   const handleClose = () => setOpen(false);
   const handleContinue = () => {
     if (values.zipCode.length === 5 && values.dateOfBooking) {
+      window.scrollTo(0, 0);
       navigate("/basic-wash", {
         state: { categories, serviceType, shopType, dateAndZipCode: values },
       });
@@ -112,8 +113,10 @@ export const MainSelection = () => {
       </div>
       <div className="main-categories-body">
         <div
-          className={`item ${isCategorySelected("Tint") ? "active" : ""}`}
-          onClick={handleOnCategoryClick("Tint")}
+          className={`item ${
+            isCategorySelected("Mobile Tint") ? "active" : ""
+          }`}
+          onClick={handleOnCategoryClick("Mobile Tint")}
         >
           <MinorCruchIcon sx={{ fontSize: "75px" }} />
           <Typography>Tint</Typography>

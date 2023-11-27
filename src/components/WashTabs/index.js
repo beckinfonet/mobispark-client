@@ -9,6 +9,7 @@ export const WashTabs = () => {
   const navigate = useNavigate();
 
   const handleChange = (event, value) => {
+    window.scrollTo(0, 0);
     navigate(value);
   };
 
