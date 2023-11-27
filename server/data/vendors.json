@@ -1,0 +1,148 @@
+{
+  "data": [
+    {
+      "id": "9c3cecb0-8d07-11ee-8e40-bd621a86dfb7",
+      "title": "Miguel's car detailing",
+      "location": "New York",
+      "fullAddress": "1542 N Broadway, Baltimore, MD 21213",
+      "image": "./assets/wax.jpeg",
+      "rate": 5,
+      "promoRate": 195,
+      "basePrice": 195,
+      "promoContentTop": "top company",
+      "promoContentBottom": "Located near you",
+      "servicePlans": [
+        {
+          "id": 1,
+          "name": "Window Tint",
+          "availablePlans": ["Premium", "Platinum"]
+        },
+        {
+          "id": 2,
+          "name": "Seat Shampoo",
+          "availablePlans": ["Basic", "Classic", "Premium", "Platinum"]
+        }
+      ]
+    },
+    {
+      "id": "b71f66c0-8d07-11ee-8e40-bd621a86dfb7",
+      "title": "Jose's car shop",
+      "location": "Virginia, 2.5 miles away",
+      "fullAddress": "1542 N Broadway, Baltimore, MD 21213",
+      "image": "./assets/wax.jpeg",
+      "rate": 4.5,
+      "promoRate": 155,
+      "basePrice": 180,
+      "promoContentTop": "pricebreaker",
+      "promoContentBottom": "Soonest service",
+      "servicePlans": [
+        {
+          "id": 1,
+          "name": "Window Tint",
+          "availablePlans": ["Premium", "Platinum"]
+        },
+        {
+          "id": 2,
+          "name": "Seat Shampoo",
+          "availablePlans": ["Basic", "Classic", "Premium", "Platinum"]
+        }
+      ]
+    },
+    {
+      "id": "c36b2310-8d07-11ee-8e40-bd621a86dfb7",
+      "title": "Daniel's car shop",
+      "fullAddress": "1542 N Broadway, Baltimore, MD 21213",
+      "location": "San Francisco",
+      "image": "./assets/wax.jpeg",
+      "rate": 4,
+      "promoRate": 180,
+      "basePrice": 205,
+      "promoContentTop": "best price available",
+      "promoContentBottom": "Available now",
+      "servicePlans": [
+        {
+          "id": 1,
+          "name": "Window Tint",
+          "availablePlans": ["Premium", "Platinum"]
+        },
+        {
+          "id": 2,
+          "name": "Seat Shampoo",
+          "availablePlans": ["Basic", "Classic", "Premium", "Platinum"]
+        }
+      ]
+    },
+    {
+      "id": "cc041090-8d07-11ee-8e40-bd621a86dfb7",
+      "title": "Xavier's car detailing",
+      "fullAddress": "1542 N Broadway, Baltimore, MD 21213",
+      "location": "San Jose",
+      "image": "./assets/wax.jpeg",
+      "rate": 5,
+      "promoRate": 175,
+      "basePrice": 195,
+      "promoContentTop": "best rated",
+      "promoContentBottom": "Located near you",
+      "servicePlans": [
+        {
+          "id": 1,
+          "name": "Window Tint",
+          "availablePlans": ["Premium", "Platinum"]
+        },
+        {
+          "id": 2,
+          "name": "Seat Shampoo",
+          "availablePlans": ["Basic", "Classic", "Premium", "Platinum"]
+        }
+      ]
+    },
+    {
+      "id": "d6708590-8d07-11ee-8e40-bd621a86dfb7",
+      "title": "Miguel's car shop",
+      "fullAddress": "1542 N Broadway, Baltimore, MD 21213",
+      "location": "Washington D.C.",
+      "image": "./assets/wax.jpeg",
+      "rate": 3.9,
+      "promoRate": 115,
+      "basePrice": 145,
+      "promoContentTop": "good service",
+      "promoContentBottom": "Located near you",
+      "servicePlans": [
+        {
+          "id": 1,
+          "name": "Window Tint",
+          "availablePlans": ["Premium", "Platinum"]
+        },
+        {
+          "id": 2,
+          "name": "Seat Shampoo",
+          "availablePlans": ["Basic", "Classic", "Premium", "Platinum"]
+        }
+      ]
+    },
+    {
+      "id": "dedbfa70-8d07-11ee-8e40-bd621a86dfb7",
+      "title": "Miguel's car shop",
+      "fullAddress": "1542 N Broadway, Baltimore, MD 21213",
+      "location": "Seattle",
+      "image": "./assets/wax.jpeg",
+      "rate": 3.8,
+      "promoRate": 105,
+      "basePrice": 165,
+      "promoContentTop": "great price",
+      "promoContentBottom": "Located near you",
+      "servicePlans": [
+        {
+          "id": 1,
+          "name": "Window Tint",
+          "availablePlans": ["Premium", "Platinum"]
+        },
+        {
+          "id": 2,
+          "name": "Seat Shampoo",
+          "availablePlans": ["Basic", "Classic", "Premium", "Platinum"]
+        }
+      ]
+    }
+  ]
+}

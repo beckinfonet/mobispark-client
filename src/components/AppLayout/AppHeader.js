@@ -14,7 +14,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import "./styles.css";
 
 // const pages = ["Products", "Pricing", "Blog"];
-const settings = ["Profile", "Dashboard", "Logout", "Bookings"];
+const settings = ["Profile", "Dashboard", "Bookings", "Logout"];
 
 export function AppHeader(props) {
   const { authStatus, user } = props;
@@ -38,6 +38,7 @@ export function AppHeader(props) {
   // const vendorId = "64292a77a3166bcd75d4e16f";
 
   const handlemenuItemClick = (selection) => {
+    window.scrollTo(0, 0);
     if (selection === "Dashboard") {
       navigate(`/vendor-dashboard/${user?.data?.[0]?._id}`);
     }
@@ -58,6 +59,7 @@ export function AppHeader(props) {
   };
 
   const handleLoginOnClick = () => {
+    window.scrollTo(0, 0);
     navigate("/login", { state: { from: location } });
   };
 
@@ -72,7 +74,8 @@ export function AppHeader(props) {
             href="/"
             sx={{
               mr: 2,
-              display: { xs: "none", md: "flex" },
+              display: { xs: "none", md: "flex", lg: "flex" },
+              flexGrow: 1,
               fontWeight: 700,
               fontFamily: "inherit",
               letterSpacing: "none",

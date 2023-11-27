@@ -5,7 +5,7 @@ import dayjs from "dayjs";
 import "./orderDetails.styles.css";
 
 export default function BasicTable(props) {
-  const { values } = props;
+  const { values, userInfo } = props;
 
   return (
     <div className="basic-details-section">
@@ -22,8 +22,8 @@ export default function BasicTable(props) {
             style={{ borderRadius: "10px" }}
           />
           <div style={{ marginLeft: "5px" }}>
-            <div>Brandon Frank</div>
-            <div>(212)755-3455</div>
+            <div>{userInfo?.email}</div>
+            <div>{userInfo?.phone_number}</div>
           </div>
         </div>
 
@@ -39,7 +39,9 @@ export default function BasicTable(props) {
             />
           </div>
           <div>
-            <Typography>Service Date</Typography>
+            <Typography variant="caption" display="block">
+              Booking Date & Slot
+            </Typography>
             <Typography>{`${dayjs(values?.dateOfBooking?.$d).format(
               "MM/DD/YYYY"
             )} ${values?.timeSlot}`}</Typography>

@@ -9,8 +9,10 @@ import PhotoCameraIcon from "@mui/icons-material/PhotoCamera";
 import defaultProfileImage from "./default-profile.png";
 
 import "./style.css";
+import { useAuthenticator } from "@aws-amplify/ui-react";
 
 export const Profile = () => {
+  const { user } = useAuthenticator((context) => [context.authStatus]);
   const [avatar, setAvatar] = useState(defaultProfileImage);
   const fileInputRef = useRef();
 
@@ -79,7 +81,7 @@ export const Profile = () => {
             sx={{ margin: "20px 0px" }}
             focused
             fullWidth
-            defaultValue="Marcus Obrien"
+            defaultValue=""
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -95,7 +97,7 @@ export const Profile = () => {
             sx={{ margin: "20px 0px" }}
             focused
             fullWidth
-            defaultValue="(269) 756-9809"
+            defaultValue={user?.attributes?.phone_number}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -111,7 +113,7 @@ export const Profile = () => {
             sx={{ margin: "20px 0px" }}
             focused
             fullWidth
-            defaultValue="william@rocheald.com"
+            defaultValue={user?.attributes?.email}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -126,7 +128,7 @@ export const Profile = () => {
             sx={{ margin: "20px 0px" }}
             focused
             fullWidth
-            defaultValue="Algonquin Rd, Three Oaks Vintage, MI, 49128"
+            defaultValue=""
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">

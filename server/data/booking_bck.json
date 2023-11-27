@@ -1,0 +1,60 @@
+{
+  "data": [
+    {
+      "bookingId": "1233-4524-2452-45245",
+      "vendor": "Xavier's car detailing",
+      "address": "1542 N Broadway, Baltimore, MD 21213",
+      "packageType": "Basic",
+      "bookingStatus": "Completed",
+      "date": "02/08/2023",
+      "timeSlot": "02-03 PM",
+      "price": 262.5,
+      "tax": 34
+    },
+    {
+      "bookingId": "1233-4524-6666-45245",
+      "vendorId": "dfsdf",
+      "vendor": "Xavier's car detailing",
+      "address": "1542 N Broadway, Baltimore, MD 21213",
+      "packageType": "Basic",
+      "bookingStatus": "Completed",
+      "date": "02/08/2023",
+      "timeSlot": "02-03 PM",
+      "price": 262.5,
+      "tax": 34
+    },
+    {
+      "bookingId": "1233-4524-4444-45245",
+      "vendor": "Xavier's car detailing",
+      "address": "1542 N Broadway, Baltimore, MD 21213",
+      "packageType": "Basic",
+      "bookingStatus": "Completed",
+      "date": "02/08/2023",
+      "timeSlot": "02-03 PM",
+      "price": 262.5,
+      "tax": 34
+    },
+    {
+      "bookingId": "1233-4524-7777-45245",
+      "vendor": "Xavier's car detailing",
+      "address": "1542 N Broadway, Baltimore, MD 21213",
+      "packageType": "Basic",
+      "bookingStatus": "Cancelled",
+      "date": "02/08/2023",
+      "timeSlot": "02-03 PM",
+      "price": 262.5,
+      "tax": 34
+    },
+    {
+      "bookingId": "1233-4524-3333-45246",
+      "vendor": "Xavier's car detailing",
+      "address": "1542 N Broadway, Baltimore, MD 21213",
+      "packageType": "PRO",
+      "bookingStatus": "Completed",
+      "date": "02/08/2023",
+      "timeSlot": "02-03 PM",
+      "price": 262.5,
+      "tax": 34
+    }
+  ]
+}

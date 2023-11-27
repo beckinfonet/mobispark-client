@@ -11,6 +11,7 @@ export function Login() {
 
   useEffect(() => {
     if (authStatus === "authenticated") {
+      window.scrollTo(0, 0);
       navigate(pathname, { state });
     }
   }, [authStatus]);

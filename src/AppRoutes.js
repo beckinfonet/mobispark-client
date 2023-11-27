@@ -6,6 +6,7 @@ import { AppLayout } from "./components/AppLayout";
 import { BasicWash } from "./Pages/BasicWash";
 import { MainSelection } from "./Pages/MainSelection";
 import { ServiceDetails } from "./Pages/ServiceDetails";
+import { AvailableSlots } from "./Pages/AvailableSlots";
 import { PaymentContainer } from "./Pages/Payments";
 import { Login } from "./Pages/Login";
 import { Dashboard } from "./Pages/Dashboard";
@@ -29,7 +30,6 @@ function PrivateRoute({ children, user }) {
     context.authStatus,
   ]);
   let location = useLocation();
-  // console.log("PrivateRoute .......", authStatus);
   if (authStatus === "unauthenticated") {
     // Redirect them to the /login page, but save the current location they were
     // trying to go to when they were redirected. This allows us to send them
@@ -104,6 +104,14 @@ export const AppRoutes = ({ user }) => {
         element={
           <PublicRoute user={userInfo}>
             <ServiceDetails />
+          </PublicRoute>
+        }
+      />
+      <Route
+        path=":category/:serviceId/available-slots"
+        element={
+          <PublicRoute user={userInfo}>
+            <AvailableSlots />
           </PublicRoute>
         }
       />

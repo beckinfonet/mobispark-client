@@ -13,6 +13,7 @@ export const ImageSlider = (props) => {
     autoplay: true,
     autoplaySpeed: 2000,
     pauseOnHover: true,
+    arrows: false,
     responsive: [
       {
         breakpoint: 1024,
