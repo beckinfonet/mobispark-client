@@ -88,22 +88,28 @@ export default function PaymentForm() {
     });
 
     if (!error) {
-      const body = {
-        userInfo: user?.attributes,
-        paymentId: paymentMethod.id,
-        vendorId: selectedVendor.id,
-        vendorName: selectedVendor.title,
-        address: selectedVendor.fullAddress,
-        packageType: selectedPlan,
-        bookingStatus: "Booked",
-        date: dayjs(dateAndZipCode?.dateOfBooking?.$d).format("MM/DD/YYYY"),
-        timeSlot: dateAndZipCode?.timeSlot,
-        price: selectedVendor.basePrice,
-        tax: tax,
-        bookingDateTime: dayjs().format(),
-      };
       axios
-        .post("/api/bookings/create", body)
+        .post("https://formula312-server-2xrue.ondigitalocean.app/payment", {
+          amount: parseInt(totalPrice, 10),
+          id: paymentMethod.id,
+        })
+        .then(() => {
+          const body = {
+            userInfo: user?.attributes,
+            paymentId: paymentMethod.id,
+            vendorId: selectedVendor.id,
+            vendorName: selectedVendor.title,
+            address: selectedVendor.fullAddress,
+            packageType: selectedPlan,
+            bookingStatus: "Booked",
+            date: dayjs(dateAndZipCode?.dateOfBooking?.$d).format("MM/DD/YYYY"),
+            timeSlot: dateAndZipCode?.timeSlot,
+            price: selectedVendor.basePrice,
+            tax: tax,
+            bookingDateTime: dayjs().format(),
+          };
+          return axios.post("/api/bookings/create", body);
+        })
         .then(() => {
           setPaymentStatus("SUCCESS");
         })
@@ -111,20 +117,6 @@ export default function PaymentForm() {
           setPaymentStatus("ERROR");
           console.log(error);
         });
-      // try {
-      //   const { id } = paymentMethod;
-      //   const response = await axios.post(
-      //     "https://whale-app-snfl3.ondigitalocean.app/payment",
-      //     { amount: totalPrice, id }
-      //   );
-
-      //   if (response.data.success) {
-      //     console.log("Successful payment");
-      //     setSuccess(true);
-      //   }
-      // } catch (error) {
-      //   console.log("Error", error);
-      // }
     } else {
       setPaymentStatus("ERROR");
       console.log(error.message);
