@@ -47,7 +47,7 @@ const BookingCard = (props) => {
     <div className={`booking-card ${getCardType(details.bookingStatus)}`}>
       <div className="card-cover-section">
         <p className="location-section">
-          {details.vendor} | {details.date} :: {details.timeSlot} | STATUS :{" "}
+          {details.vendorName} | {details.date} : {details.timeSlot} | STATUS :{" "}
           {details.bookingStatus}
         </p>
 
@@ -197,7 +197,7 @@ export const Dashboard = () => {
             {upcommingBookings?.length > 0 && (
               <>
                 <Divider>
-                  <Typography variant="h5">UPCOMMING BOOKINGS</Typography>
+                  <Typography variant="h5">UPCOMING BOOKINGS</Typography>
                 </Divider>
                 {upcommingBookings?.map((record) => (
                   <BookingCard key={record.bookingId} details={record} />
