@@ -14,7 +14,7 @@ import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import PersonIcon from "@mui/icons-material/Person";
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import EventIcon from "@mui/icons-material/Event";
 import LocalCarWashIcon from "@mui/icons-material/LocalCarWash";
@@ -231,7 +231,7 @@ export default function PaymentForm() {
             <List>
               <ListItem sx={{ py: "6px" }}>
                 <ListItemIcon sx={{ minWidth: "30px", pb: "4px" }}>
-                  <PersonIcon />
+                  <AccountBoxIcon />
                 </ListItemIcon>
                 <ListItemText primary={user?.attributes?.email} />
               </ListItem>
