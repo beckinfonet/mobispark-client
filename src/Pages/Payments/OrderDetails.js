@@ -10,13 +10,13 @@ export default function BasicTable(props) {
   return (
     <div className="basic-details-section">
       <Typography align="center" gutterBottom sx={{ fontWeight: "bold" }}>
-        Vendor details:
+        Contact information:
       </Typography>
       <div className="user-details-section">
         <div className="item">
           <img
             alt="vendor icon"
-            src="https://pixlr.com/studio/template/8352fdc3-0e0e-4465-a3d3-af93beb070c4/thumbnail.webp"
+            src="https://cdn.iconscout.com/icon/free/png-256/free-avatar-370-456322.png?f=webp"
             width={50}
             height={50}
             style={{ borderRadius: "10px" }}
@@ -38,7 +38,8 @@ export default function BasicTable(props) {
               style={{ height: 25, width: 25, margin: 10 }}
             />
           </div>
-          <div>
+
+          <div style={{ marginTop: "15px" }}>
             <Typography variant="caption" display="block">
               Booking Date & Slot
             </Typography>
