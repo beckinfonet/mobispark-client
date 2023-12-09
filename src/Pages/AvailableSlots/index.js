@@ -77,7 +77,6 @@ export const AvailableSlots = () => {
           py: 2,
           mx: "auto",
           textAlign: "center",
-          textTransform: "uppercase",
           fontWeight: "bold",
         }}
       >
@@ -90,7 +89,11 @@ export const AvailableSlots = () => {
         <Box sx={{ flexGrow: 1 }}>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DateCalendar
-              sx={{ mt: 5, ml: "auto", mr: 3 }}
+              sx={{
+                mt: { xs: 0, sm: 0, md: 5 },
+                ml: "auto",
+                mr: { sm: "auto", md: 3 },
+              }}
               disablePast
               showDaysOutsideCurrentMonth
               fixedWeekNumber={6}
@@ -99,7 +102,13 @@ export const AvailableSlots = () => {
             />
           </LocalizationProvider>
         </Box>
-        <Box sx={{ flexGrow: 1, width: "500px" }}>
+        <Box
+          sx={{
+            flexGrow: 1,
+            width: "500px",
+            textAlign: { xs: "center", sm: "center", md: "left" },
+          }}
+        >
           <Typography
             variant="overline"
             display="block"
@@ -113,6 +122,7 @@ export const AvailableSlots = () => {
               display: "flex",
               flexFlow: "row wrap",
               "& button": { m: 1 },
+              justifyContent: { xs: "center", sm: "center", md: "left" },
             }}
           >
             {slots.map((slot) => (
