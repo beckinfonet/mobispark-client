@@ -13,22 +13,16 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./styles.css";
 
-// const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Dashboard", "Bookings", "Logout"];
 
 export function AppHeader(props) {
-  const { authStatus, user } = props;
+  const { authStatus, user, cognitoUser } = props;
   const location = useLocation();
   const navigate = useNavigate();
-  const [, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
   };
 
   const handleCloseUserMenu = () => {
@@ -115,17 +109,6 @@ export function AppHeader(props) {
               width="80"
             />
           </Typography>
-          {/* <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                {page}
-              </Button>
-            ))}
-          </Box> */}
 
           {authStatus === "authenticated" ? (
             <Box sx={{ flexGrow: 0 }}>
@@ -159,8 +142,7 @@ export function AppHeader(props) {
               >
                 {settings.map((setting) =>
                   setting === "Dashboard" &&
-                  user?.data?.[0]?.userInfo?.platformApprovalStatus !==
-                    "APPROVED" ? null : (
+                  cognitoUser?.attributes?.profile !== "vendor" ? null : (
                     <MenuItem
                       key={setting}
                       onClick={() => handlemenuItemClick(setting)}
