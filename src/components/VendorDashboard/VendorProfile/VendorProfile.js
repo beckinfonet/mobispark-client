@@ -119,8 +119,14 @@ const ProfileViewMode = ({ data, setToEditMode }) => {
 
 const VendorProfile = ({ submitUserProfileData, data }) => {
   const [viewMode, setViewMode] = useState(false);
-  const { companyName, companyStreetAddress, email, city, state, zipcode } =
-    data?.vendorProfile ?? {};
+  const {
+    companyName = "",
+    companyStreetAddress = "",
+    email = "",
+    city = "",
+    state = "",
+    zipcode = "",
+  } = data?.vendorProfile ?? {};
   const {
     handleSubmit,
     formState: { errors },

@@ -48,7 +48,9 @@ export const AppFooter = ({ user }) => {
                 sx={{ backgroundColor: "#fa2a55", m: 1 }}
                 onClick={handleSignUpClick}
               >
-                Sign Up here!
+                {user?.attributes?.profile === "vendor"
+                  ? "Refer someone"
+                  : "Sign Up here!"}
               </Button>
             </>
           )}
